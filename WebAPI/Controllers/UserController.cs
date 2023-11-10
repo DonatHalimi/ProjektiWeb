@@ -9,72 +9,71 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly MyDB dbContext;
 
-        public BookController(MyDB db)
+        public UserController(MyDB db)
         {
             dbContext = db;
         }
 
         // CREATE
         [HttpPost]
-        public IActionResult CreateBook(BookModel book)
+        public IActionResult CreateUser(UserModel user)
         {
-            dbContext.Books.Add(book);
+            dbContext.Users.Add(user);
             dbContext.SaveChanges();
-            return Ok(book);
+            return Ok(user);
         }
 
         // READ
         [HttpGet]
-        public IEnumerable<BookModel> GetBooks()
+        public IEnumerable<UserModel> GetUsers()
         {
-            return dbContext.Books.ToList();
+            return dbContext.Users.ToList();
         }
 
         // UPDATE
         [HttpPut("{id}")]
-        public IActionResult UpdateBook(int id, BookModel newBookData)
+        public IActionResult UpdateUser(int id, UserModel newUserData)
         {
-            var book = dbContext.Books.Find(id);
+            var user = dbContext.Users.Find(id);
 
-            if (book == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            book.Title = newBookData.Title;
-            book.Author = newBookData.Author;
-            book.ISBN = newBookData.ISBN;
-            book.PublicationDate = newBookData.PublicationDate;
-            book.Genre = newBookData.Genre;
-            book.Description = newBookData.Description;
-            book.Price = newBookData.Price;
-            book.CoverImage = newBookData.CoverImage;
+            user.FirstName = newUserData.FirstName;
+            user.LastName = newUserData.LastName;
+            user.Email = newUserData.Email;
+            user.Birthdate = newUserData.Birthdate;
+            user.Username = newUserData.Username;
+            user.PasswordHash = newUserData.PasswordHash;
+            user.Role = newUserData.Role;
 
             dbContext.SaveChanges();
 
-            return Ok(book);
+            return Ok(user);
         }
 
         // DELETE
         [HttpDelete("{id}")]
-        public IActionResult DeleteBook(int id)
+        public IActionResult DeleteUser(int id)
         {
-            var book = dbContext.Books.Find(id);
+            var user = dbContext.Users.Find(id);
 
-            if (book == null)
+            if (user == null)
             {
-                return NotFound("Book not found");
+                return NotFound("User not found");
             }
 
             try
             {
-                dbContext.Books.Remove(book);
+                dbContext.Users.Remove(user);
                 dbContext.SaveChanges();
-                return Ok("Book deleted successfully");
+                return Ok("User deleted successfully");
             }
             catch (Exception ex)
             {
@@ -84,19 +83,19 @@ namespace WebAPI.Controllers
 
         // READ BY ID
         [HttpGet("{id}")]
-        public IActionResult GetBookById(int id)
+        public IActionResult GetUserById(int id)
         {
             try
             {
-                var book = dbContext.Books.Find(id);
+                var user = dbContext.Users.Find(id);
 
-                if (book != null)
+                if (user != null)
                 {
-                    return Ok(book);
+                    return Ok(user);
                 }
                 else
                 {
-                    return NotFound("Book not found");
+                    return NotFound("User not found");
                 }
             }
             catch (Exception ex)
