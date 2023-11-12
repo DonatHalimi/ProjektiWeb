@@ -22,59 +22,89 @@ namespace WebAPI.Controllers
         [HttpPost]
         public IActionResult CreateBook(BookModel book)
         {
-            dbContext.Books.Add(book);
-            dbContext.SaveChanges();
-            return Ok(book);
+            try
+            {
+                dbContext.Books.Add(book);
+                dbContext.SaveChanges();
+                return Ok(book);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
+            }
         }
 
         // READ
         [HttpGet]
-        public IEnumerable<BookModel> GetBooks()
+        public IActionResult GetBooks()
         {
-            return dbContext.Books.ToList();
+            try
+            {
+                var books = dbContext.Books.ToList();
+
+                if (books.Count != 0)
+                {
+                    return Ok(books);
+                }
+                else
+                {
+                    return NotFound("No books found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
+            }
         }
 
         // UPDATE
         [HttpPut("{id}")]
         public IActionResult UpdateBook(int id, BookModel newBookData)
         {
-            var book = dbContext.Books.Find(id);
-
-            if (book == null)
+            try
             {
-                return NotFound();
+                var book = dbContext.Books.Find(id);
+
+                if (book == null)
+                {
+                    return NotFound($"No book found with the ID {id}");
+                }
+
+                book.Title = newBookData.Title;
+                book.Author = newBookData.Author;
+                book.ISBN = newBookData.ISBN;
+                book.PublicationDate = newBookData.PublicationDate;
+                book.Genre = newBookData.Genre;
+                book.Description = newBookData.Description;
+                book.Price = newBookData.Price;
+                book.CoverImage = newBookData.CoverImage;
+
+                dbContext.SaveChanges();
+
+                return Ok(book);
             }
-
-            book.Title = newBookData.Title;
-            book.Author = newBookData.Author;
-            book.ISBN = newBookData.ISBN;
-            book.PublicationDate = newBookData.PublicationDate;
-            book.Genre = newBookData.Genre;
-            book.Description = newBookData.Description;
-            book.Price = newBookData.Price;
-            book.CoverImage = newBookData.CoverImage;
-
-            dbContext.SaveChanges();
-
-            return Ok(book);
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
+            }
         }
 
         // DELETE
         [HttpDelete("{id}")]
         public IActionResult DeleteBook(int id)
         {
-            var book = dbContext.Books.Find(id);
-
-            if (book == null)
-            {
-                return NotFound("Book not found");
-            }
-
             try
             {
+                var book = dbContext.Books.Find(id);
+
+                if (book == null)
+                {
+                    return NotFound($"No book found with the ID {id}");
+                }
+
                 dbContext.Books.Remove(book);
                 dbContext.SaveChanges();
-                return Ok("Book deleted successfully");
+                return Ok($"Book with the ID {id} deleted successfully!");
             }
             catch (Exception ex)
             {
@@ -96,7 +126,7 @@ namespace WebAPI.Controllers
                 }
                 else
                 {
-                    return NotFound("Book not found");
+                    return NotFound($"No book found with the ID {id}");
                 }
             }
             catch (Exception ex)

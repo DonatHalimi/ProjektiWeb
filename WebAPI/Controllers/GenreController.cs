@@ -22,9 +22,16 @@ namespace WebAPI.Controllers
         [HttpPost]
         public IActionResult CreateGenre(GenreModel genre)
         {
-            dbContext.Genres.Add(genre);
-            dbContext.SaveChanges();
-            return Ok(genre);
+            try
+            {
+                dbContext.Genres.Add(genre);
+                dbContext.SaveChanges();
+                return Ok(genre);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
+            }
         }
 
         // READ
@@ -41,7 +48,7 @@ namespace WebAPI.Controllers
                 }
                 else
                 {
-                    return NotFound("Genre not found!");
+                    return NotFound("No genres found.");
                 }
             }
             catch (Exception ex)
@@ -54,36 +61,43 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateGenre(int id, GenreModel newGenreData)
         {
-            var genre = dbContext.Genres.Find(id);
-
-            if (genre == null)
+            try
             {
-                return NotFound();
+                var genre = dbContext.Genres.Find(id);
+
+                if (genre == null)
+                {
+                    return NotFound($"No genre found with the ID {id}");
+                }
+
+                genre.Name = newGenreData.Name;
+
+                dbContext.SaveChanges();
+
+                return Ok(genre);
             }
-
-            genre.Name = newGenreData.Name;
-
-            dbContext.SaveChanges();
-
-            return Ok(genre);
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
+            }
         }
 
         // DELETE
         [HttpDelete("{id}")]
         public IActionResult DeleteGenre(int id)
         {
-            var genre = dbContext.Genres.Find(id);
-
-            if (genre == null)
-            {
-                return NotFound("Genre not found");
-            }
-
             try
             {
+                var genre = dbContext.Genres.Find(id);
+
+                if (genre == null)
+                {
+                    return NotFound($"No genre found with the ID {id}");
+                }
+
                 dbContext.Genres.Remove(genre);
                 dbContext.SaveChanges();
-                return Ok("Genre deleted successfully!");
+                return Ok($"Genre with the ID {id} has been deleted successfully!");
             }
             catch (Exception ex)
             {
@@ -105,7 +119,7 @@ namespace WebAPI.Controllers
                 }
                 else
                 {
-                    return NotFound("Genre not found!");
+                    return NotFound($"No genre found with the ID {id}");
                 }
             }
             catch (Exception ex)
