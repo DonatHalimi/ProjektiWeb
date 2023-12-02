@@ -10,6 +10,8 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ProjektiWebW23G10
 build_property.RootNamespace = ProjektiWebW23G10
 build_property.ProjectDir = C:\Users\donat\Documents\VisualStudioProjects\Projekti\ProjektiWebW23G10\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
@@ -18,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 
 [C:/Users/donat/Documents/VisualStudioProjects/Projekti/ProjektiWebW23G10/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/donat/Documents/VisualStudioProjects/Projekti/ProjektiWebW23G10/Views/Book/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/donat/Documents/VisualStudioProjects/Projekti/ProjektiWebW23G10/Views/Book/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/donat/Documents/VisualStudioProjects/Projekti/ProjektiWebW23G10/Views/Home/Index.cshtml]

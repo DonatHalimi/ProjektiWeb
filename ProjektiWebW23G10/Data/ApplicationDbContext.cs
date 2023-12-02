@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ProjektiWebW23G10.Models;
 
 namespace ProjektiWebW23G10.Data
 {
@@ -9,5 +10,6 @@ namespace ProjektiWebW23G10.Data
             : base(options)
         {
         }
+        public DbSet<ProjektiWebW23G10.Models.BookModel>? BookModel { get; set; }
     }
 }
