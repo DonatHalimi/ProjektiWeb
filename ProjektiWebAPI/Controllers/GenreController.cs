@@ -20,7 +20,7 @@ namespace ProjektiWebAPI.Controllers
 
         // CREATE
         [HttpPost]
-        public IActionResult Create(GenreModel genre)
+        public IActionResult Post(GenreModel genre)
         {
             try
             {
@@ -81,6 +81,7 @@ namespace ProjektiWebAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
             }
         }
+
 
         // DELETE
         [HttpDelete("{id}")]

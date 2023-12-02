@@ -20,7 +20,7 @@ namespace ProjektiWebAPI.Controllers
 
         // CREATE
         [HttpPost]
-        public IActionResult Create(UserModel user)
+        public IActionResult Post(UserModel user)
         {
             try
             {

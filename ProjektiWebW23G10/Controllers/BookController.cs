@@ -33,29 +33,135 @@ namespace ProjektiWebW23G10.Controllers
             return View(bookList);
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Create(BookModel book)
+        public IActionResult Create(BookModel book)
         {
             try
             {
-                var json = JsonConvert.SerializeObject(book);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = await _client.PostAsync(_client.BaseAddress + "/Book/Create", content);
+                string data = JsonConvert.SerializeObject(book);
+                StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/Book/Post", content).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Create");
-                }
-                else
-                {
-                    return View("Error");
+                    TempData["successMessage"] = "Book has been created successfully.";
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                return View("Error");
+                TempData["errorMessage"] = ex.Message;
+                return View();
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            try
+            {
+                BookModel book = new BookModel();
+                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/Book/Get/" + id).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    book = JsonConvert.DeserializeObject<BookModel>(data);
+                }
+                return View(book);
+            }
+            catch (Exception ex)
+            {
+                TempData["errorMessage"] = ex.Message;
+                return View();
+            }
+        }
+
+        // EDIT
+        [HttpPost]
+        public IActionResult Edit(int id, BookModel book)
+        {
+            try
+            {
+                string data = JsonConvert.SerializeObject(book);
+                StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = _client.PutAsync(_client.BaseAddress + "/Book/Put/" + id, content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["successMessage"] = "Book details updated successfully.";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["errorMessage"] = "Failed to update book details.";
+                    return View(book);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["errorMessage"] = ex.Message;
+                return View(book);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                BookModel book = new BookModel();
+                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/Book/Get/" + id).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    book = JsonConvert.DeserializeObject<BookModel>(data);
+                    return View(book);
+                }
+                else
+                {
+                    TempData["errorMessage"] = "Failed to retrieve book details for deletion.";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["errorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            try
+            {
+                HttpResponseMessage response = _client.DeleteAsync(_client.BaseAddress + "/Book/Delete/" + id).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["successMessage"] = "Book has been deleted successfully.";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["errorMessage"] = "Failed to delete book details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["errorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
         }
     }

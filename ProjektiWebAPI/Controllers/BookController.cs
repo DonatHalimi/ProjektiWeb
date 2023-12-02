@@ -20,7 +20,7 @@ namespace ProjektiWebAPI.Controllers
 
         // CREATE
         [HttpPost]
-        public IActionResult Create(BookModel book)
+        public IActionResult Post(BookModel book)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace ProjektiWebAPI.Controllers
 
         // UPDATE
         [HttpPut("{id}")]
-        public IActionResult Update(int id, BookModel newBookData)
+        public IActionResult Put(int id, [FromBody] BookModel newBookData)
         {
             try
             {
@@ -70,14 +70,17 @@ namespace ProjektiWebAPI.Controllers
                     return NotFound($"No book found with the ID {id}");
                 }
 
-                book.Title = newBookData.Title;
-                book.Author = newBookData.Author;
-                book.ISBN = newBookData.ISBN;
-                book.PublicationDate = newBookData.PublicationDate;
-                book.Genre = newBookData.Genre;
-                book.Description = newBookData.Description;
-                book.Price = newBookData.Price;
-                book.CoverImage = newBookData.CoverImage;
+                if (newBookData != null)
+                {
+                    book.Title = newBookData.Title;
+                    book.Author = newBookData.Author;
+                    book.ISBN = newBookData.ISBN;
+                    book.PublicationDate = newBookData.PublicationDate;
+                    book.Genre = newBookData.Genre;
+                    book.Description = newBookData.Description;
+                    book.Price = newBookData.Price;
+                    book.CoverImage = newBookData.CoverImage;
+                }
 
                 dbContext.SaveChanges();
 
@@ -114,7 +117,7 @@ namespace ProjektiWebAPI.Controllers
 
         // READ BY ID
         [HttpGet("{id}")]
-        public IActionResult GetBookById(int id)
+        public IActionResult Get(int id)
         {
             try
             {
