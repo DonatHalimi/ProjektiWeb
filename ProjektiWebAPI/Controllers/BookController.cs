@@ -18,12 +18,22 @@ namespace ProjektiWebAPI.Controllers
             dbContext = db;
         }
 
+        private static bool isValidPublicationDate(DateTime? publicationDate)
+        {
+            return publicationDate != null && publicationDate <= DateTime.Now;
+        }
+
         // CREATE
         [HttpPost]
         public IActionResult Post(BookModel book)
         {
             try
             {
+                if (!isValidPublicationDate(book.PublicationDate))
+                {
+                    return BadRequest("Invalid Publication Date. Please make sure it is not in the future.");
+                }
+
                 dbContext.Books.Add(book);
                 dbContext.SaveChanges();
                 return Ok(book);
@@ -70,6 +80,11 @@ namespace ProjektiWebAPI.Controllers
                     return NotFound($"No book found with the ID {id}");
                 }
 
+                if (!isValidPublicationDate(newBookData.PublicationDate))
+                {
+                    return BadRequest("Invalid Publication Date. Please make sure it is not in the future.");
+                }
+
                 if (newBookData != null)
                 {
                     book.Title = newBookData.Title;
@@ -107,7 +122,7 @@ namespace ProjektiWebAPI.Controllers
 
                 dbContext.Books.Remove(book);
                 dbContext.SaveChanges();
-                return Ok($"Book with the ID {id} deleted successfully!");
+                return Ok($"Book with the ID {id} has been deleted successfully!");
             }
             catch (Exception ex)
             {

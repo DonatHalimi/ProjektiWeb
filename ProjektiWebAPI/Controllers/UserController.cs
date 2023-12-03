@@ -18,12 +18,22 @@ namespace ProjektiWebAPI.Controllers
             dbContext = db;
         }
 
+        private static bool IsValidBirthdate(DateTime? birthdate)
+        {
+            return birthdate != null && birthdate <= DateTime.Now;
+        }
+
         // CREATE
         [HttpPost]
         public IActionResult Post(UserModel user)
         {
             try
             {
+                if (!IsValidBirthdate(user.Birthdate))
+                {
+                    return BadRequest("Invalid birthdate. Please make sure it is not in the future.");
+                }
+
                 dbContext.Users.Add(user);
                 dbContext.SaveChanges();
                 return Ok(user);
@@ -59,7 +69,7 @@ namespace ProjektiWebAPI.Controllers
 
         // UPDATE
         [HttpPut("{id}")]
-        public IActionResult Update(int id, UserModel newUserData)
+        public IActionResult Put(int id, [FromBody] UserModel newUserData)
         {
             try
             {
@@ -70,13 +80,21 @@ namespace ProjektiWebAPI.Controllers
                     return NotFound($"No user found with the ID {id}");
                 }
 
-                user.FirstName = newUserData.FirstName;
-                user.LastName = newUserData.LastName;
-                user.Email = newUserData.Email;
-                user.Birthdate = newUserData.Birthdate;
-                user.Username = newUserData.Username;
-                user.PasswordHash = newUserData.PasswordHash;
-                user.Role = newUserData.Role;
+                if (!IsValidBirthdate(newUserData.Birthdate))
+                {
+                    return BadRequest("Invalid birthdate. Please make sure it is not in the future.");
+                }
+
+                if (newUserData != null)
+                {
+                    user.FirstName = newUserData.FirstName;
+                    user.LastName = newUserData.LastName;
+                    user.Email = newUserData.Email;
+                    user.Birthdate = newUserData.Birthdate;
+                    user.Username = newUserData.Username;
+                    user.PasswordHash = newUserData.PasswordHash;
+                    user.Role = newUserData.Role;
+                }
 
                 dbContext.SaveChanges();
 
@@ -103,7 +121,7 @@ namespace ProjektiWebAPI.Controllers
 
                 dbContext.Users.Remove(user);
                 dbContext.SaveChanges();
-                return Ok($"User with the ID {id} deleted successfully!");
+                return Ok($"User with the ID {id} has been deleted successfully!");
             }
             catch (Exception ex)
             {
@@ -113,7 +131,7 @@ namespace ProjektiWebAPI.Controllers
 
         // READ BY ID
         [HttpGet("{id}")]
-        public IActionResult GetUserById(int id)
+        public IActionResult Get(int id)
         {
             try
             {

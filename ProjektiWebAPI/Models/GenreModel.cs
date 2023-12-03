@@ -8,7 +8,7 @@
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter genre name")]
         [StringLength(50)]
         public string? Name { get; set; }
     }

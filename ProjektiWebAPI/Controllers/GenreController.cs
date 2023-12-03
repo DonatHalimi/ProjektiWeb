@@ -59,7 +59,7 @@ namespace ProjektiWebAPI.Controllers
 
         // UPDATE
         [HttpPut("{id}")]
-        public IActionResult Update(int id, GenreModel newGenreData)
+        public IActionResult Put(int id, [FromBody] GenreModel newGenreData)
         {
             try
             {
@@ -70,7 +70,10 @@ namespace ProjektiWebAPI.Controllers
                     return NotFound($"No genre found with the ID {id}");
                 }
 
-                genre.Name = newGenreData.Name;
+                if (newGenreData != null)
+                {
+                    genre.Name = newGenreData.Name;
+                }
 
                 dbContext.SaveChanges();
 
@@ -108,7 +111,7 @@ namespace ProjektiWebAPI.Controllers
 
         // READ BY ID
         [HttpGet("{id}")]
-        public IActionResult GetGenreById(int id)
+        public IActionResult Get(int id)
         {
             try
             {
