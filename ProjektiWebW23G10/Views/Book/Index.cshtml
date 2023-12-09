@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProjektiWebW23G10.Models.BookModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Books";
 }
 
 <h1>Index</h1>
@@ -40,38 +40,57 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ISBN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublicationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CoverImage)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> *@
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @FormatISBNForDisplay(item.ISBN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublicationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @{
+                        // Get the currency symbol for the euro (€) using the "fr-FR" culture
+                        var currencySymbol = System.Globalization.NumberFormatInfo.CurrentInfo.CurrencySymbol;
+                        // Display the price with the currency symbol
+                        var formattedPrice = item.Price.HasValue ? $"{currencySymbol} {item.Price.Value:N2}" : "N/A";
+                    }
+                    @formattedPrice
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CoverImage)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@functions {
+    string FormatISBNForDisplay(string isbn)
+    {
+        if (isbn == null || isbn.Length != 13)
+        {
+            return isbn; // Return as is if not a valid ISBN
+        }
+
+        return $"{isbn.Substring(0, 3)}-{isbn.Substring(3, 1)}-{isbn.Substring(4, 3)}-{isbn.Substring(7, 5)}-{isbn.Substring(12)}";
+    }
+}

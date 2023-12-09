@@ -8,7 +8,7 @@ namespace ProjektiWebW23G10.Controllers
 {
     public class BookController : Controller
     {
-        Uri baseAddress = new Uri("https://localhost:7132/api");
+        readonly Uri baseAddress = new Uri("https://localhost:7132/api");
 
         private readonly HttpClient _client;
 
@@ -110,6 +110,33 @@ namespace ProjektiWebW23G10.Controllers
             {
                 TempData["errorMessage"] = ex.Message;
                 return View(book);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            try
+            {
+                BookModel book = new BookModel();
+                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/Book/Get/" + id).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    book = JsonConvert.DeserializeObject<BookModel>(data);
+                    return View(book);
+                }
+                else
+                {
+                    TempData["errorMessage"] = "Failed to retrieve book details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["errorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
         }
 
