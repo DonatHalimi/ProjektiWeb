@@ -2,6 +2,7 @@
 .vscode/
 .idea/
 .vs/
+.cache/
 
 # User-specific files
 *.suo
@@ -15,6 +16,16 @@ obj/
 
 # NuGet
 packages/
+*.dgspec.json
+*.dgspec.props
+project.assets.json
+
+# Ignore EditorConfig files
+.editorconfig
+
+# Ignore Assembly info files
+**/AssemblyInfo.cs
+**/AssemblyInfo.vb
 
 # User-specific files
 *.suo
