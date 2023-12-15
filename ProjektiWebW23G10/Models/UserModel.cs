@@ -28,7 +28,7 @@ namespace ProjektiWebW23G10.Models
         public string? Username { get; set; }
 
         [Required(ErrorMessage = "Please enter password")]
-        [DataType(DataType.Password)]
+        [StringLength(11, MinimumLength = 7)]
         public string? PasswordHash { get; set; }
 
         [Required(ErrorMessage = "Please enter a role")]

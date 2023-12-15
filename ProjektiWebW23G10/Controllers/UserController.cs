@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ProjektiWebW23G10.Models;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 
 namespace ProjektiWebW23G10.Controllers
@@ -8,6 +11,7 @@ namespace ProjektiWebW23G10.Controllers
     public class UserController : Controller
     {
         readonly Uri baseAddress = new Uri("https://localhost:7132/api");
+
         private readonly HttpClient _client;
 
         public UserController()
@@ -19,66 +23,55 @@ namespace ProjektiWebW23G10.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-
             List<UserModel> userList = new List<UserModel>();
-            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress +
-                "/User/Get").Result;
+
+            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/User/Get").Result;
 
             if (response.IsSuccessStatusCode)
             {
-                string data=response.Content.ReadAsStringAsync().Result;
+                string data = response.Content.ReadAsStringAsync().Result;
                 userList = JsonConvert.DeserializeObject<List<UserModel>>(data);
             }
             return View(userList);
         }
 
-
         [HttpGet]
         public IActionResult Create()
         {
-
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(UserModel model)
+        public IActionResult Create(UserModel user)
         {
             try
             {
-                string data = JsonConvert.SerializeObject(model);
+                string data = JsonConvert.SerializeObject(user);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "" +
-                    "/User/Post", content).Result;
+                HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/User/Post", content).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
-                    TempData["successMessage"] = "User Created .";
+                    TempData["successMessage"] = "User has been created successfully.";
                     return RedirectToAction("Index");
-
                 }
             }
-
             catch (Exception ex)
             {
-                TempData["errorMessage"] = $"HTTP Request Error: {ex.Message}";
-                return View(); 
+                TempData["errorMessage"] = ex.Message;
+                return View();
             }
-         
-           
             return View();
         }
 
-
-
         [HttpGet]
-
-        public IActionResult Edit(int id) {
-
+        public IActionResult Edit(int id)
+        {
             try
             {
                 UserModel user = new UserModel();
-                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress +
-                    "/User/Get/" + id).Result;
+                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/User/Get/" + id).Result;
+
                 if (response.IsSuccessStatusCode)
                 {
                     string data = response.Content.ReadAsStringAsync().Result;
@@ -88,90 +81,116 @@ namespace ProjektiWebW23G10.Controllers
             }
             catch (Exception ex)
             {
-                TempData["errorMessage"]= ex.Message;
-                return View(); ;
+                TempData["errorMessage"] = ex.Message;
+                return View();
             }
-
-            
         }
 
         [HttpPost]
-        public IActionResult Edit(UserModel model) {
+        public IActionResult Edit(int id, UserModel user)
+        {
             try
             {
-                string date = JsonConvert.SerializeObject(model);
-                StringContent content = new StringContent(date, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = _client.PutAsync(_client.BaseAddress +
-                    "/User/Put", content).Result;
+                string data = JsonConvert.SerializeObject(user);
+                StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = _client.PutAsync(_client.BaseAddress + "/User/Put/" + id, content).Result;
+
                 if (response.IsSuccessStatusCode)
                 {
-
-                    TempData["successMessage"] = "User details updated";
+                    TempData["successMessage"] = "User details updated successfully.";
                     return RedirectToAction("Index");
-
+                }
+                else
+                {
+                    TempData["errorMessage"] = "Failed to update user details.";
+                    return View(user);
                 }
             }
             catch (Exception ex)
             {
                 TempData["errorMessage"] = ex.Message;
-                return View(); 
+                return View(user);
             }
-
-
-            return View();
         }
 
-
         [HttpGet]
-
-        public IActionResult Delete(int id) {
+        public IActionResult Details(int id)
+        {
             try
             {
                 UserModel user = new UserModel();
-                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress +
-                    "/User/Get" + id).Result;
+                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/User/Get/" + id).Result;
+
                 if (response.IsSuccessStatusCode)
                 {
                     string data = response.Content.ReadAsStringAsync().Result;
                     user = JsonConvert.DeserializeObject<UserModel>(data);
+                    return View(user);
                 }
-                return View(user);
-
+                else
+                {
+                    TempData["errorMessage"] = "Failed to retrieve user details.";
+                    return RedirectToAction("Index");
+                }
             }
             catch (Exception ex)
             {
                 TempData["errorMessage"] = ex.Message;
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
-
-        [HttpPost,ActionName("Delete")]
-
-        public IActionResult DeleteConfirmed(int id) {
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
             try
             {
-
-                HttpResponseMessage response = _client.DeleteAsync(_client.BaseAddress +
-                    "/User/Delete/" + id).Result;
+                UserModel user = new UserModel();
+                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/User/Get/" + id).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
-                    TempData["successMessage"] = "User details deleted";
-
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    user = JsonConvert.DeserializeObject<UserModel>(data);
+                    return View(user);
+                }
+                else
+                {
+                    TempData["errorMessage"] = "Failed to retrieve user details for deletion.";
                     return RedirectToAction("Index");
                 }
-
             }
             catch (Exception ex)
             {
                 TempData["errorMessage"] = ex.Message;
-                return View();
+                return RedirectToAction("Index");
             }
-            return View();
-        
         }
 
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            try
+            {
+                HttpResponseMessage response = _client.DeleteAsync(_client.BaseAddress + "/User/Delete/" + id).Result;
 
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["successMessage"] = "User has been deleted successfully.";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["errorMessage"] = "Failed to delete user details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["errorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
