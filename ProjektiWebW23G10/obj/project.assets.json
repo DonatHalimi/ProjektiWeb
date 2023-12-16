@@ -11558,19 +11558,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\WishByTech\\.nuget\\packages\\": {}
+    "C:\\Users\\donat\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
+      "projectUniqueName": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
       "projectName": "ProjektiWebW23G10",
-      "projectPath": "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
-      "packagesPath": "C:\\Users\\WishByTech\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\obj\\",
+      "projectPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
+      "packagesPath": "C:\\Users\\donat\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\WishByTech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\donat\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11640,24 +11640,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.25, 6.0.25]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.25, 6.0.25]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.25, 6.0.25]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.25, 6.0.25]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"

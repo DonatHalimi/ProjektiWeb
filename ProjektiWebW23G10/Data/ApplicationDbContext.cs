@@ -12,6 +12,7 @@ namespace ProjektiWebW23G10.Data
         }
         public DbSet<ProjektiWebW23G10.Models.BookModel>? BookModel { get; set; }
         public DbSet<ProjektiWebW23G10.Models.GenreModel>? GenreModel { get; set; }
+        public DbSet<ProjektiWebW23G10.Models.UserModel>? UserModel { get; set; }
 
 
     }
