@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ProjektiWebW23G10.Models;
 using System;
@@ -8,6 +9,7 @@ using System.Text;
 
 namespace ProjektiWebW23G10.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         readonly Uri baseAddress = new Uri("https://localhost:7132/api");
