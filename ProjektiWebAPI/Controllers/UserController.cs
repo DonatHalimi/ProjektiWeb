@@ -18,22 +18,12 @@ namespace ProjektiWebAPI.Controllers
             dbContext = db;
         }
 
-        private static bool IsValidBirthdate(DateTime? birthdate)
-        {
-            return birthdate != null && birthdate <= DateTime.Now;
-        }
-
         // CREATE
         [HttpPost]
         public IActionResult Post(UserModel user)
         {
             try
             {
-                if (!IsValidBirthdate(user.Birthdate))
-                {
-                    return BadRequest("Invalid birthdate. Please make sure it is not in the future.");
-                }
-
                 dbContext.Users.Add(user);
                 dbContext.SaveChanges();
                 return Ok(user);
@@ -80,18 +70,11 @@ namespace ProjektiWebAPI.Controllers
                     return NotFound($"No user found with the ID {id}");
                 }
 
-                if (!IsValidBirthdate(newUserData.Birthdate))
-                {
-                    return BadRequest("Invalid birthdate. Please make sure it is not in the future.");
-                }
-
                 if (newUserData != null)
                 {
                     user.FirstName = newUserData.FirstName;
                     user.LastName = newUserData.LastName;
                     user.Email = newUserData.Email;
-                    user.Birthdate = newUserData.Birthdate;
-                    user.Username = newUserData.Username;
                     user.PasswordHash = newUserData.PasswordHash;
                     user.Role = newUserData.Role;
                 }

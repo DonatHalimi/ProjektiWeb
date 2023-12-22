@@ -20,14 +20,6 @@
         [StringLength(100)]
         public string? Email { get; set; }
 
-        [Required(ErrorMessage = "Please enter birthdate")]
-        [DataType(DataType.Date)]
-        public DateTime? Birthdate { get; set; }
-
-        [Required(ErrorMessage = "Please enter username")]
-        [StringLength(50)]
-        public string? Username { get; set; }
-
         [Required(ErrorMessage = "Please enter password")]
         [DataType(DataType.Password)]
         public string? PasswordHash { get; set; }

@@ -5,6 +5,9 @@
     ViewData["Title"] = "Log in";
 }
 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-MCw98/SFnGE8fJT3A2NHGrVfdvfMvfaP5NTDBcKGDeIbbVYCO/4KrF5LiybYD3I1" crossorigin="anonymous">
+
 <h1>@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4">
@@ -13,15 +16,20 @@
                 <h2>Use a local account to log in.</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-floating">
+                <div class="form-floating position-relative">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
                     <label asp-for="Input.Email" class="form-label"></label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
-                <div class="form-floating">
+                <div class="form-floating position-relative">
                     <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
                     <label asp-for="Input.Password" class="form-label"></label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    <div class="position-absolute top-50 end-0 translate-middle-y">
+                        <button class="btn btn-light" type="button" id="togglePassword">
+                            <i class="fas" id="eye-icon">&#xf06e;</i>
+                        </button>
+                    </div>
                 </div>
                 <div>
                     <div class="checkbox">
@@ -57,8 +65,10 @@
                 {
                     <div>
                         <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                article
+                                about setting up this ASP.NET application to support logging in via external services
+                            </a>.
                         </p>
                     </div>
                 }
@@ -82,4 +92,23 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var passwordInput = document.querySelector('#account [name="Input.Password"]');
+            var togglePasswordButton = document.querySelector('#togglePassword');
+            var eyeIcon = document.querySelector('#eye-icon');
+
+            togglePasswordButton.addEventListener('click', function () {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    eyeIcon.classList.remove('bi-eye');
+                    eyeIcon.classList.add('bi-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    eyeIcon.classList.remove('bi-eye-slash');
+                    eyeIcon.classList.add('bi-eye');
+                }
+            });
+        });
+    </script>
 }

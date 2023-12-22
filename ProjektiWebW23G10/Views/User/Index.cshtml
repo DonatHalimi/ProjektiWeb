@@ -22,18 +22,14 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Birthdate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Username)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PasswordHash)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Role)
             </th>
-            <th></th>
+            <th>
+                Operations
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -48,12 +44,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Birthdate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Username)
                 </td>
                 <td>
                     <text>******</text>
