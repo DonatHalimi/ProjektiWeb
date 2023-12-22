@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Anjeza\\Source\\Repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {}
+    "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Anjeza\\Source\\Repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {
+    "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Anjeza\\Source\\Repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
+        "projectUniqueName": "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
         "projectName": "ProjektiWebW23G10",
-        "projectPath": "C:\\Users\\Anjeza\\Source\\Repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
+        "projectPath": "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
         "packagesPath": "C:\\Users\\Anjeza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Anjeza\\Source\\Repos\\ProjektiWeb\\ProjektiWebW23G10\\obj\\",
+        "outputPath": "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Anjeza\\AppData\\Roaming\\NuGet\\NuGet.Config",
