@@ -22,7 +22,7 @@
 
         [Required(ErrorMessage = "Please enter password")]
         [DataType(DataType.Password)]
-        public string? PasswordHash { get; set; }
+        public string? Password { get; set; }
 
         [Required(ErrorMessage = "Please enter a role")]
         [StringLength(50)]

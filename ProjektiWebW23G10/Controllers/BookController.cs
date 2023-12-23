@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ProjektiWebW23G10.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class BookController : Controller
     {
         readonly Uri baseAddress = new Uri("https://localhost:7132/api");

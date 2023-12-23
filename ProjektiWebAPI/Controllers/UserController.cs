@@ -75,7 +75,7 @@ namespace ProjektiWebAPI.Controllers
                     user.FirstName = newUserData.FirstName;
                     user.LastName = newUserData.LastName;
                     user.Email = newUserData.Email;
-                    user.PasswordHash = newUserData.PasswordHash;
+                    user.Password = newUserData.Password;
                     user.Role = newUserData.Role;
                 }
 

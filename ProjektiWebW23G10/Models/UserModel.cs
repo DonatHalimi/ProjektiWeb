@@ -19,17 +19,9 @@ namespace ProjektiWebW23G10.Models
         [StringLength(100)]
         public string? Email { get; set; }
 
-        [Required(ErrorMessage = "Please enter birthdate")]
-        [DataType(DataType.Date)]
-        public DateTime? Birthdate { get; set; }
-
-        [Required(ErrorMessage = "Please enter username")]
-        [StringLength(50)]
-        public string? Username { get; set; }
-
         [Required(ErrorMessage = "Please enter password")]
         [StringLength(11, MinimumLength = 7)]
-        public string? PasswordHash { get; set; }
+        public string? Password { get; set; }
 
         [Required(ErrorMessage = "Please enter a role")]
         [StringLength(50)]
