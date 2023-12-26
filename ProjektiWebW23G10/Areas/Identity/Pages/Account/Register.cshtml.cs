@@ -195,11 +195,11 @@ namespace ProjektiWebW23G10.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private ApplicationUser CreateUser()
+        private UserIdentityModel CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<ApplicationUser>();
+                return Activator.CreateInstance<UserIdentityModel>();
             }
             catch
             {
