@@ -12,8 +12,8 @@ using ProjektiWebAPI.Models;
 namespace ProjektiWebAPI.Migrations
 {
     [DbContext(typeof(MyDatabase))]
-    [Migration("20231226164807_Database")]
-    partial class Database
+    [Migration("20231228131644_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
