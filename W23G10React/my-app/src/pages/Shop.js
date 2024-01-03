@@ -25,7 +25,7 @@ function Shop() {
 			{/* <!-- end search arewa -->
 	
 	<!-- breadcrumb-section --> */}
-			<div class="breadcrumb-section breadcrumb-bg">
+			<div class="breadcrumb-section hero-bg">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-8 offset-lg-2 text-center">
@@ -137,7 +137,7 @@ function Shop() {
 			{/* <!-- end products -->
 
 	<!-- logo carousel --> */}
-			<div class="logo-carousel-section">
+			{/* <div class="logo-carousel-section">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">
@@ -161,7 +161,7 @@ function Shop() {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 
 			<Footer />
 

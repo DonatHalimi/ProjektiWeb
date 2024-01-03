@@ -1,7 +1,12 @@
 import React, { Fragment } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Menu() {
+	const location = useLocation();
+
+	// Function to check if a given path matches the current location
+	const isActive = (path) => location.pathname === path;
+
 	return (
 		<Fragment>
 			<div className="top-header-area" id="sticker">
@@ -12,24 +17,23 @@ function Menu() {
 								{/* <!-- logo --> */}
 								<div className="site-logo">
 									<img src="assets/img/logo.png" alt="" />
-
 								</div>
 								{/* <!-- logo -->
 
-						<!-- menu start --> */}
+                        <!-- menu start --> */}
 								<nav className="main-menu">
 									<ul>
-										<li className="current-list-item"><Link to="/index">Home</Link>
-										</li>
-										<li><Link to="/about">About</Link></li>
-										<li><Link to="/contact">Contact</Link></li>
-										<li><Link to="/shop">Shop</Link>
+										<li className={isActive('/index') ? 'current-list-item' : ''}><Link to="/index">Home</Link></li>
+										<li className={isActive('/about') ? 'current-list-item' : ''}><Link to="/about">About</Link></li>
+										<li className={isActive('/contact') ? 'current-list-item' : ''}><Link to="/contact">Contact</Link></li>
+										<li className={isActive('/shop') ? 'current-list-item' : ''}>
+											<Link to="/shop">Shop</Link>
 											<ul className="sub-menu">
-												<li><Link to="/checkout">Checkout</Link></li>
-												<li><Link to="/singleproduct">Single product</Link></li>
+												<li className={isActive('/checkout') ? 'current-list-item' : ''}><Link to="/checkout">Checkout</Link></li>
+												<li className={isActive('/singleproduct') ? 'current-list-item' : ''}><Link to="/singleproduct">Single product</Link></li>
 											</ul>
 										</li>
-										<li>
+										<li className={isActive('/cart') ? 'current-list-item' : ''}>
 											<div className="header-icons">
 												<Link to="/cart"><i className="fas fa-shopping-cart"></i></Link>
 												<a className="mobile-hide search-bar-icon" href="#"><i className="fas fa-search"></i></a>
@@ -46,6 +50,7 @@ function Menu() {
 				</div>
 			</div>
 		</Fragment>
-	)
+	);
 }
+
 export default Menu;

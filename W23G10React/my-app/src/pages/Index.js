@@ -2,10 +2,12 @@ import React, { Fragment } from "react";
 import Menu from "./Menu";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
+import Testimonials from "./Testimonials";
 
 function Index() {
 	return (
 		<Fragment>
+
 
 			<Menu />
 			<div className="search-area">
@@ -26,30 +28,26 @@ function Index() {
 			</div>
 			{/* <!-- end search arewa -->
 
-<!-- hero area --> */}
-			<div className="hero-area hero-bg">
-				<Menu />
+	
+	<!-- breadcrumb-section --> */}
+			<div className="breadcrumb-section hero-bg">
 				<div className="container">
 					<div className="row">
-						<div className="col-lg-9 offset-lg-2 text-center">
-							<div className="hero-text">
-								<div className="hero-text-tablecell">
-									<p className="subtitle">Fresh & Organic</p>
-									<h1>Delicious Seasonal Fruits</h1>
-									<div className="hero-btns">
-										<a href="shop.html" className="boxed-btn">Fruit Collection</a>
-										<a href="contact.html" className="bordered-btn">Contact Us</a>
-									</div>
-								</div>
+						<div className="col-lg-8 offset-lg-2 text-center">
+							<div className="breadcrumb-text">
+								<p className="subtitle">Your Gateway to Wisdom</p>
+								<h1>Explore a World of Books</h1>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
+
 			{/* <!-- end hero area -->
 
 	<!-- features list section --> */}
-			<div className="list-section pt-80 pb-80">
+			{/* <div className="list-section pt-80 pb-80">
 				<div className="container">
 
 					<div className="row">
@@ -90,61 +88,129 @@ function Index() {
 
 				</div>
 			</div>
-			{/* <!-- end features list section -->
+			{/* <!-- end features list section --> */}
 
-	<!-- product section --> */}
+			{/*<!-- product section --> */}
 			<div className="product-section mt-150 mb-150">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-8 offset-lg-2 text-center">
 							<div className="section-title">
-								<h3><span className="orange-text">Our</span> Products</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+								<h3><span className="orange-text">Our</span> Books</h3>
+								<p>Take a moment to explore the pages that promise excitement, knowledge, and pure enjoyment.</p>
 							</div>
 						</div>
 					</div>
 
-					<div className="row">
-						<div className="col-lg-4 col-md-6 text-center">
-							<div className="single-product-item">
-								<div className="product-image">
-									<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt="" /></a>
+					{/* !!!!! */}
+					{/* Ne pjesen e produkteve, me vone e zevendsojme me librat qe behen fetch prej databazes ne file-in Books.js , keshtu: <Books /> */}
+					{/* !!!!! */}
+					<div class="product-section mt-200 mb-150">
+						<div class="container">
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="product-filters">
+										<ul>
+											<li class="active" data-filter="*">All</li>
+											<li data-filter=".strawberry">Strawberry</li>
+											<li data-filter=".berry">Berry</li>
+											<li data-filter=".lemon">Lemon</li>
+										</ul>
+									</div>
 								</div>
-								<h3>Strawberry</h3>
-								<p className="product-price"><span>Per Kg</span> 85$ </p>
-								<a href="cart.html" className="cart-btn"><i className="fas fa-shopping-cart"></i> Add to Cart</a>
 							</div>
-						</div>
-						<div className="col-lg-4 col-md-6 text-center">
-							<div className="single-product-item">
-								<div className="product-image">
-									<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt="" /></a>
+
+							<div class="row product-lists">
+								<div class="col-lg-4 col-md-6 text-center strawberry">
+									<div class="single-product-item">
+										<div class="product-image">
+											<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt="" /></a>
+										</div>
+										<h3>Strawberry</h3>
+										<p class="product-price"><span>Per Kg</span> 85$ </p>
+										<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+									</div>
 								</div>
-								<h3>Berry</h3>
-								<p className="product-price"><span>Per Kg</span> 70$ </p>
-								<a href="cart.html" className="cart-btn"><i className="fas fa-shopping-cart"></i> Add to Cart</a>
+								<div class="col-lg-4 col-md-6 text-center berry">
+									<div class="single-product-item">
+										<div class="product-image">
+											<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt="" /></a>
+										</div>
+										<h3>Berry</h3>
+										<p class="product-price"><span>Per Kg</span> 70$ </p>
+										<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 text-center lemon">
+									<div class="single-product-item">
+										<div class="product-image">
+											<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt="" /></a>
+										</div>
+										<h3>Lemon</h3>
+										<p class="product-price"><span>Per Kg</span> 35$ </p>
+										<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 text-center">
+									<div class="single-product-item">
+										<div class="product-image">
+											<a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt="" /></a>
+										</div>
+										<h3>Avocado</h3>
+										<p class="product-price"><span>Per Kg</span> 50$ </p>
+										<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 text-center">
+									<div class="single-product-item">
+										<div class="product-image">
+											<a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt="" /></a>
+										</div>
+										<h3>Green Apple</h3>
+										<p class="product-price"><span>Per Kg</span> 45$ </p>
+										<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 text-center strawberry">
+									<div class="single-product-item">
+										<div class="product-image">
+											<a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt="" /></a>
+										</div>
+										<h3>Strawberry</h3>
+										<p class="product-price"><span>Per Kg</span> 80$ </p>
+										<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div className="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-							<div className="single-product-item">
-								<div className="product-image">
-									<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt="" /></a>
+
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<div class="pagination-wrap">
+										<ul>
+											<li><a href="#">Prev</a></li>
+											<li><a href="#">1</a></li>
+											<li><a class="active" href="#">2</a></li>
+											<li><a href="#">3</a></li>
+											<li><a href="#">Next</a></li>
+										</ul>
+									</div>
 								</div>
-								<h3>Lemon</h3>
-								<p className="product-price"><span>Per Kg</span> 35$ </p>
-								<a href="cart.html" className="cart-btn"><i className="fas fa-shopping-cart"></i> Add to Cart</a>
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
+			{/* !!!!! */}
+			{/* !!!!! */}
+			
 			{/* <!-- end product section -->
 
-	<!-- cart banner section --> */}
-			<section className="cart-banner pt-100 pb-100">
+	{/*<!-- cart banner section --> */}
+			{/* <section className="cart-banner pt-100 pb-100">
 				<div className="container">
 					<div className="row clearfix">
-						{/* <!--Image Column--> */}
 						<div className="image-column col-lg-6">
 							<div className="image">
 								<div className="price-box">
@@ -157,73 +223,21 @@ function Index() {
 								<img src="assets/img/a.jpg" alt="" />
 							</div>
 						</div>
-						{/* <!--Content Column--> */}
 						<div className="content-column col-lg-6">
 							<h3><span className="orange-text">Deal</span> of the month</h3>
 							<h4>Hikan Strwaberry</h4>
 							<div className="text">Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant</div>
-							{/* <!--Countdown Timer--> */}
 							<div className="time-counter"><div className="time-countdown clearfix" data-countdown="2020/2/01"><div className="counter-column"><div className="inner"><span className="count">00</span>Days</div></div> <div className="counter-column"><div className="inner"><span className="count">00</span>Hours</div></div>  <div className="counter-column"><div className="inner"><span className="count">00</span>Mins</div></div>  <div className="counter-column"><div className="inner"><span className="count">00</span>Secs</div></div></div></div>
 							<a href="cart.html" className="cart-btn mt-3"><i className="fas fa-shopping-cart"></i> Add to Cart</a>
 						</div>
 					</div>
 				</div>
-			</section>
+			</section> */}
 			{/* <!-- end cart banner section -->
 
 	<!-- testimonail-section --> */}
-			<div className="testimonail-section mt-150 mb-150">
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-10 offset-lg-1 text-center">
-							<div className="testimonial-sliders">
-								<div className="single-testimonial-slider">
-									<div className="client-avater">
-										<img src="assets/img/avaters/avatar1.png" alt="" />
-									</div>
-									<div className="client-meta">
-										<h3>Saira Hakim <span>Local shop owner</span></h3>
-										<p className="testimonial-body">
-											" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-										</p>
-										<div className="last-icon">
-											<i className="fas fa-quote-right"></i>
-										</div>
-									</div>
-								</div>
-								<div className="single-testimonial-slider">
-									<div className="client-avater">
-										<img src="assets/img/avaters/avatar2.png" alt="" />
-									</div>
-									<div className="client-meta">
-										<h3>David Niph <span>Local shop owner</span></h3>
-										<p className="testimonial-body">
-											" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-										</p>
-										<div className="last-icon">
-											<i className="fas fa-quote-right"></i>
-										</div>
-									</div>
-								</div>
-								<div className="single-testimonial-slider">
-									<div className="client-avater">
-										<img src="assets/img/avaters/avatar3.png" alt="" />
-									</div>
-									<div className="client-meta">
-										<h3>Jacob Sikim <span>Local shop owner</span></h3>
-										<p className="testimonial-body">
-											" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-										</p>
-										<div className="last-icon">
-											<i className="fas fa-quote-right"></i>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<Testimonials />
+
 			{/* <!-- end testimonail-section -->
 	
 	<!-- advertisement section --> */}
@@ -237,11 +251,11 @@ function Index() {
 						</div>
 						<div className="col-lg-6 col-md-12">
 							<div className="abt-text">
-								<p className="top-sub">Since Year 1999</p>
+								<p className="top-sub">Since 2023</p>
 								<h2>We are <span className="orange-text">Fruitkha</span></h2>
-								<p>Etiam vulputate ut augue vel sodales. In sollicitudin neque et massa porttitor vestibulum ac vel nisi. Vestibulum placerat eget dolor sit amet posuere. In ut dolor aliquet, aliquet sapien sed, interdum velit. Nam eu molestie lorem.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente facilis illo repellat veritatis minus, et labore minima mollitia qui ducimus.</p>
-								<a href="about.html" className="boxed-btn mt-4">know more</a>
+								<p>Embark on a literary journey with us! At our online library, we are dedicated to bringing the magic of books to your fingertips. Explore our carefully curated selection, where every page invites you into a world of imagination and knowledge. Join us in celebrating the joy of reading!</p>								<Link to="/about">
+									<a className="boxed-btn mt-4">Learn more</a>
+								</Link>
 							</div>
 						</div>
 					</div>
@@ -250,17 +264,17 @@ function Index() {
 			{/* <!-- end advertisement section -->
 	
 	<!-- shop banner --> */}
-			<section className="shop-banner">
+			{/* <section className="shop-banner">
 				<div className="container">
 					<h3>December sale is on! <br /> with big <span className="orange-text">Discount...</span></h3>
 					<div className="sale-percent"><span>Sale! <br /> Upto</span>50% <span>off</span></div>
 					<a href="shop.html" className="cart-btn btn-lg">Shop Now</a>
 				</div>
-			</section>
+			</section> */}
 			{/* <!-- end shop banner -->
 
 	<!-- latest news --> */}
-			<div className="latest-news pt-150 pb-150">
+			{/* <div className="latest-news pt-150 pb-150">
 				<div className="container">
 
 					<div className="row">
@@ -322,11 +336,11 @@ function Index() {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 			{/* <!-- end latest news -->
 
 	<!-- logo carousel --> */}
-			<div className="logo-carousel-section">
+			{/* <div className="logo-carousel-section">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-12">
@@ -350,12 +364,10 @@ function Index() {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 
 			<Footer />
 
-
-			
 			{/* <!-- end copyright -->
 	
 	<!-- jquery -->

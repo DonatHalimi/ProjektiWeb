@@ -26,7 +26,7 @@ function Contact() {
 			{/* <!-- end search arewa -->
 	
 	<!-- breadcrumb-section --> */}
-			<div className="breadcrumb-section breadcrumb-bg">
+			<div className="breadcrumb-section hero-bg">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-8 offset-lg-2 text-center">
@@ -46,8 +46,8 @@ function Contact() {
 					<div className="row">
 						<div className="col-lg-8 mb-5 mb-lg-0">
 							<div className="form-title">
-								<h2>Have you any question?</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+								<h2>Do you have any questions?</h2>
+								<p>If you have any inquiries or need assistance, feel free to reach out to us. We are here to help and provide you with the information you need. Your satisfaction is our priority, and we look forward to addressing any questions or concerns you may have.</p>
 							</div>
 							<div id="form_status"></div>
 							<div className="contact-form">
@@ -70,15 +70,15 @@ function Contact() {
 							<div className="contact-form-wrap">
 								<div className="contact-form-box">
 									<h4><i className="fas fa-map"></i> Shop Address</h4>
-									<p>34/8, East Hukupara <br /> Gifirtok, Sadan. <br /> Country Name</p>
+									<p>34/8 Prishtinë <br /> Kosovë</p>
 								</div>
 								<div className="contact-form-box">
 									<h4><i className="far fa-clock"></i> Shop Hours</h4>
-									<p>MON - FRIDAY: 8 to 9 PM <br /> SAT - SUN: 10 to 8 PM </p>
+									<p>MON - FRIDAY: 8 AM to 9 PM <br /> SAT - SUN: 10 AM to 8 PM </p>
 								</div>
 								<div className="contact-form-box">
 									<h4><i className="fas fa-address-book"></i> Contact</h4>
-									<p>Phone: +00 111 222 3333 <br /> Email: support@fruitkha.com</p>
+									<p>Phone: +383 44 555 444 <br /> Email: support@name.com</p>
 								</div>
 							</div>
 						</div>

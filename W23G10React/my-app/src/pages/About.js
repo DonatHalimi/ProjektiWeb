@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Menu from "./Menu";
 import Footer from "./Footer";
+import Testimonials from "./Testimonials";
 
 function About() {
 	return (
@@ -25,14 +26,13 @@ function About() {
 			</div>
 			{/* <!-- end search arewa -->
 
-	
 	<!-- breadcrumb-section --> */}
-			<div className="breadcrumb-section breadcrumb-bg">
+			<div className="breadcrumb-section hero-bg">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-8 offset-lg-2 text-center">
 							<div className="breadcrumb-text">
-								<p>We sale fresh fruits</p>
+								<p>Diverse & Knowledgeable</p>
 								<h1>About Us</h1>
 							</div>
 						</div>
@@ -56,7 +56,7 @@ function About() {
 											</div>
 											<div className="content">
 												<h3>Home Delivery</h3>
-												<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+												<p>Enjoy the convenience of doorstep delivery for your chosen books. Our swift shipping ensures your literary treasures reach you in no time.</p>
 											</div>
 										</div>
 									</div>
@@ -67,7 +67,7 @@ function About() {
 											</div>
 											<div className="content">
 												<h3>Best Price</h3>
-												<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+												<p>Explore an extensive library at the best prices. We believe in providing affordable access to a world of knowledge and entertainment.</p>
 											</div>
 										</div>
 									</div>
@@ -78,7 +78,7 @@ function About() {
 											</div>
 											<div className="content">
 												<h3>Custom Box</h3>
-												<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+												<p>Create a personalized reading experience with our custom box option. Tailor your collection to suit your unique literary preferences.</p>
 											</div>
 										</div>
 									</div>
@@ -89,7 +89,7 @@ function About() {
 											</div>
 											<div className="content">
 												<h3>Quick Refund</h3>
-												<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+												<p>Our commitment to customer satisfaction includes a hassle-free refund process. Experience peace of mind with our quick and efficient refund services.</p>
 											</div>
 										</div>
 									</div>
@@ -99,16 +99,17 @@ function About() {
 					</div>
 				</div>
 			</div>
+
 			{/* <!-- end featured section -->
 
 	<!-- shop banner --> */}
-			<section className="shop-banner">
+			{/* <section className="shop-banner">
 				<div className="container">
 					<h3>December sale is on! <br /> with big <span className="orange-text">Discount...</span></h3>
 					<div className="sale-percent"><span>Sale! <br /> Upto</span>50% <span>off</span></div>
 					<a href="shop.html" className="cart-btn btn-lg">Shop Now</a>
 				</div>
-			</section>
+			</section> */}
 			{/* <!-- end shop banner -->
 
 	<!-- team section --> */}
@@ -117,8 +118,8 @@ function About() {
 					<div className="row">
 						<div className="col-lg-8 offset-lg-2 text-center">
 							<div className="section-title">
-								<h3>Our <span className="orange-text">Team</span></h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+								<h3>Meet <span className="orange-text">Our Team</span></h3>
+								<p>Get to know the passionate individuals behind our library, dedicated to bringing you a delightful reading experience.</p>
 							</div>
 						</div>
 					</div>
@@ -126,7 +127,7 @@ function About() {
 						<div className="col-lg-4 col-md-6">
 							<div className="single-team-item">
 								<div className="team-bg team-bg-1"></div>
-								<h4>Jimmy Doe <span>Farmer</span></h4>
+								<h4>John Smith <span>Book Curator</span></h4>
 								<ul className="social-link-team">
 									<li><a href="#" target="_blank"><i className="fab fa-facebook-f"></i></a></li>
 									<li><a href="#" target="_blank"><i className="fab fa-twitter"></i></a></li>
@@ -137,7 +138,7 @@ function About() {
 						<div className="col-lg-4 col-md-6">
 							<div className="single-team-item">
 								<div className="team-bg team-bg-2"></div>
-								<h4>Marry Doe <span>Farmer</span></h4>
+								<h4>Amy Johnson <span>Library Specialist</span></h4>
 								<ul className="social-link-team">
 									<li><a href="#" target="_blank"><i className="fab fa-facebook-f"></i></a></li>
 									<li><a href="#" target="_blank"><i className="fab fa-twitter"></i></a></li>
@@ -148,7 +149,7 @@ function About() {
 						<div className="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
 							<div className="single-team-item">
 								<div className="team-bg team-bg-3"></div>
-								<h4>Simon Joe <span>Farmer</span></h4>
+								<h4>Emma Davis <span>Content Curator</span></h4>
 								<ul className="social-link-team">
 									<li><a href="#" target="_blank"><i className="fab fa-facebook-f"></i></a></li>
 									<li><a href="#" target="_blank"><i className="fab fa-twitter"></i></a></li>
@@ -159,65 +160,15 @@ function About() {
 					</div>
 				</div>
 			</div>
+
 			{/* <!-- end team section -->
 
 	<!-- testimonail-section --> */}
-			<div className="testimonail-section mt-80 mb-150">
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-10 offset-lg-1 text-center">
-							<div className="testimonial-sliders">
-								<div className="single-testimonial-slider">
-									<div className="client-avater">
-										<img src="assets/img/avaters/avatar1.png" alt="" />
-									</div>
-									<div className="client-meta">
-										<h3>Saira Hakim <span>Local shop owner</span></h3>
-										<p className="testimonial-body">
-											" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-										</p>
-										<div className="last-icon">
-											<i className="fas fa-quote-right"></i>
-										</div>
-									</div>
-								</div>
-								<div className="single-testimonial-slider">
-									<div className="client-avater">
-										<img src="assets/img/avaters/avatar2.png" alt="" />
-									</div>
-									<div className="client-meta">
-										<h3>David Niph <span>Local shop owner</span></h3>
-										<p className="testimonial-body">
-											" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-										</p>
-										<div className="last-icon">
-											<i className="fas fa-quote-right"></i>
-										</div>
-									</div>
-								</div>
-								<div className="single-testimonial-slider">
-									<div className="client-avater">
-										<img src="assets/img/avaters/avatar3.png" alt="" />
-									</div>
-									<div className="client-meta">
-										<h3>Jacob Sikim <span>Local shop owner</span></h3>
-										<p className="testimonial-body">
-											" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-										</p>
-										<div className="last-icon">
-											<i className="fas fa-quote-right"></i>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<Testimonials />
 			{/* <!-- end testimonail-section -->
 
 	<!-- logo carousel --> */}
-			<div className="logo-carousel-section">
+			{/* <div className="logo-carousel-section">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-12">
@@ -241,8 +192,7 @@ function About() {
 						</div>
 					</div>
 				</div>
-			</div>
-
+			</div> */}
 
 			<Footer />
 
