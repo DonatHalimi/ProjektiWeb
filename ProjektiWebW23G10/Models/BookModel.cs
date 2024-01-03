@@ -40,8 +40,7 @@ namespace ProjektiWebW23G10.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal? Price { get; set; }
 
-        [Display(Name = "Cover Image URL")]
-        [Url]
+
         public string? CoverImage { get; set; }
     }
 }

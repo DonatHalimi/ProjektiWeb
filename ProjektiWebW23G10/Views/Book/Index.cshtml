@@ -42,6 +42,7 @@
         </tr>
     </thead>
     <tbody>
+
         @foreach (var item in Model)
         {
             <tr>
@@ -73,7 +74,7 @@
                     @formattedPrice
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CoverImage)
+                    <img src="~/Images/@item.CoverImage" alt="Cover Image" class="img-thumbnail" width="100" height="100" />
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

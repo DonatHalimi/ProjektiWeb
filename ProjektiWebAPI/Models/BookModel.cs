@@ -37,9 +37,6 @@
         [Column(TypeName = "decimal(18,2)")]
         public decimal? Price { get; set; }
 
-        [Required(ErrorMessage = "Book cover image is required")]
-        [Display(Name = "Cover Image URL")]
-        [Url]
         public string? CoverImage { get; set; }
     }
 }
