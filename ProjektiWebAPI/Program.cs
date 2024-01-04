@@ -10,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors();
+
 // Retrieve the connection string from configuration
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -27,6 +29,17 @@ else
 
 var app = builder.Build();
 
+
+app.UseCors(builder =>
+{
+    builder.WithOrigins("http://localhost:3001")
+           .AllowAnyHeader()
+           .AllowAnyMethod()
+           .AllowCredentials();
+});
+
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -36,6 +49,7 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API Name v1");
     });
 }
+app.UseCors("AllowLocalhost");
 
 app.UseHttpsRedirection();
 
