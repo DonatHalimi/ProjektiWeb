@@ -10,7 +10,9 @@ import Cart from './pages/Cart';
 import Footer from './pages/Footer';
 import ToTop from './pages/ToTop';
 import Book from './pages/Book';
+import Login from './pages/Login';
 import ShopContextProvider from './context/shop-context';
+import Register from './pages/Register';
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
           <Route path='/cart' element={<Cart />}></Route>
           <Route path='/footer' element={<Footer />}></Route>
           <Route path='/book' element={<Book />}></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/register' element={<Register />}></Route>
         </Routes>
       </Router>
       </ShopContextProvider>

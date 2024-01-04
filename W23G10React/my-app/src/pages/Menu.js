@@ -34,11 +34,16 @@ function Menu() {
 											</ul>
 										</li>
 										<li className={isActive('/cart') ? 'current-list-item' : ''}>
+
 											<div className="header-icons">
 												<Link to="/cart"><i className="fas fa-shopping-cart"></i></Link>
 												<a className="mobile-hide search-bar-icon" href="#"><i className="fas fa-search"></i></a>
+												<Link to="/login"><i class="fas fa-user-alt"></i></Link>
 											</div>
+											<li className={isActive('/login') ? 'current-list-item' : ''}>
+											</li>
 										</li>
+
 									</ul>
 								</nav>
 								<a className="mobile-show search-bar-icon" href="#"><i className="fas fa-search"></i></a>
