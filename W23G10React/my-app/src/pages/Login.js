@@ -10,7 +10,11 @@ function Login() {
 	return (
 		<Fragment>
 <>
-  <title>Login 04</title>
+<div className="site-logo">
+<Link to="/index">
+  <img src="assets/img/MainLogo.png" alt="Logo" />
+  </Link>
+</div>
   <meta charSet="utf-8" />
   <meta
     name="viewport"

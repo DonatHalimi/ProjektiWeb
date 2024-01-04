@@ -16,7 +16,7 @@ function Menu() {
 							<div className="main-menu-wrap">
 								{/* <!-- logo --> */}
 								<div className="site-logo">
-									<img src="assets/img/logo.png" alt="" />
+									<img src="assets/img/MainLogo.png" alt="" />
 								</div>
 								{/* <!-- logo -->
 
