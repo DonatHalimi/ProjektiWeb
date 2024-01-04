@@ -1,8 +1,31 @@
-import React, { Fragment } from "react";
+import React, { Fragment,useState, useEffect  } from "react";
 import Menu from "./Menu";
 import Footer from "./Footer";
+import Book from "./Book";
 
 function Shop() {
+	const [books, setBooks] = useState([]);
+
+	useEffect(() => {
+    const fetchBooks = async () => {
+        try {
+            const response = await fetch("https://localhost:7132/api/Book/Get");
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+            setBooks(data);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    };
+
+    fetchBooks(); 
+
+}, []); 
+
+	
+
 	return (
 		<Fragment>
 			<Menu />
@@ -56,7 +79,8 @@ function Shop() {
 						</div>
 					</div>
 
-					<div class="row product-lists">
+					
+					{/*<div class="row product-lists">
 						<div class="col-lg-4 col-md-6 text-center strawberry">
 							<div class="single-product-item">
 								<div class="product-image">
@@ -118,7 +142,7 @@ function Shop() {
 							</div>
 						</div>
 					</div>
-
+*/}
 					<div class="row">
 						<div class="col-lg-12 text-center">
 							<div class="pagination-wrap">
@@ -134,6 +158,23 @@ function Shop() {
 					</div>
 				</div>
 			</div>
+
+			<div>
+  {books.length > 0 ? (
+    <div className="main-content">
+      {/* Render a Book component for each item in the books array */}
+      {books.map((book) => (
+        <div key={book.id} className="products-container">
+          <Book book={book} />
+        </div>
+      ))}
+    </div>
+  ) : (
+    <p>Sorry, there are no available products at the moment.</p>
+  )}
+</div>
+
+						
 			{/* <!-- end products -->
 
 	<!-- logo carousel --> */}
@@ -188,7 +229,6 @@ function Shop() {
 	<script src="assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="assets/js/main.js"></script> */}
-
 		</Fragment>
 	)
 }
