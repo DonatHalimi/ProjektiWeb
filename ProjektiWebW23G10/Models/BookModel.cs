@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ProjektiWebW23G10.Models
 {
@@ -26,10 +28,13 @@ namespace ProjektiWebW23G10.Models
         [DataType(DataType.Date)]
         public DateTime? PublicationDate { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
         [Required]
-        [StringLength(30, MinimumLength = 2)]
+        [Display(Name = "Genre")]
         public string? Genre { get; set; } = string.Empty;
+
+        [NotMapped]
+        [ValidateNever]
+        public IEnumerable<SelectListItem> GenreList { get; set; }
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
         [Required]
@@ -39,7 +44,6 @@ namespace ProjektiWebW23G10.Models
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(18,2)")]
         public decimal? Price { get; set; }
-
 
         public string? CoverImage { get; set; }
     }

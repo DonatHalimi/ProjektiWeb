@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using ProjektiWebW23G10.Data;
 using ProjektiWebW23G10.Models;
@@ -17,7 +18,6 @@ namespace ProjektiWebW23G10.Controllers
         private readonly IWebHostEnvironment _hostingEnvironment; // Add this
         private readonly ApplicationDbContext _context;
 
-
         public BookController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
         {
             _context = context;
@@ -29,57 +29,82 @@ namespace ProjektiWebW23G10.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-         List<BookModel> bookList = new List<BookModel>();
+            List<BookModel> bookList = new List<BookModel>();
 
-         HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/Book/Get").Result;
+            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/Book/Get").Result;
 
-           if (response.IsSuccessStatusCode)
-               {
-                 string data = response.Content.ReadAsStringAsync().Result;
-                 bookList = JsonConvert.DeserializeObject<List<BookModel>>(data);
-                }
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                bookList = JsonConvert.DeserializeObject<List<BookModel>>(data);
+            }
 
-             return View(bookList);
+            return View(bookList);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            // Call the method to get the list of genres
+            var genreList = GetGenreList();
+
+            // Create a new BookModel with the GenreList populated
+            var bookModel = new BookModel
+            {
+                GenreList = genreList
+            };
+
+            return View(bookModel);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Author,ISBN,PublicationDate,Genre,Description,Price,CoverImage")] BookModel book, IFormFile CoverImage)
+        public async Task<IActionResult> Create([Bind("Id,Title,Author,ISBN,PublicationDate,Genre,Description,Price,CoverImage")] BookModel book, IFormFile coverImage)
         {
-            if (ModelState.IsValid)
+            try
             {
-                if (CoverImage != null && CoverImage.Length > 0)
+                if (ModelState.IsValid)
                 {
-                    var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Images");
-                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(CoverImage.FileName);
-                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    if (coverImage != null && coverImage.Length > 0)
                     {
-                        await CoverImage.CopyToAsync(fileStream);
+                        book.GenreList = GetGenreList();
+
+                        var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Images");
+                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(coverImage.FileName);
+                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await coverImage.CopyToAsync(fileStream);
+                        }
+
+                        book.CoverImage = uniqueFileName;
                     }
 
-                    book.CoverImage = uniqueFileName;
+                    string data = JsonConvert.SerializeObject(book);
+                    StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/Book/Post", content).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        TempData["successMessage"] = "Book has been created successfully.";
+                        return RedirectToAction("Index");
+                    }
+
+                    return RedirectToAction(nameof(Index));
                 }
 
-               
-                string data = JsonConvert.SerializeObject(book);
-                StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/Book/Post", content).Result;
+                // Move the line here
+                book.GenreList = GetGenreList();
 
-                if (response.IsSuccessStatusCode)
-                {
-                    TempData["successMessage"] = "Genre has been created successfully.";
-                    return RedirectToAction("Index");
-                }
-                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+                TempData["errorMessage"] = ex.Message;
             }
             return View(book);
+
         }
 
         [HttpGet]
@@ -88,6 +113,8 @@ namespace ProjektiWebW23G10.Controllers
             try
             {
                 BookModel book = new BookModel();
+
+                // Retrieve the book details
                 HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/Book/Get/" + id).Result;
 
                 if (response.IsSuccessStatusCode)
@@ -95,6 +122,10 @@ namespace ProjektiWebW23G10.Controllers
                     string data = response.Content.ReadAsStringAsync().Result;
                     book = JsonConvert.DeserializeObject<BookModel>(data);
                 }
+
+                // Ensure GenreList is populated
+                book.GenreList = GetGenreList(); // or whatever method you use to get genres
+
                 return View(book);
             }
             catch (Exception ex)
@@ -104,52 +135,56 @@ namespace ProjektiWebW23G10.Controllers
             }
         }
 
-        // EDIT
         [HttpPost]
-      public async Task<IActionResult> Edit(int id, BookModel book, IFormFile CoverImage)
-{
-    try
-    {
-        if (ModelState.IsValid)
+        public async Task<IActionResult> Edit(int id, BookModel book, IFormFile CoverImage)
         {
-            if (CoverImage != null && CoverImage.Length > 0)
+            try
             {
-                var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Images");
-                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(CoverImage.FileName);
-                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                if (ModelState.IsValid)
                 {
-                    await CoverImage.CopyToAsync(fileStream);
+                    // Refresh GenreList first
+                    book.GenreList = GetGenreList();
+
+                    if (CoverImage != null && CoverImage.Length > 0)
+                    {
+                        var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Images");
+                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(CoverImage.FileName);
+                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await CoverImage.CopyToAsync(fileStream);
+                        }
+
+                        // Only update the cover image if a new one is provided
+                        book.CoverImage = uniqueFileName;
+                    }
+
+                    string data = JsonConvert.SerializeObject(book);
+                    StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = _client.PutAsync(_client.BaseAddress + $"/Book/Put/{id}", content).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        TempData["successMessage"] = "Book details updated successfully.";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        TempData["errorMessage"] = "Failed to update book details.";
+                        return View(book);
+                    }
                 }
 
-                book.CoverImage = uniqueFileName;
-            }
-
-            string data = JsonConvert.SerializeObject(book);
-            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = _client.PutAsync(_client.BaseAddress + "/Book/Put/" + id, content).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                TempData["successMessage"] = "Book details updated successfully.";
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                TempData["errorMessage"] = "Failed to update book details.";
+                // If ModelState is not valid, return the view with the populated GenreList
                 return View(book);
             }
-        }
-
-        return View(book);
-    }
-    catch (Exception ex)
-    {
-        TempData["errorMessage"] = ex.Message;
-        return View(book);
-    }
+            catch (Exception ex)
+            {
+                TempData["errorMessage"] = ex.Message;
+                return View(book);
+            }
         }
 
         [HttpGet]
@@ -234,6 +269,31 @@ namespace ProjektiWebW23G10.Controllers
         {
             string jsonContent = JsonConvert.SerializeObject(content);
             return new StringContent(jsonContent, Encoding.UTF8, "application/json");
+        }
+
+        private List<SelectListItem> GetGenreList()
+        {
+            // Fetch the list of genres from the API
+            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/Genre/Get").Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                var genreList = JsonConvert.DeserializeObject<List<GenreModel>>(data);
+
+                // Log or debug statement to check the fetched data
+                Console.WriteLine($"Fetched {genreList.Count} genres.");
+
+                // Convert the list of genres to SelectListItems
+                return genreList.Select(genre => new SelectListItem
+                {
+                    Text = genre.Name,
+                    Value = genre.Name
+                }).ToList();
+            }
+
+            // Return an empty list if something goes wrong
+            return new List<SelectListItem>();
         }
     }
 }

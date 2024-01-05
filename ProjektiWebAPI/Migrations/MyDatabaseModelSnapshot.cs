@@ -269,7 +269,7 @@ namespace ProjektiWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("ProjektiWebAPI.Models.GenreModel", b =>
@@ -287,7 +287,7 @@ namespace ProjektiWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("ProjektiWebAPI.Models.UserModel", b =>
@@ -324,7 +324,7 @@ namespace ProjektiWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("ProjektiWebAPI.Models.UserIdentityModel", b =>
