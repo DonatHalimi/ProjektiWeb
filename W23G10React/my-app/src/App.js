@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import Login from './pages/Login';
 import ShopContextProvider from './context/shop-context';
 import Register from './pages/Register';
+import BookDetails from './pages/BookDetails';
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
             <Route path='/about' element={<About />}></Route>
             <Route path='/contact' element={<Contact />}></Route>
             <Route path='/shop' element={<Shop />}></Route>
-
+            <Route path="/book/:id" element={<BookDetails />} />
             <Route path='/checkout' element={<Checkout />}></Route>
             <Route path='/cart' element={<Cart />}></Route>
             <Route path='/footer' element={<Footer />}></Route>
