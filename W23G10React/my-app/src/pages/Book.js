@@ -10,6 +10,7 @@ function Book(props) {
   const cart = useContext(ShopContext);
   const navigate = useNavigate();
 
+  console.log(props);
   // Validate book data
   if (!book || !('id' in book)) {
     // Handle the case when book or book.id is undefined
