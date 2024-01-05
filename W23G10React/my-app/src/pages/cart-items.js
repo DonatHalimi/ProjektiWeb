@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { BsPlusLg, BsTrash3 } from 'react-icons/bs';
 import { AiOutlineMinus } from 'react-icons/ai';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 import { ShopContext } from '../context/shop-context';
 
 function CartItem(props) {
@@ -67,27 +68,54 @@ function CartItem(props) {
   const totalCost = (quantity * price).toFixed(2);
 
   return (
-    <div className="cart-item">
-      <div className="cart-card">
-        <div className="cart-card-details">
-          <h3 className="product-name">{book.title}</h3>
-          <p className="quantity">{quantity} Total</p>
-          <p className="total-cost">${totalCost}</p>
-        </div>
-
-        <div className="edit-buttons">
+    <>
+      <tr className="table-body-row">
+        {/* <td>
+          <button  onClick={handleRemoveFromCart} title="Delete">
+            <BsTrash3 />
+          </button>
+        </td> */}
+        <td className="product-image">
+          <Link to={`/book/${book.id}`}>
+            <img
+              src={`https://localhost:7207/Images/${book.coverImage}`}
+              alt={book.title}
+              id='photo'
+              onLoad={() => console.log('Image loaded successfully')}
+              onError={() => console.log('Error loading image')}
+              style={{ maxWidth: '150px', maxHeight: '250px' }} />
+          </Link>
+        </td>
+        <td className="product-name">
+          <Link to={`/book/${book.id}`}>
+            <h5>{book.title}</h5>
+          </Link>
+        </td>
+        <td className="product-price">
+          ${price.toFixed(2)}
+        </td>
+        <td className="product-quantity">
+          {quantity}
+        </td>
+        <td className="edit-buttons" style={{ borderRadius: "5px" }}>
           <button className="add-button" onClick={() => cart.addOneToCart(id)} title="Add">
             <BsPlusLg />
           </button>
           <button className="remove-button" onClick={handleRemoveOneFromCart} title="Remove">
             <AiOutlineMinus />
           </button>
-          <button className="delete-button" onClick={handleRemoveFromCart} title="Delete">
+          <button className='delete-button' onClick={handleRemoveFromCart} title="Delete">
             <BsTrash3 />
           </button>
-        </div>
-      </div>
-    </div>
+        </td>
+        <td className="product-total">
+          ${totalCost}
+        </td>
+      </tr>
+
+  
+
+    </>
   );
 }
 

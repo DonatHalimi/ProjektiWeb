@@ -1,8 +1,12 @@
-import React, { Fragment } from "react";
+import { React, Fragment, useEffect } from "react";
 import Menu from "./Menu";
 import Footer from "./Footer";
 
 function Contact() {
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<Fragment>

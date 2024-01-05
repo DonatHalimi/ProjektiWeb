@@ -11,7 +11,6 @@ function Index() {
 	const [books, setBooks] = useState([]);
 	const navigate = useNavigate();
 
-
 	useEffect(() => {
 		const fetchBooks = async () => {
 			try {
@@ -27,6 +26,10 @@ function Index() {
 		};
 
 		fetchBooks();
+	}, []);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
 	}, []);
 
 	const showToast = (message) => {
@@ -206,7 +209,7 @@ function Index() {
 									<h2>We are <span className="orange-text">Fruitkha</span></h2>
 									<p>Embark on a literary journey with us! At our online library, we are dedicated to bringing the magic of books to your fingertips. Explore our carefully curated selection, where every page invites you into a world of imagination and knowledge. Join us in celebrating the joy of reading!</p>
 									<Link to="/about">
-										<a className="boxed-btn mt-4">Learn more</a>
+										<a className="boxed-btn mt-4" style={{color: "white", transition: "all 0.6s"}}>Learn more</a>
 									</Link>
 								</div>
 							</div>

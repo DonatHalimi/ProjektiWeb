@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 function Shop() {
 	const [books, setBooks] = useState([]);
-
 	const navigate = useNavigate();
+
 	useEffect(() => {
 		const fetchBooks = async () => {
 			try {
@@ -25,6 +25,10 @@ function Shop() {
 		};
 
 		fetchBooks();
+	}, []);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
 	}, []);
 
 	const showToast = (message) => {

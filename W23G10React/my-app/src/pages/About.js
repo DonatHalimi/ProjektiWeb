@@ -1,9 +1,14 @@
-import React, { Fragment } from "react";
+import { React, useEffect, Fragment } from "react";
 import Menu from "./Menu";
 import Footer from "./Footer";
 import Testimonials from "./Testimonials";
 
 function About() {
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+	
 	return (
 		<Fragment>
 

@@ -63,11 +63,12 @@ function Cart() {
 								<table className="cart-table">
 									<thead className="cart-table-head">
 										<tr className="table-head-row">
-											<th className="product-remove"></th>
+											{/* <th className="product-remove"></th> */}
 											<th className="product-image">Product Image</th>
 											<th className="product-name">Name</th>
 											<th className="product-price">Price</th>
 											<th className="product-quantity">Quantity</th>
+											<th className="product-total">Operations</th>
 											<th className="product-total">Total</th>
 										</tr>
 									</thead>
@@ -80,7 +81,7 @@ function Cart() {
 											<tr className="table-body-row">
 												<td colSpan="6" className='noItemsInCart'>
 													<p>Ju nuk keni ndonjë produkt në shportë.</p>
-													<Link to="/">Kthehu në faqen kryesore</Link>
+													<Link to="/index">Kthehu në faqen kryesore</Link>
 												</td>
 											</tr>
 										)}
@@ -90,9 +91,10 @@ function Cart() {
 							</div>
 						</div>
 
-						<div className="col-lg-4">
+						{/* Duhet me ba qe me mujt me qit total cost ne tabel prej file-it cart-items.js */}
+						<div className="col-lg-2" >
 							<div className="total-section">
-								<table className="total-table">
+								<table className="total-table" >
 									<thead className="total-table-head">
 										<tr className="table-total-row">
 											<th>Total</th>
@@ -102,79 +104,27 @@ function Cart() {
 									<tbody>
 										<tr className="total-data">
 											<td><strong>Subtotal: </strong></td>
-
 										</tr>
 										<tr className="total-data">
 											<td><strong>Shipping: </strong></td>
-											<td>$45</td>
+											<td>$0</td>
 										</tr>
 										<tr className="total-data">
 											<td><strong>Total: </strong></td>
-
 										</tr>
 									</tbody>
 								</table>
 								<div className="cart-buttons">
-									<a href="cart.html" className="boxed-btn">Update Cart</a>
-									<button id='purchaseButton' variant="success">Purchase items</button>
+									<a className="boxed-btn" style={{ position: "relative", left: "20px", height: "auto", color: "white", width: "165px", transition: "all 0.6s" }}>Purchase items</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			{/* <!-- end cart -->
-
-	<!-- logo carousel --> */}
-			{/* <div className="logo-carousel-section">
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-12">
-							<div className="logo-carousel-inner">
-								<div className="single-logo-item">
-									<img src="assets/img/company-logos/1.png" alt="" />
-								</div>
-								<div className="single-logo-item">
-									<img src="assets/img/company-logos/2.png" alt="" />
-								</div>
-								<div className="single-logo-item">
-									<img src="assets/img/company-logos/3.png" alt="" />
-								</div>
-								<div className="single-logo-item">
-									<img src="assets/img/company-logos/4.png" alt="" />
-								</div>
-								<div className="single-logo-item">
-									<img src="assets/img/company-logos/5.png" alt="" />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> */}
 
 			<Footer />
 
-			<div className="copyright">
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-6 col-md-12">
-							<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.</p>
-						</div>
-						<div className="col-lg-6 text-right col-md-12">
-							<div className="social-icons">
-								<ul>
-									<li><a href="#" target="_blank"><i className="fab fa-facebook-f"></i></a></li>
-									<li><a href="#" target="_blank"><i className="fab fa-twitter"></i></a></li>
-									<li><a href="#" target="_blank"><i className="fab fa-instagram"></i></a></li>
-									<li><a href="#" target="_blank"><i className="fab fa-linkedin"></i></a></li>
-									<li><a href="#" target="_blank"><i className="fab fa-dribbble"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 			{/* <!-- end copyright -->
 	
 	<!-- jquery -->
@@ -197,7 +147,7 @@ function Cart() {
 	<script src="assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="assets/js/main.js"></script> */}
-		</Fragment>
+		</Fragment >
 	)
 }
 export default Cart;

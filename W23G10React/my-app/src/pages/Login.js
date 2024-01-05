@@ -36,7 +36,7 @@ function Login() {
         </div>
       </div>
       <div className="row justify-content-center">
-        <div className="col-md-12 col-lg-10">
+        <div className="col-md-12 col-lg-10" style={{marginTop: "70px"}}>
           <div className="wrap d-md-flex">
             <div
               className="img"
