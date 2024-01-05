@@ -1,6 +1,7 @@
 /* Scrollbar style */
 ::-webkit-scrollbar {
     width: 12px;
+    background-color: #F8F9FD;
 }
 
 ::-webkit-scrollbar-track {

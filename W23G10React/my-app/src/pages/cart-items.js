@@ -35,10 +35,9 @@ function CartItem(props) {
     cart.removeOneFromCart(id);
 
     setTimeout(() => {
-      toast.success('Produkti është larguar nga shporta!', {
+      toast.success('Libri është larguar nga shporta!', {
         position: 'top-right',
         style: {
-          marginTop: '70px',
           cursor: 'pointer',
           transition: 'opacity 2s ease-in',
         },
@@ -50,10 +49,9 @@ function CartItem(props) {
     cart.deleteFromCart(id);
 
     setTimeout(() => {
-      toast.success('Produkti është larguar nga shporta!', {
+      toast.success('Libri është larguar nga shporta!', {
         position: 'top-right',
         style: {
-          marginTop: '70px',
           cursor: 'pointer',
           transition: 'opacity 2s ease-in',
         },

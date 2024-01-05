@@ -1,20 +1,21 @@
-
+import React, { useContext, Fragment, useEffect } from 'react';
 import Menu from "./Menu";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
-import React, { useContext,Fragment  } from 'react';
 import { ShopContext } from '../context/shop-context';
-
 import CartItem from './cart-items';
-
 
 function Cart() {
 	// Merr kontekstin e dyqanit nga komponenti ShopContext
-const cart = useContext(ShopContext);
+	const cart = useContext(ShopContext);
 
-console.log("Cart items:", cart.items);
-// Krijojme funksionin per me llogarit numrin total te produkteve ne shporte
-const booksCount = cart.items.reduce((sum, book) => sum + book.quantity, 0);
+	console.log("Cart items:", cart.items);
+	// Krijojme funksionin per me llogarit numrin total te produkteve ne shporte
+	const booksCount = cart.items.reduce((sum, book) => sum + book.quantity, 0);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<Fragment>
@@ -55,74 +56,74 @@ const booksCount = cart.items.reduce((sum, book) => sum + book.quantity, 0);
 
 	<!-- cart --> */}
 			<div className="cart-section mt-150 mb-150">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-8 col-md-12">
-            <div className="cart-table-wrap">
-              <table className="cart-table">
-                <thead className="cart-table-head">
-                  <tr className="table-head-row">
-                    <th className="product-remove"></th>
-                    <th className="product-image">Product Image</th>
-                    <th className="product-name">Name</th>
-                    <th className="product-price">Price</th>
-                    <th className="product-quantity">Quantity</th>
-                    <th className="product-total">Total</th>
-                  </tr>
-                </thead>
-				<tbody>
- 					 {booksCount > 0 ? (
-						cart.items.map((currentBook) => (
-						<CartItem key={currentBook.id} id={currentBook.id} quantity={currentBook.quantity}></CartItem>
-						))
-					) : (
-						<tr className="table-body-row">
-						<td colSpan="6" className='noItemsInCart'>
-							<p>Ju nuk keni ndonjë produkt në shportë.</p>
-							<Link to="/">Kthehu në faqen kryesore</Link>
-						</td>
-						</tr>
-					)}
-					</tbody>
-				
-              </table>
-            </div>
-          </div>
-		  
-          <div className="col-lg-4">
-            <div className="total-section">
-              <table className="total-table">
-                <thead className="total-table-head">
-                  <tr className="table-total-row">
-                    <th>Total</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="total-data">
-                    <td><strong>Subtotal: </strong></td>
-          
-                  </tr>
-                  <tr className="total-data">
-                    <td><strong>Shipping: </strong></td>
-                    <td>$45</td>
-                  </tr>
-                  <tr className="total-data">
-                    <td><strong>Total: </strong></td>
- 
-                  </tr>
-                </tbody>
-              </table>
-              <div className="cart-buttons">
-                <a href="cart.html" className="boxed-btn">Update Cart</a>
-                <button id='purchaseButton' variant="success">Purchase items</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
+				<div className="container">
+					<div className="row">
+						<div className="col-lg-8 col-md-12">
+							<div className="cart-table-wrap">
+								<table className="cart-table">
+									<thead className="cart-table-head">
+										<tr className="table-head-row">
+											<th className="product-remove"></th>
+											<th className="product-image">Product Image</th>
+											<th className="product-name">Name</th>
+											<th className="product-price">Price</th>
+											<th className="product-quantity">Quantity</th>
+											<th className="product-total">Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										{booksCount > 0 ? (
+											cart.items.map((currentBook) => (
+												<CartItem key={currentBook.id} id={currentBook.id} quantity={currentBook.quantity}></CartItem>
+											))
+										) : (
+											<tr className="table-body-row">
+												<td colSpan="6" className='noItemsInCart'>
+													<p>Ju nuk keni ndonjë produkt në shportë.</p>
+													<Link to="/">Kthehu në faqen kryesore</Link>
+												</td>
+											</tr>
+										)}
+									</tbody>
+
+								</table>
+							</div>
+						</div>
+
+						<div className="col-lg-4">
+							<div className="total-section">
+								<table className="total-table">
+									<thead className="total-table-head">
+										<tr className="table-total-row">
+											<th>Total</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr className="total-data">
+											<td><strong>Subtotal: </strong></td>
+
+										</tr>
+										<tr className="total-data">
+											<td><strong>Shipping: </strong></td>
+											<td>$45</td>
+										</tr>
+										<tr className="total-data">
+											<td><strong>Total: </strong></td>
+
+										</tr>
+									</tbody>
+								</table>
+								<div className="cart-buttons">
+									<a href="cart.html" className="boxed-btn">Update Cart</a>
+									<button id='purchaseButton' variant="success">Purchase items</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			{/* <!-- end cart -->
 
 	<!-- logo carousel --> */}
