@@ -16,7 +16,9 @@ function Menu() {
 							<div className="main-menu-wrap">
 								{/* <!-- logo --> */}
 								<div className="site-logo">
-								<img src="/assets/img/MainLogo.png" alt="" />
+									<Link to={"/index"}>
+										<img src="/assets/img/MainLogo.png" alt="" />
+									</Link>
 								</div>
 								{/* <!-- logo -->
 
@@ -36,9 +38,21 @@ function Menu() {
 										<li className={isActive('/cart') ? 'current-list-item' : ''}>
 
 											<div className="header-icons">
-												<Link to="/cart"><i className="fas fa-shopping-cart"></i></Link>
+												<li className={isActive('/cart') ? 'current-list-item' : ''}>
+													<Link to="/cart">
+														<div className="header-icons">
+															<i className="fas fa-shopping-cart"></i>
+														</div>
+													</Link>
+												</li>
 												<a className="mobile-hide search-bar-icon" href="#"><i className="fas fa-search"></i></a>
-												<Link to="/login"><i className="fas fa-user-alt"></i></Link>
+												<li className={isActive('/login') ? 'current-list-item' : ''}>
+													<Link to="/login">
+														<div className="header-icons">
+															<i className="fas fa-user-alt"></i>
+														</div>
+													</Link>
+												</li>
 											</div>
 											<li className={isActive('/login') ? 'current-list-item' : ''}>
 											</li>

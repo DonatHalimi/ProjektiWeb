@@ -35,7 +35,7 @@ function Book(props) {
     <div className="row product-lists">
       <div key={book.id} className="col-lg-4 col-md-6 text-center mx-auto">
         <Link to={`/book/${book.id}`} className="product-details-link">
-          <div className={`single-product-item`}>
+          <div className="single-product-item">
             <div className="product-image">
               <a>
                 <img
@@ -48,6 +48,7 @@ function Book(props) {
               </a>
             </div>
             <h3>{book.title}</h3>
+            <h4>{book.author}</h4>
             <p className="product-price">
               {book.price}$
             </p>

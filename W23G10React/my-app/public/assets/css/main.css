@@ -1365,8 +1365,8 @@ ul.product-share li:hover a {
 }
 
 .single-product-item:hover {
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  transform: scale(1.1);
+  transition: all 0.6s;
 }
 
 .search-bar-tablecell button[type=submit] {
@@ -2781,6 +2781,9 @@ table.order-details tbody td {
   box-shadow: 0 0 20px #e4e4e4;
   padding-bottom: 50px;
   border-radius: 5px;
+  /* width: 55% eshte per Index.js */
+  width: 55%;
+  height: auto;
 }
 
 /* -----------------------------------------------------------------------------
