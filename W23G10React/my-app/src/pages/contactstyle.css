@@ -1,0 +1,50 @@
+/* Apply the styles to the form container */
+form {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    font-size: 16px;
+}
+
+/* Apply the styles to input elements */
+form input {
+    width: 30%;
+    height: 35px;
+    padding: 7px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid rgb(220, 220, 220);
+}
+
+/* Apply the styles to textarea elements */
+form textarea {
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    max-height: 100px;
+    min-height: 100px;
+    padding: 2px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid rgb(220, 220, 220);
+}
+
+/* Apply the styles to labels */
+
+
+/* Apply the styles to submit button */
+form input[type="submit"] {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    height: 50%;
+    background: rgb(249, 105, 14);
+    color: white;
+    border: none;
+}
+
+form input[type="submit"]:hover {
+    transition: all 0.6s ease-in-out;
+    color: white;
+}
