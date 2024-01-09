@@ -1,12 +1,41 @@
-import React, { Fragment } from "react";
-import { Link, useLocation } from 'react-router-dom';
-
+import React, { Fragment, useState } from "react";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 function Login() {
 	const location = useLocation();
 
 	// Function to check if a given path matches the current location
 	const isActive = (path) => location.pathname === path;
-
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await fetch("https://localhost:7132/api/User/GetList");  
+      if (response == null) {
+        throw new Error(`Network response was not ok. Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      const filteredUser = data.find(user => user.email);
+      if(password == filteredUser.password)
+      {
+        navigate("/index"); 
+      }
+      else
+      {
+        window.location.reload();
+        navigate("/login");
+      }
+      console.log("Data received from the server:", data);
+  
+      // If the server returns any specific success/failure messages, you can log them here.
+  
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
+  };
 	return (
 		<Fragment>
 <>
@@ -64,7 +93,7 @@ function Login() {
                   </p>
                 </div>
               </div>
-              <form action="#" className="signin-form">
+              <form action="#" className="signin-form" onSubmit={handleRegisterSubmit}>
                 <div className="form-group mb-3">
                   <label className="label" htmlFor="name">
                     Email
@@ -74,6 +103,7 @@ function Login() {
                     className="form-control"
                     placeholder="Email"
                     required=""
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="form-group mb-3">
@@ -85,6 +115,7 @@ function Login() {
                     className="form-control"
                     placeholder="Password"
                     required=""
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="form-group">

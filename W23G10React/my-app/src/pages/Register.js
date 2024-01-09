@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link, useLocation } from 'react-router-dom';
 
 function Register() {
@@ -6,7 +6,44 @@ function Register() {
 
 	// Function to check if a given path matches the current location
 	const isActive = (path) => location.pathname === path;
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const role = 'user';
 
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await fetch("https://localhost:7132/api/User/Post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+          role
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Network response was not ok. Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log("Data received from the server:", data);
+  
+      // If the server returns any specific success/failure messages, you can log them here.
+  
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
+  };
+  
 	return (
 		<Fragment>
 <>
@@ -65,7 +102,7 @@ function Register() {
                   </p>
                 </div>
               </div>
-              <form action="#" className="signin-form">
+              <form action="#" className="signin-form" onSubmit={handleRegisterSubmit}>
                 <div className="form-group mb-3">
                   <label className="label" htmlFor="name">
                   FirstName
@@ -75,6 +112,7 @@ function Register() {
                     className="form-control"
                     placeholder="FirstName"
                     required=""
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
                          </div>
                          <div className="form-group mb-3">
@@ -86,6 +124,7 @@ function Register() {
                     className="form-control"
                     placeholder="LastName"
                     required=""
+                    onChange={(e) => setLastName(e.target.value)}
                   />
                          </div>
                 <div className="form-group mb-3">
@@ -97,6 +136,7 @@ function Register() {
                     className="form-control"
                     placeholder="Email"
                     required=""
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="form-group mb-3">
@@ -108,6 +148,7 @@ function Register() {
                     className="form-control"
                     placeholder="Password"
                     required=""
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="form-group">

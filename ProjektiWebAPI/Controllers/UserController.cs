@@ -134,5 +134,27 @@ namespace ProjektiWebAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
             }
         }
+
+        [HttpGet()]
+        public List<UserModel> GetList()
+        {
+            try
+            {
+                var users = dbContext.Users.ToList();
+
+                if (users.Count != 0)
+                {
+                    return users;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
