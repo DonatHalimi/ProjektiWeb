@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from "react";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function Register() {
 	const location = useLocation();
 
 	// Function to check if a given path matches the current location
 	const isActive = (path) => location.pathname === path;
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -36,6 +37,7 @@ function Register() {
   
       const data = await response.json();
       console.log("Data received from the server:", data);
+      navigate("/login"); 
   
       // If the server returns any specific success/failure messages, you can log them here.
   

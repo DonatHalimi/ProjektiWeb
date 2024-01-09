@@ -18,7 +18,7 @@ function Login() {
       }
   
       const data = await response.json();
-      const filteredUser = data.find(user => user.email);
+      const filteredUser = data.find(user => user.email == email);
       if(password == filteredUser.password)
       {
         navigate("/index"); 
