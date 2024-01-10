@@ -26,7 +26,7 @@ const GenreList = () => {
                     <div className="product-filters">
                         <ul>
                             <li className={genreName === undefined ? 'active' : ''}>
-                                <Link to="/">All</Link>
+                                <Link to="/index">All</Link>
                             </li>
                             {genres.map((genre) => (
                                 <li key={genre.id} className={genreName === genre.name ? 'active' : ''}>

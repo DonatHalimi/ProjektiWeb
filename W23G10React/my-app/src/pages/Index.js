@@ -1,16 +1,17 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import Menu from "./Menu";
-import Footer from "./Footer";
-import Testimonials from "./Testimonials";
+import { React, useState, useEffect, Fragment } from "react";
 import Book from "./Book";
+import Menu from "./Menu";
+import Testimonials from "./Testimonials";
+import Footer from "./Footer";
 import GenreList from "./GenreList";
+import { Link, useNavigate } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 
 function Index() {
-
 	const [books, setBooks] = useState([]);
-	const navigate = useNavigate();
+	const [currentPage, setCurrentPage] = useState(0);
+	const itemsPerPage = 9;
+	const pageCount = Math.ceil(books.length / itemsPerPage);
 
 	useEffect(() => {
 		const fetchBooks = async () => {
@@ -22,29 +23,23 @@ function Index() {
 				const data = await response.json();
 				setBooks(data);
 			} catch (error) {
-				console.error("Error fetching products:", error);
+				console.error("Error fetching books:", error);
 			}
 		};
 
 		fetchBooks();
 	}, []);
 
+	const offset = currentPage * itemsPerPage;
+	const currentBooks = books.slice(offset, offset + itemsPerPage);
+
+	const handlePageClick = (selectedPage) => {
+		setCurrentPage(selectedPage.selected);
+	};
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
-
-	const showToast = (message) => {
-		toast.success(message, {
-			position: 'top-right',
-			style: {
-				cursor: 'pointer',
-				transition: 'opacity 2s ease-in',
-			},
-			onClick: () => {
-				navigate("/cart");
-			},
-		});
-	};
 
 	return (
 		<Fragment>
@@ -88,24 +83,47 @@ function Index() {
 					</div>
 				</div>
 			</div>
+
 			<GenreList />
 
 			<div className="product-container">
-					{books.length > 0 ? (
-						<div className="row product-lists" style={{ marginLeft: '120px' }}>
-						{books.map((book) => (
-							<Book key={book.id} book={book} showToast={showToast} />
+				{currentBooks.length > 0 ? (
+					<div className="row product-lists" style={{ marginLeft: '180px' }}>
+						{currentBooks.map((book) => (
+							<Book key={book.id} book={book} />
 						))}
-						</div>
-					) : (
-						<div style={{ textAlign: 'center', padding: '20px', backgroundColor: '#f8f8f8', border: '1px solid #ddd', borderRadius: '5px', marginTop: '20px' }}>
+					</div>
+				) : (
+					<div style={{ textAlign: 'center', padding: '20px', backgroundColor: '#f8f8f8', border: '1px solid #ddd', borderRadius: '5px', marginTop: '20px' }}>
 						<p>It seems our shelves are empty at the moment.</p>
 						<p>Check back later for exciting new additions!</p>
-						</div>
-					)}
 					</div>
+				)}
+			</div>
 
-
+			{/* Pagination */}
+			{currentBooks.length > 0 && (
+				<div className="pagination-container" style={{ marginTop: "30px", textAlign: "center" }}>
+					<ReactPaginate
+						previousLabel={"Previous"}
+						nextLabel={"Next"}
+						breakLabel={"..."}
+						pageCount={pageCount}
+						marginPagesDisplayed={5}
+						pageRangeDisplayed={5}
+						onPageChange={handlePageClick}
+						containerClassName={"pagination"}
+						activeClassName={"active"}
+						initialPage={currentPage}
+						pageClassName={"page-item"}
+						pageLinkClassName={"page-link"}
+						previousClassName={"page-item"}
+						nextClassName={"page-item"}
+						previousLinkClassName={"page-link"}
+						nextLinkClassName={"page-link"}
+					/>
+				</div>
+			)}
 
 			<Testimonials />
 

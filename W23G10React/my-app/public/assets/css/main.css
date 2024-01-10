@@ -2455,7 +2455,17 @@ ul.social-link-team li a {
 }
 
 .product-filters ul li :hover {
-  color: #f1f0ef;
+  color: #000000;
+}
+
+.product-filters ul li:hover {
+  background-color: #f3dbc7;
+  transition: all 0.6s ease-in-out;
+  color: black;
+}
+
+.product-filters ul li a.active {
+  color: #ffffff;
 }
 
 .product-filters ul li.active {
@@ -2479,6 +2489,28 @@ ul.social-link-team li a {
   left: 35%;
 }
 
+.pagination-container {
+  position: relative;
+  top: 160%;
+  left: 45%;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.pagination-container .pagination .active a {
+  background-color: #F28123;
+  color: #fff;
+  border-color: #F28123;
+}
+
+.pagination-container .pagination .active a,
+.pagination-container .pagination .active a:focus,
+.pagination-container .pagination .active a:hover {
+  background-color: #F28123;
+  color: #fff;
+  border-color: #F28123;
+  outline: none;
+}
 
 .single-product-item {
   margin-bottom: 30px;

@@ -24,7 +24,7 @@ function Footer() {
                                 <h2 className="widget-title">Get in Touch</h2>
                                 <ul>
                                     <li>Lagjja Kalabria, 10000 Prishtinë, Kosovë.</li>
-                                    <li>support@nameofcompany.com</li>
+                                    <li>support@cozyreads.com</li>
                                     <li>+383 44 555 444</li>
                                 </ul>
                             </div>

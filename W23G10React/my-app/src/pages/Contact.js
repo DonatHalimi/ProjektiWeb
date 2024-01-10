@@ -119,7 +119,7 @@ function Contact() {
 								</div>
 								<div className="contact-form-box">
 									<h4><i className="fas fa-address-book"></i> Contact</h4>
-									<p>Phone: +383 44 555 444 <br /> Email: support@name.com</p>
+									<p>Phone: +383 44 555 444 <br /> Email: support@cozyreads.com</p>
 								</div>
 							</div>
 						</div>
