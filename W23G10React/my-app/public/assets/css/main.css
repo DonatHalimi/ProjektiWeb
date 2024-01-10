@@ -1310,7 +1310,7 @@ ul.sub-menu li a {
 }
 
 ul.sub-menu li:hover a {
-  color: #F28123 !important;
+  color: #fdfdfd !important;
 }
 
 .sidebar-section ul li a {
@@ -2455,7 +2455,7 @@ ul.social-link-team li a {
 }
 
 .product-filters ul li :hover {
-  color: #F28123;
+  color: #f1f0ef;
 }
 
 .product-filters ul li.active {

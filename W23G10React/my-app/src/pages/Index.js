@@ -89,22 +89,23 @@ function Index() {
 				</div>
 			</div>
 			<GenreList />
+
 			<div className="product-container">
-				{books.length > 0 ? (
-					<div>
+					{books.length > 0 ? (
+						<div className="row product-lists" style={{ marginLeft: '120px' }}>
 						{books.map((book) => (
-							<div key={book.id} style={{ flex: '0 0 30%', marginBottom: '20px' }}>
-								<Book book={book} showToast={showToast} />
-							</div>
+							<Book key={book.id} book={book} showToast={showToast} />
 						))}
-					</div>
-				) : (
-					<div style={{ textAlign: 'center', padding: '20px', backgroundColor: '#f8f8f8', border: '1px solid #ddd', borderRadius: '5px', marginTop: '20px', width: "50%", position: "relative", left: "500px", bottom: "20px" }}>
+						</div>
+					) : (
+						<div style={{ textAlign: 'center', padding: '20px', backgroundColor: '#f8f8f8', border: '1px solid #ddd', borderRadius: '5px', marginTop: '20px' }}>
 						<p>It seems our shelves are empty at the moment.</p>
 						<p>Check back later for exciting new additions!</p>
+						</div>
+					)}
 					</div>
-				)}
-			</div>
+
+
 
 			<Testimonials />
 

@@ -32,32 +32,31 @@ function Book(props) {
   }];
 
   return (
-    <div className="row product-lists">
-      <div key={book.id} className="col-lg-4 col-md-6 text-center mx-auto">
-        <Link to={`/book/${book.id}`} className="product-details-link">
-          <div className="single-product-item">
-            <div className="product-image">
-              <a>
-                <img
-                  src={`https://localhost:7207/Images/${book.coverImage}`}
-                  alt={book.title}
-                  id='photo'
-                  onLoad={() => console.log('Image loaded successfully')}
-                  onError={() => console.log('Error loading image')}
-                  style={{ maxWidth: '150px', maxHeight: '250px' }} />
-              </a>
-            </div>
-            <h3>{book.title}</h3>
-            <h4>{book.author}</h4>
-            <p className="product-price">
-              {book.price}$
-            </p>
-            <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(); }}>
-              <i className="fas fa-shopping-cart"></i> Add to Cart
+    <div className="col-lg-4 col-md-6 text-center mx-auto">
+      <Link to={`/book/${book.id}`} className="product-details-link">
+        <div className="single-product-item" style={{width:'300px'}}>
+          <div className="product-image">
+            <a>
+              <img
+                src={`https://localhost:7207/Images/${book.coverImage}`}
+                alt={book.title}
+                id='photo'
+                onLoad={() => console.log('Image loaded successfully')}
+                onError={() => console.log('Error loading image')}
+                style={{ maxWidth: '250px', maxHeight: '300px' }}
+              />
             </a>
           </div>
-        </Link>
-      </div>
+          <h3>{book.title}</h3>
+          <h4>{book.author}</h4>
+          <p className="product-price">
+            {book.price}$
+          </p>
+          <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(); }}>
+            <i className="fas fa-shopping-cart"></i> Add to Cart
+          </a>
+        </div>
+      </Link>
     </div>
   );
 }

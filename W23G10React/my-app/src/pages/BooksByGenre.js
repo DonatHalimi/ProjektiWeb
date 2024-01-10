@@ -6,8 +6,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Menu from './Menu';
 import Footer from './Footer';
+import GenreList from './GenreList';
 
 function BooksByGenre(props) {
+    
     const { book, showToast } = props;
     const { genreName } = useParams();
     const [books, setBooks] = useState([]);
@@ -26,10 +28,12 @@ function BooksByGenre(props) {
         fetchBooksByGenre();
     }, [genreName]);
 
-    const handleAddToCart = () => {
-        cart.addOneToCart(book.id);
+    console.log(genreName);
 
-        showToast('Libri është shtuar në shportë!');
+    const handleAddToCart = (bookId) => {
+        cart.addOneToCart(bookId);
+
+       
     };
 
     const cartStyle = [{
@@ -74,12 +78,16 @@ function BooksByGenre(props) {
                 </div>
             </div>
 
+            <GenreList />
+
+            <div className="product-container">
+
             {books.length > 0 ? (
-                <div className="row product-lists">
+                <div className="row product-lists"  style={{ marginLeft: '120px' ,marginTop:'30px'}}>
                     {books.map((book) => (
                         <div key={book.id} className="col-lg-4 col-md-6 text-center mx-auto">
                             <Link to={`/book/${book.id}`} className="product-details-link">
-                                <div className="single-product-item">
+                                <div className="single-product-item " style={{width:'300px'}}>
                                     <div className="product-image">
                                         <a>
                                             <img
@@ -88,7 +96,7 @@ function BooksByGenre(props) {
                                                 id='photo'
                                                 onLoad={() => console.log('Image loaded successfully')}
                                                 onError={() => console.log('Error loading image')}
-                                                style={{ maxWidth: '150px', maxHeight: '250px' }} />
+                                                style={{  maxWidth: '250px', maxHeight: '280px'  }} />
                                         </a>
                                     </div>
                                     <h3>{book.title}</h3>
@@ -96,7 +104,7 @@ function BooksByGenre(props) {
                                     <p className="product-price">
                                         ${book.price}
                                     </p>
-                                    <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(); }}>
+                                    <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(book.id); }}>
                                         <i className="fas fa-shopping-cart"></i> Add to Cart
                                     </a>
                                 </div>
@@ -108,6 +116,7 @@ function BooksByGenre(props) {
                 <div className="no-books-found">
                     <p>No books found for the genre: {genreName}</p>
                 </div>)}
+                </div>
             <Footer />
 
         </div>

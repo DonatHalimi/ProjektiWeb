@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const GenreList = () => {
     const [genres, setGenres] = useState([]);
+    const { genreName } = useParams();
 
     useEffect(() => {
         const fetchGenres = async () => {
@@ -24,9 +25,11 @@ const GenreList = () => {
                 <div className="col-md-12">
                     <div className="product-filters">
                         <ul>
-                            <li className="active" data-filter="*">All</li>
+                            <li className={genreName === undefined ? 'active' : ''}>
+                                <Link to="/">All</Link>
+                            </li>
                             {genres.map((genre) => (
-                                <li key={genre.id}>
+                                <li key={genre.id} className={genreName === genre.name ? 'active' : ''}>
                                     <Link to={`/books/${genre.name}`}>{genre.name}</Link>
                                 </li>
                             ))}
