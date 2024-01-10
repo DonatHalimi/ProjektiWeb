@@ -10,6 +10,7 @@ import { ShopContext } from "../context/shop-context";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { BsArrowsAngleContract } from "react-icons/bs";
 import { toast } from "react-toastify";
+import { FavouriteContext } from '../context/favourite-context';
 
 function BookDetails() {
     const { id } = useParams();
@@ -27,6 +28,7 @@ function BookDetails() {
     //  const [isImageEnlarged, setIsImageEnlarged] = useState(false);
 
     const cart = useContext(ShopContext);
+    const favourite = useContext(FavouriteContext);
 
     const navigate = useNavigate();
 
@@ -61,6 +63,22 @@ function BookDetails() {
             },
         });
     };
+
+    const handleAddToFavourite = () => {
+        favourite.addItemToFavourite(book.id);
+
+        toast.success("Libri është shtuar në shportë!", {
+            position: 'top-right',
+            style: {
+                cursor: 'pointer',
+                transition: 'opacity 2s ease-in',
+            },
+            onClick: () => {
+                navigate("/cart");
+            },
+        });
+    };
+
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -166,6 +184,10 @@ function BookDetails() {
                                     <p>{book.description}</p>
                                     <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(); }}>
                                         <i className="fas fa-shopping-cart"></i> Add to Cart
+                                    </a>
+
+                                    <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToFavourite(); }}>
+                                        <i className="fas fa-heart"></i> Add to Favourite
                                     </a>
                                 </div>
                             </div>

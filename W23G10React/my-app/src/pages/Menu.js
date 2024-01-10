@@ -28,12 +28,8 @@ function Menu() {
 										<li className={isActive('/index') ? 'current-list-item' : ''}><Link to="/index">Home</Link></li>
 										<li className={isActive('/about') ? 'current-list-item' : ''}><Link to="/about">About</Link></li>
 										<li className={isActive('/contact') ? 'current-list-item' : ''}><Link to="/contact">Contact</Link></li>
-										<li className={isActive('/shop') ? 'current-list-item' : ''}>
-											<Link to="/shop">Shop</Link>
-											<ul className="sub-menu">
-												<li className={isActive('/checkout') ? 'current-list-item' : ''}><Link to="/checkout">Checkout</Link></li>
-												<li className={isActive('/singleproduct') ? 'current-list-item' : ''}><Link to="/singleproduct">Single product</Link></li>
-											</ul>
+										<li className={isActive('/favourite') ? 'current-list-item' : ''}>
+											<Link to="/favourite">Favourite</Link>
 										</li>
 										<li className={isActive('/cart') ? 'current-list-item' : ''}>
 

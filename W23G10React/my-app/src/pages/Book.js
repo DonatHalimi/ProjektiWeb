@@ -2,12 +2,14 @@ import React, { useContext, } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../context/shop-context';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+
 import { toast } from 'react-toastify';
+import { FavouriteContext } from '../context/favourite-context';
 
 function Book(props) {
   const { book, showToast } = props;
   const cart = useContext(ShopContext);
+  const favourite=useContext(FavouriteContext);
 
   console.log(props);
   // Validate book data
@@ -20,6 +22,22 @@ function Book(props) {
     cart.addOneToCart(book.id);
 
     showToast('Libri është shtuar në shportë!');
+  };
+
+  const handleAddToFavourite = () => {
+    favourite.addItemToFavourite(book.id);
+
+    setTimeout(() => {
+      toast.success('Produkti është shtuar në wishlist!', {
+        position: 'top-right',
+        style: {
+          marginTop: '70px',
+          cursor: 'pointer',
+          transition: 'opacity 2s ease-in',
+        },
+      
+      });
+    }, 50);
   };
 
   // Stilizimi per butonin Add to Cart
@@ -53,8 +71,12 @@ function Book(props) {
             {book.price}$
           </p>
           <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(); }}>
-            <i className="fas fa-shopping-cart"></i> Add to Cart
+            <i className="fas fa-shopping-cart"></i> 
           </a>
+
+          <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToFavourite(); }}>
+                                        <i className="fas fa-heart"></i>
+                                    </a>
         </div>
       </Link>
     </div>

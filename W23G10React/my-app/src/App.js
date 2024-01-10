@@ -16,11 +16,14 @@ import ShopContextProvider from './context/shop-context';
 import Register from './pages/Register';
 import BookDetails from './pages/BookDetails';
 import BooksByGenre from './pages/BooksByGenre';
+import Favourite from './pages/Favourite';
+import FavouriteContextProvider from './context/favourite-context';
 
 function App() {
   return (
     <div className="App">
       <ShopContextProvider>
+        <FavouriteContextProvider>
         <Router>
           <ToastContainer />
           <ToTop />
@@ -35,6 +38,7 @@ function App() {
             <Route path="/book/:id" element={<BookDetails />} />
             <Route path='/checkout' element={<Checkout />}></Route>
             <Route path='/cart' element={<Cart />}></Route>
+            <Route path='/favourite' element={<Favourite />}></Route>
             <Route path='/footer' element={<Footer />}></Route>
             <Route path='/book' element={<Book />}></Route>
             <Route path='/login' element={<Login />}></Route>
@@ -43,6 +47,7 @@ function App() {
 
           </Routes>
         </Router>
+        </FavouriteContextProvider>
       </ShopContextProvider>
     </div>
   );

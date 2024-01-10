@@ -51,7 +51,7 @@ function About() {
 					<div className="row">
 						<div className="col-lg-7">
 							<div className="featured-text">
-								<h2 className="pb-3">Why <span className="orange-text">Fruitkha</span></h2>
+								<h2 className="pb-3">Why <span className="orange-text">Cozyreads</span></h2>
 								<div className="row">
 									<div className="col-lg-6 col-md-6 mb-4 mb-md-5">
 										<div className="list-box d-flex">
