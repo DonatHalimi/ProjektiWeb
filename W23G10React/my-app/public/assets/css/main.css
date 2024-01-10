@@ -2448,10 +2448,14 @@ ul.social-link-team li a {
   font-size: 18px;
   margin: 15px;
   border: 2px solid #051922;
-  color: #323232;
+  color: black;
   cursor: pointer;
   padding: 8px 20px;
   border-radius: 25px;
+}
+
+.product-filters ul li :hover {
+  color: #F28123;
 }
 
 .product-filters ul li.active {
@@ -2459,6 +2463,22 @@ ul.social-link-team li a {
   background-color: #F28123;
   color: #fff;
 }
+
+.no-books-found {
+  text-align: center;
+  padding: 30px;
+  background-color: #f8d7da;
+  border: 1px solid #dc3545;
+  border-radius: 5px;
+  color: #721c24;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  width: 30%;
+  height: 100px;
+  position: relative;
+  left: 35%;
+}
+
 
 .single-product-item {
   margin-bottom: 30px;

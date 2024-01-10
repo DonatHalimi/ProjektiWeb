@@ -5,10 +5,11 @@ import Testimonials from "./Testimonials";
 
 function About() {
 
+	// useEffect per me scroll toTop kur hapet faqja per here te pare
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
-	
+
 	return (
 		<Fragment>
 
@@ -29,9 +30,8 @@ function About() {
 					</div>
 				</div>
 			</div>
-			{/* <!-- end search arewa -->
 
-	<!-- breadcrumb-section --> */}
+			{/* Breadcrumb Section */}
 			<div className="breadcrumb-section hero-bg">
 				<div className="container">
 					<div className="row">
@@ -44,9 +44,8 @@ function About() {
 					</div>
 				</div>
 			</div>
-			{/* <!-- end breadcrumb section -->
 
-	<!-- featured section --> */}
+			{/* Features Section */}
 			<div className="feature-bg">
 				<div className="container">
 					<div className="row">
@@ -105,19 +104,7 @@ function About() {
 				</div>
 			</div>
 
-			{/* <!-- end featured section -->
-
-	<!-- shop banner --> */}
-			{/* <section className="shop-banner">
-				<div className="container">
-					<h3>December sale is on! <br /> with big <span className="orange-text">Discount...</span></h3>
-					<div className="sale-percent"><span>Sale! <br /> Upto</span>50% <span>off</span></div>
-					<a href="shop.html" className="cart-btn btn-lg">Shop Now</a>
-				</div>
-			</section> */}
-			{/* <!-- end shop banner -->
-
-	<!-- team section --> */}
+			{/* Team Section */}
 			<div className="mt-150">
 				<div className="container">
 					<div className="row">
@@ -166,64 +153,11 @@ function About() {
 				</div>
 			</div>
 
-			{/* <!-- end team section -->
-
-	<!-- testimonail-section --> */}
+			{/* Testimonail Section */}
 			<Testimonials />
-			{/* <!-- end testimonail-section -->
-
-	<!-- logo carousel --> */}
-			{/* <div className="logo-carousel-section">
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-12">
-							<div className="logo-carousel-inner">
-								<div className="single-logo-item">
-									<img src="assets/img/company-logos/1.png" alt="" />
-								</div>
-								<div className="single-logo-item">
-									<img src="assets/img/company-logos/2.png" alt="" />
-								</div>
-								<div className="single-logo-item">
-									<img src="assets/img/company-logos/3.png" alt="" />
-								</div>
-								<div className="single-logo-item">
-									<img src="assets/img/company-logos/4.png" alt="" />
-								</div>
-								<div className="single-logo-item">
-									<img src="assets/img/company-logos/5.png" alt="" />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> */}
 
 			<Footer />
 
-
-			{/* <!-- end copyright -->
-	
-	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
-	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
-	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
-	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
-	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
-	<!-- main js -->
-	<script src="assets/js/main.js"></script> */}
 		</Fragment>
 	)
 }

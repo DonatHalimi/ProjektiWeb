@@ -152,5 +152,36 @@ namespace ProjektiWebAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
             }
         }
+
+        // READ BY GENRE
+        [HttpGet]
+        public IActionResult GetBooksByGenre(string genreName)
+        {
+            try
+            {
+                var genre = dbContext.Genres.FirstOrDefault(g => g.Name.ToLower() == genreName.ToLower());
+
+                if (genre == null)
+                {
+                    return NotFound($"No genre found with the name: {genreName}");
+                }
+
+                var books = dbContext.Books.Where(b => b.Genre.ToLower() == genre.Name.ToLower()).ToList();
+
+                if (books.Count != 0)
+                {
+                    return Ok(books);
+                }
+                else
+                {
+                    return NotFound($"No books found for the genre: {genre.Name}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
+            }
+        }
+
     }
 }

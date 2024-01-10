@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProjektiWebW23G10")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec68bc95cafd1fee9f7d554afd3d9dadcc19146f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProjektiWebW23G10")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProjektiWebW23G10")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

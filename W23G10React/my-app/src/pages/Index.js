@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import Footer from "./Footer";
 import Testimonials from "./Testimonials";
 import Book from "./Book";
+import GenreList from "./GenreList";
 
 function Index() {
 
@@ -80,14 +81,14 @@ function Index() {
 			</div>
 
 			<div className="row">
-				<div className="col-lg-8 offset-lg-2 text-center">
+				<div className="col-lg-8 offset-lg-2 text-center mt-20">
 					<div className="section-title">
 						<h3><span className="orange-text">Our</span> Books</h3>
 						<p>Take a moment to explore the pages that promise excitement, knowledge, and pure enjoyment.</p>
 					</div>
 				</div>
 			</div>
-
+			<GenreList />
 			<div className="product-container">
 				{books.length > 0 ? (
 					<div>

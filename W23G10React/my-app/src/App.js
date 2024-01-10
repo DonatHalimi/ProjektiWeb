@@ -15,7 +15,7 @@ import Login from './pages/Login';
 import ShopContextProvider from './context/shop-context';
 import Register from './pages/Register';
 import BookDetails from './pages/BookDetails';
-
+import BooksByGenre from './pages/BooksByGenre';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
           <ToastContainer />
           <ToTop />
           <Routes>
-            <Route path='/singleproduct' element={<SingleProduct/>}></Route>
+            <Route path='/singleproduct' element={<SingleProduct />}></Route>
 
             <Route path='/' element={<Index />}></Route>
             <Route path='/index' element={<Index />}></Route>
@@ -39,6 +39,8 @@ function App() {
             <Route path='/book' element={<Book />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
+            <Route path="/books/:genreName" element={<BooksByGenre />} />
+
           </Routes>
         </Router>
       </ShopContextProvider>

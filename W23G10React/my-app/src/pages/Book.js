@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 function Book(props) {
   const { book, showToast } = props;
   const cart = useContext(ShopContext);
-  const navigate = useNavigate();
 
   console.log(props);
   // Validate book data
@@ -23,6 +22,7 @@ function Book(props) {
     showToast('Libri është shtuar në shportë!');
   };
 
+  // Stilizimi per butonin Add to Cart
   const cartStyle = [{
     color: 'white',
     transition: 'all 0.6s',
