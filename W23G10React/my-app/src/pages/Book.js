@@ -2,14 +2,14 @@ import React, { useContext, } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../context/shop-context';
-
 import { toast } from 'react-toastify';
 import { FavouriteContext } from '../context/favourite-context';
 
 function Book(props) {
   const { book, showToast } = props;
   const cart = useContext(ShopContext);
-  const favourite=useContext(FavouriteContext);
+  const favourite = useContext(FavouriteContext);
+  const navigate = useNavigate();
 
   console.log(props);
   // Validate book data
@@ -21,23 +21,23 @@ function Book(props) {
   const handleAddToCart = () => {
     cart.addOneToCart(book.id);
 
-    showToast('Libri është shtuar në shportë!');
+
+    toast.success("Libri është shtuar në shportë!", {
+      onClick: () => {
+        navigate("/cart");
+      },
+    });
   };
+
 
   const handleAddToFavourite = () => {
     favourite.addItemToFavourite(book.id);
 
-    setTimeout(() => {
-      toast.success('Produkti është shtuar në wishlist!', {
-        position: 'top-right',
-        style: {
-          marginTop: '70px',
-          cursor: 'pointer',
-          transition: 'opacity 2s ease-in',
-        },
-      
-      });
-    }, 50);
+    toast.success('Produkti është shtuar në favourites!', {
+      onClick: () => {
+        navigate("/favourite");
+      },
+    });
   };
 
   // Stilizimi per butonin Add to Cart
@@ -49,10 +49,11 @@ function Book(props) {
     },
   }];
 
+
   return (
     <div className="col-lg-4 col-md-6 text-center mx-auto">
       <Link to={`/book/${book.id}`} className="product-details-link">
-        <div className="single-product-item" style={{width:'300px'}}>
+        <div className="single-product-item" style={{ width: '300px' }}>
           <div className="product-image">
             <a>
               <img
@@ -70,13 +71,17 @@ function Book(props) {
           <p className="product-price">
             {book.price}$
           </p>
-          <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(); }}>
-            <i className="fas fa-shopping-cart"></i> 
-          </a>
 
-          <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToFavourite(); }}>
-                                        <i className="fas fa-heart"></i>
-                                    </a>
+          <div className='cardButtons' style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+            <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(); }}>
+              <i className="fas fa-shopping-cart"></i>Add to Cart
+            </a>
+
+            <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToFavourite(); }}>
+              <i className="fas fa-heart" style={{ marginLeft: "5px" }}></i>
+            </a>
+          </div>
+
         </div>
       </Link>
     </div>

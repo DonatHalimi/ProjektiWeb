@@ -53,11 +53,6 @@ function BookDetails() {
         cart.addOneToCart(book.id);
 
         toast.success("Libri është shtuar në shportë!", {
-            position: 'top-right',
-            style: {
-                cursor: 'pointer',
-                transition: 'opacity 2s ease-in',
-            },
             onClick: () => {
                 navigate("/cart");
             },
@@ -67,18 +62,12 @@ function BookDetails() {
     const handleAddToFavourite = () => {
         favourite.addItemToFavourite(book.id);
 
-        toast.success("Libri është shtuar në shportë!", {
-            position: 'top-right',
-            style: {
-                cursor: 'pointer',
-                transition: 'opacity 2s ease-in',
-            },
+        toast.success("Libri është shtuar në favourites!", {
             onClick: () => {
-                navigate("/cart");
+                navigate("/favourite");
             },
         });
     };
-
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -111,14 +100,18 @@ function BookDetails() {
         return <div>Loading...</div>;
     }
 
-    /*   const byteArray = new Uint8Array(Foto.data);
-       const binaryString = byteArray.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
-       const base64String = btoa(binaryString);
-    */
-
     const cartStyle = [{
         color: 'white',
         transition: 'all 0.6s',
+        marginRight: '75px',
+        ':hover': {
+            color: '#F27423',
+        },
+    }];
+    const favouriteStyle = [{
+        color: 'white',
+        transition: 'all 0.6s',
+        marginRight: '26px',
         ':hover': {
             color: '#F27423',
         },
@@ -182,13 +175,15 @@ function BookDetails() {
                                     <p><strong>Genre: </strong>{book.genre}</p>
                                     <p class="single-product-pricing">${book.price}</p>
                                     <p>{book.description}</p>
-                                    <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(); }}>
-                                        <i className="fas fa-shopping-cart"></i> Add to Cart
-                                    </a>
+                                    <div className='cardButtons'>
+                                        <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(); }}>
+                                            <i className="fas fa-shopping-cart"></i> Add to Cart
+                                        </a>
 
-                                    <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToFavourite(); }}>
-                                        <i className="fas fa-heart"></i> Add to Favourite
-                                    </a>
+                                        <a style={Object.assign({}, ...favouriteStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToFavourite(); }}>
+                                            <i className="fas fa-heart"></i> Add to Favourites
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +193,6 @@ function BookDetails() {
                 <Footer />
 
             </Fragment >
-
         </>
     );
 }

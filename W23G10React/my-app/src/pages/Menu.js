@@ -28,9 +28,7 @@ function Menu() {
 										<li className={isActive('/index') ? 'current-list-item' : ''}><Link to="/index">Home</Link></li>
 										<li className={isActive('/about') ? 'current-list-item' : ''}><Link to="/about">About</Link></li>
 										<li className={isActive('/contact') ? 'current-list-item' : ''}><Link to="/contact">Contact</Link></li>
-										<li className={isActive('/favourite') ? 'current-list-item' : ''}>
-											<Link to="/favourite">Favourite</Link>
-										</li>
+										<li className={isActive('/favourite') ? 'current-list-item' : ''}><Link to="/favourite">Favourites</Link></li>
 										<li className={isActive('/cart') ? 'current-list-item' : ''}>
 
 											<div className="header-icons">
@@ -50,10 +48,10 @@ function Menu() {
 													</Link>
 												</li>
 											</div>
-											<li className={isActive('/login') ? 'current-list-item' : ''}>
-											</li>
-										</li>
 
+											<li className={isActive('/login') ? 'current-list-item' : ''}></li>
+
+										</li>
 									</ul>
 								</nav>
 								<a className="mobile-show search-bar-icon" href="#"><i className="fas fa-search"></i></a>
