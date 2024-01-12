@@ -43,7 +43,7 @@ function Menu() {
 												<li className={isActive('/login') ? 'current-list-item' : ''}>
 													<Link to="/login">
 														<div className="header-icons">
-															<i className="fas fa-user-alt"></i>
+														<button type="submit" className="form-control btn btn-primary rounded submit px-3">Sign out</button>
 														</div>
 													</Link>
 												</li>

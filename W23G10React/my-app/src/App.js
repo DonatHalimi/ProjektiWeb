@@ -30,7 +30,7 @@ function App() {
           <Routes>
             <Route path='/singleproduct' element={<SingleProduct />}></Route>
 
-            <Route path='/' element={<Index />}></Route>
+            <Route path='/' element={<Login />}></Route>
             <Route path='/index' element={<Index />}></Route>
             <Route path='/about' element={<About />}></Route>
             <Route path='/contact' element={<Contact />}></Route>

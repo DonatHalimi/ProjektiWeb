@@ -132,7 +132,7 @@ function Index() {
 					<div className="row">
 						<div className="col-lg-6 col-md-12">
 							<div className="abt-bg">
-								<a href="https://www.youtube.com/watch?v=DBLlFWYcIGQ" className="video-play-btn popup-youtube"><i className="fas fa-play"></i></a>
+								<a href="https://www.youtube.com/watch?v=lwdNcMkOiTM" className="video-play-btn popup-youtube"><i className="fas fa-play"></i></a>
 							</div>
 						</div>
 						<div className="col-lg-6 col-md-12">
