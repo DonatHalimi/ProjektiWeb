@@ -30,9 +30,52 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-controller="Genre" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                    <button type="button" onclick="confirmDelete('@item.Id', '@item.Name')" style="background: none; border: none; padding: 0; color: #0d6efd; text-decoration: underline; cursor: pointer;">Delete</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<!-- Bootstrap modal for custom confirmation -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="background-color: white;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cancelDelete()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="itemDetails">
+                <!-- Item details will be displayed here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancelDelete()">No</button>
+                <form asp-action="Delete" method="post" style="display: inline;">
+                    <input type="hidden" id="itemIdToDelete" name="id" value="" />
+                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(itemId, itemName) {
+        // Set the item ID and details in the modal
+        document.getElementById('itemIdToDelete').value = itemId;
+        document.getElementById('itemDetails').innerHTML = `
+                <p>Name: ${itemName}</p>
+                <!-- Add more details as needed -->
+            `;
+
+        // Show the Bootstrap modal
+        $('#deleteConfirmationModal').modal('show');
+    }
+
+    function cancelDelete() {
+        // Hide the Bootstrap modal
+        $('#deleteConfirmationModal').modal('hide');
+    }
+</script>
