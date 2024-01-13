@@ -11,6 +11,7 @@ import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { BsArrowsAngleContract } from "react-icons/bs";
 import { toast } from "react-toastify";
 import { FavouriteContext } from '../context/favourite-context';
+import SimilarProducts from './SimilarBooks';
 
 function BookDetails() {
     const { id } = useParams();
@@ -89,6 +90,11 @@ function BookDetails() {
                 setGenre(book.genre);
                 setAuthor(book.author)
 
+                const genreResponse = await fetch(`https://localhost:7132/api/Book/GetBooksByGenre/${book.genre}`);
+                if (genreResponse.ok) {
+                    const genreData = await genreResponse.json();
+                    console.log("Books of the same genre:", genreData);
+                }
             } catch (error) {
                 console.error("Error fetching books:", error);
             }
@@ -189,6 +195,8 @@ function BookDetails() {
                         </div>
                     </div>
                 </div>
+
+                <SimilarProducts genre={book.genre} currentBookId={book.id} />
 
                 <Footer />
 

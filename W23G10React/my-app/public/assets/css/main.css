@@ -2474,6 +2474,11 @@ ul.social-link-team li a {
   color: #fff;
 }
 
+.smaller-book {
+  max-width: 150px;
+  margin-bottom: 150px;
+}
+
 .no-books-found {
   text-align: center;
   padding: 30px;

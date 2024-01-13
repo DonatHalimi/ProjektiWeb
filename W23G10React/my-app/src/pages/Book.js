@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { FavouriteContext } from '../context/favourite-context';
 
 function Book(props) {
-  const { book, showToast } = props;
+  const { book, smallerSize } = props;
   const cart = useContext(ShopContext);
   const favourite = useContext(FavouriteContext);
   const navigate = useNavigate();
@@ -20,7 +20,6 @@ function Book(props) {
 
   const handleAddToCart = () => {
     cart.addOneToCart(book.id);
-
 
     toast.success("Libri është shtuar në shportë!", {
       onClick: () => {
@@ -49,9 +48,8 @@ function Book(props) {
     },
   }];
 
-
   return (
-    <div className="col-lg-4 col-md-6 text-center mx-auto">
+    <div className={`col-lg-4 col-md-6 text-center mx-auto ${smallerSize ? 'smaller-book' : ''}`}>
       <Link to={`/book/${book.id}`} className="product-details-link">
         <div className="single-product-item" style={{ width: '300px' }}>
           <div className="product-image">
