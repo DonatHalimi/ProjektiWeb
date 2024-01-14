@@ -10,7 +10,7 @@ import ReactPaginate from "react-paginate";
 function Index() {
 	const [books, setBooks] = useState([]);
 	const [currentPage, setCurrentPage] = useState(0);
-	const itemsPerPage = 9;
+	const itemsPerPage = 12;
 	const pageCount = Math.ceil(books.length / itemsPerPage);
 
 	useEffect(() => {
@@ -86,7 +86,7 @@ function Index() {
 
 			<GenreList />
 
-			<div className="product-container">
+			<div className="product-container" style={{ marginLeft: "-50px" }}>
 				{currentBooks.length > 0 ? (
 					<div className="row product-lists" style={{ marginLeft: '180px' }}>
 						{currentBooks.map((book) => (

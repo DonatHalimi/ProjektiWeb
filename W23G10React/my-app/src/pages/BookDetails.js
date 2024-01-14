@@ -196,7 +196,7 @@ function BookDetails() {
                     </div>
                 </div>
 
-                <SimilarProducts genre={book.genre} currentBookId={book.id} />
+                <SimilarProducts className="col-lg-2 col-md-7 text-center mx-auto" genre={book.genre} currentBookId={book.id} />
 
                 <Footer />
 

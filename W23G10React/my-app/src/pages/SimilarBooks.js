@@ -31,14 +31,14 @@ function SimilarBooks({ genre, currentBookId }) {
             {similarBooks.length === 0 ? (
                 <p>No similar products found.</p>
             ) : (
-                <ul>
+                <>
                     <h2 style={{ marginLeft: "300px" }}>Similar Books</h2>
-                    <div className="row product-lists" style={{ marginRight: "1100px", marginTop: "50px" }}>
+                    <div className="row product-lists" style={{ marginRight: "450px", padding: "50px",  display: "flex", justifyContent: "space-between" }}>
                         {similarBooks.map((book) => (
                             <Book key={book.id} book={book} smallerSize={true} />
                         ))}
                     </div>
-                </ul>
+                </>
             )}
         </div>
     );

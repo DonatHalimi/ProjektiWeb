@@ -49,7 +49,7 @@ function Book(props) {
   }];
 
   return (
-    <div className={`col-lg-4 col-md-6 text-center mx-auto ${smallerSize ? 'smaller-book' : ''}`}>
+    <div className={`col-lg-3 col-md-6 text-center mx-auto ${smallerSize ? 'smaller-book' : ''}`}>
       <Link to={`/book/${book.id}`} className="product-details-link">
         <div className="single-product-item" style={{ width: '300px' }}>
           <div className="product-image">

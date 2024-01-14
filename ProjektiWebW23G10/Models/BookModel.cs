@@ -10,13 +10,13 @@ namespace ProjektiWebW23G10.Models
     {
         public int Id { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [RegularExpression(@"^[A-Z][a-zA-Z\s.,;:'-ë]*$", ErrorMessage = "Description must start with an uppercase letter and can contain letters, spaces, '.', ',', ';', ':', and '-' only.")]
         [StringLength(60, MinimumLength = 2)]
         [Required]
         [DisplayName("Book Name")]
         public string? Title { get; set; } = string.Empty;
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [RegularExpression(@"^[A-Z][a-zA-Z\s.,;:'-]*$", ErrorMessage = "Description must start with an uppercase letter and can contain letters, spaces, '.', ',', ';', ':', and '-' only.")]
         [Required]
         [StringLength(60, MinimumLength = 2)]
         public string? Author { get; set; } = string.Empty;
@@ -36,9 +36,9 @@ namespace ProjektiWebW23G10.Models
         [ValidateNever]
         public IEnumerable<SelectListItem> GenreList { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
-        [Required]
-        [StringLength(500, MinimumLength = 10)]
+        [RegularExpression(@"^[A-Z][a-zA-Z\s.,;:'-ë]*$", ErrorMessage = "Description must start with an uppercase letter and can contain letters, spaces, '.', ',', ';', ':', and '-' only.")]
+        [Required(ErrorMessage = "Description is required.")]
+        [StringLength(1000, MinimumLength = 10, ErrorMessage = "Description must be between 10 and 1000 characters.")]
         public string? Description { get; set; } = string.Empty;
 
         [DataType(DataType.Currency)]

@@ -44,20 +44,23 @@ function FavouriteItem(props) {
 
     return (
         <>
-            <div className="col-lg-4 col-md-6 text-center mx-auto">
-                <Link to={`/book/${book.id}`} className="product-details-link">
-                    <div className="single-product-item" style={{ width: '300px' }}>
-                        <div className="product-image">
-                            <a>
-                                <img
-                                    src={`https://localhost:7207/Images/${book.coverImage}`}
-                                    alt={book.title}
-                                    id='photo'
-                                    onLoad={() => console.log('Image loaded successfully')}
-                                    onError={() => console.log('Error loading image')}
-                                    style={{ maxWidth: '250px', maxHeight: '300px' }}
-                                />
-                            </a>
+			<div className="product-container" style={{ marginRight: "1000px" }}>
+                <div className="col-lg-3 col-md-6 text-center mx-auto">
+                    <Link to={`/book/${book.id}`} className="product-details-link">
+                        <div className="single-product-item" style={{ width: '300px' }}>
+                            <div className="product-image">
+                                <a>
+                                    <img
+                                        src={`https://localhost:7207/Images/${book.coverImage}`}
+                                        alt={book.title}
+                                        id='photo'
+                                        onLoad={() => console.log('Image loaded successfully')}
+                                        onError={() => console.log('Error loading image')}
+                                        style={{ maxWidth: '250px', maxHeight: '300px' }}
+                                    />
+                                </a>
+                            </div>
+
                             <div className='cardButtons' style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                                 <a style={cartStyle} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(); }}>
                                     <i className="fas fa-shopping-cart"></i> Add to Cart
@@ -67,14 +70,11 @@ function FavouriteItem(props) {
                                 </a>
                             </div>
                         </div>
-                    </div>
-                </Link>
-
-
+                    </Link>
+                </div>
             </div>
         </>
     );
-
 }
 
 export default FavouriteItem;

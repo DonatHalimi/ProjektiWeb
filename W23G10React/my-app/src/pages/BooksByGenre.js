@@ -9,6 +9,7 @@ import Footer from './Footer';
 import GenreList from './GenreList';
 import ReactPaginate from 'react-paginate';
 import { toast } from 'react-toastify';
+import Book from './Book';
 
 function BooksByGenre(props) {
     const { book, showToast } = props;
@@ -18,7 +19,7 @@ function BooksByGenre(props) {
     const navigate = useNavigate();
 
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 9;
+    const itemsPerPage = 12;
     const pageCount = Math.ceil(books.length / itemsPerPage);
 
     useEffect(() => {
@@ -110,73 +111,47 @@ function BooksByGenre(props) {
 
             <GenreList />
 
-            <div className="product-container">
-
+            <div className="product-container" style={{ marginLeft: "-50px" }}>
                 {currentBooks.length > 0 ? (
-                    <div className="row product-lists" style={{ marginLeft: '120px', marginTop: '30px' }}>
+                    <div className="row product-lists" style={{ marginLeft: '180px' }}>
                         {currentBooks.map((book) => (
-                            <div key={book.id} className="col-lg-4 col-md-6 text-center mx-auto">
-                                <Link to={`/book/${book.id}`} className="product-details-link">
-                                    <div className="single-product-item " style={{ width: '300px' }}>
-                                        <div className="product-image">
-                                            <a>
-                                                <img
-                                                    src={`https://localhost:7207/Images/${book.coverImage}`}
-                                                    alt={book.title}
-                                                    id='photo'
-                                                    onLoad={() => console.log('Image loaded successfully')}
-                                                    onError={() => console.log('Error loading image')}
-                                                    style={{ maxWidth: '250px', maxHeight: '280px' }} />
-                                            </a>
-                                        </div>
-                                        <h3>{book.title}</h3>
-                                        <p>Author: {book.author}</p>
-                                        <p className="product-price">
-                                            ${book.price}
-                                        </p>
-                                        <a style={Object.assign({}, ...cartStyle)} className="cart-btn" onClick={(e) => { e.preventDefault(); handleAddToCart(book.id); }}>
-                                            <i className="fas fa-shopping-cart"></i> Add to Cart
-                                        </a>
-                                    </div>
-                                </Link>
-                            </div>
+                            <Book key={book.id} book={book} />
                         ))}
-
-
                     </div>
                 ) : (
                     <div className="no-books-found">
                         <p>No books found for the genre: {genreName}</p>
                     </div>
                 )}
-
-                {currentBooks.length > 0 && (
-                    <div className="pagination-container" style={{ marginTop: "30px", textAlign: "center" }}>
-                        <ReactPaginate
-                            previousLabel={"Previous"}
-                            nextLabel={"Next"}
-                            breakLabel={"..."}
-                            pageCount={pageCount}
-                            marginPagesDisplayed={5}
-                            pageRangeDisplayed={5}
-                            onPageChange={handlePageClick}
-                            containerClassName={"pagination"}
-                            activeClassName={"active"}
-                            initialPage={currentPage}
-                            pageClassName={"page-item"}
-                            pageLinkClassName={"page-link"}
-                            previousClassName={"page-item"}
-                            nextClassName={"page-item"}
-                            previousLinkClassName={"page-link"}
-                            nextLinkClassName={"page-link"}
-                        />
-                    </div>
-                )}
-
             </div>
+
+            {/* Pagination */}
+            {currentBooks.length > 0 && (
+                <div className="pagination-container" style={{ marginTop: "30px", textAlign: "center" }}>
+                    <ReactPaginate
+                        previousLabel={"Previous"}
+                        nextLabel={"Next"}
+                        breakLabel={"..."}
+                        pageCount={pageCount}
+                        marginPagesDisplayed={5}
+                        pageRangeDisplayed={5}
+                        onPageChange={handlePageClick}
+                        containerClassName={"pagination"}
+                        activeClassName={"active"}
+                        initialPage={currentPage}
+                        pageClassName={"page-item"}
+                        pageLinkClassName={"page-link"}
+                        previousClassName={"page-item"}
+                        nextClassName={"page-item"}
+                        previousLinkClassName={"page-link"}
+                        nextLinkClassName={"page-link"}
+                    />
+                </div>
+            )}
+
             <Footer />
 
-        </div>
+        </div >
     );
 };
 
