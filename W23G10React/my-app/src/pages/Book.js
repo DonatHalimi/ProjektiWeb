@@ -18,6 +18,7 @@ function Book(props) {
     return <div>Loading...</div>;
   }
 
+  // Funksioni i cili ben handle shtimin e nje libri ne shopping cart 
   const handleAddToCart = () => {
     cart.addOneToCart(book.id);
 
@@ -28,7 +29,7 @@ function Book(props) {
     });
   };
 
-
+  // Funksioni i cili ben handle shtimin e nje libri ne favourites 
   const handleAddToFavourite = () => {
     favourite.addItemToFavourite(book.id);
 
@@ -48,6 +49,7 @@ function Book(props) {
     },
   }];
 
+  // JSX per shfaqjen e librave me detaje dhe butonat e nevojshem
   return (
     <div className={`col-lg-3 col-md-6 text-center mx-auto ${smallerSize ? 'smaller-book' : ''}`}>
       <Link to={`/book/${book.id}`} className="product-details-link">

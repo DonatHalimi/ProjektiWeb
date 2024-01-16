@@ -1,15 +1,15 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Menu from "./Menu";
 import Footer from "./Footer";
-import Book from "./Book";
 import { useNavigate } from "react-router-dom";
 
 function Shop() {
 	const [books, setBooks] = useState([]);
 	const navigate = useNavigate();
 
+	// Bejme fetch librat me useEffect duke perdorur API kur komponenti behet mount
 	useEffect(() => {
 		const fetchBooks = async () => {
 			try {
@@ -27,6 +27,7 @@ function Shop() {
 		fetchBooks();
 	}, []);
 
+	// useEffect per me scroll to top sa here hapet faqja
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
@@ -44,6 +45,7 @@ function Shop() {
 		});
 	};
 
+	// JSX per render te faqes
 	return (
 		<Fragment>
 			<Menu />

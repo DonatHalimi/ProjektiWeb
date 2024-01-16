@@ -3,9 +3,11 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const GenreList = () => {
+    // State per me rujt listen e genre
     const [genres, setGenres] = useState([]);
     const { genreName } = useParams();
 
+    // Bejme fetch genres me useEffect duke perdorur API kur komponenti behet mount
     useEffect(() => {
         const fetchGenres = async () => {
             try {
@@ -19,6 +21,7 @@ const GenreList = () => {
         fetchGenres();
     }, []);
 
+    // JSX per me render faqen
     return (
         <div className="product-section mt-120 mb-120">
             <div className="row">

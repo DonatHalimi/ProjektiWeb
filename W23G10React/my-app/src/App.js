@@ -1,52 +1,53 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+
 import Index from './pages/Index';
+import Shop from './pages/Shop';
+import Cart from './pages/Cart';
+import Favourite from './pages/Favourite';
+
+import Footer from './pages/Footer';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Shop from './pages/Shop';
-import SingleProduct from './pages/SingleProduct';
-import Checkout from './pages/Checkout';
-import Cart from './pages/Cart';
-import Footer from './pages/Footer';
 import ToTop from './pages/ToTop';
-import Book from './pages/Book';
-import { ToastContainer } from 'react-toastify';
+
 import Login from './pages/Login';
-import ShopContextProvider from './context/shop-context';
 import Register from './pages/Register';
-import BookDetails from './pages/BookDetails';
-import BooksByGenre from './pages/BooksByGenre';
-import Favourite from './pages/Favourite';
+
+import ShopContextProvider from './context/shop-context';
 import FavouriteContextProvider from './context/favourite-context';
+
+import BookDetails from './pages/BookDetails';
+import Book from './pages/Book';
+import BooksByGenre from './pages/BooksByGenre';
 
 function App() {
   return (
     <div className="App">
       <ShopContextProvider>
         <FavouriteContextProvider>
-        <Router>
-          <ToastContainer />
-          <ToTop />
-          <Routes>
-            <Route path='/singleproduct' element={<SingleProduct />}></Route>
+          <Router>
+            <ToastContainer />
+            <ToTop />
+            <Routes>
 
-            <Route path='/' element={<Login />}></Route>
-            <Route path='/index' element={<Index />}></Route>
-            <Route path='/about' element={<About />}></Route>
-            <Route path='/contact' element={<Contact />}></Route>
-            <Route path='/shop' element={<Shop />}></Route>
-            <Route path="/book/:id" element={<BookDetails />} />
-            <Route path='/checkout' element={<Checkout />}></Route>
-            <Route path='/cart' element={<Cart />}></Route>
-            <Route path='/favourite' element={<Favourite />}></Route>
-            <Route path='/footer' element={<Footer />}></Route>
-            <Route path='/book' element={<Book />}></Route>
-            <Route path='/login' element={<Login />}></Route>
-            <Route path='/register' element={<Register />}></Route>
-            <Route path="/books/:genreName" element={<BooksByGenre />} />
+              <Route path='/' element={<Login />}></Route>
+              <Route path='/index' element={<Index />}></Route>
+              <Route path='/about' element={<About />}></Route>
+              <Route path='/contact' element={<Contact />}></Route>
+              <Route path='/shop' element={<Shop />}></Route>
+              <Route path="/book/:id" element={<BookDetails />} />
+              <Route path='/cart' element={<Cart />}></Route>
+              <Route path='/favourite' element={<Favourite />}></Route>
+              <Route path='/footer' element={<Footer />}></Route>
+              <Route path='/book' element={<Book />}></Route>
+              <Route path='/login' element={<Login />}></Route>
+              <Route path='/register' element={<Register />}></Route>
+              <Route path="/books/:genreName" element={<BooksByGenre />} />
 
-          </Routes>
-        </Router>
+            </Routes>
+          </Router>
         </FavouriteContextProvider>
       </ShopContextProvider>
     </div>

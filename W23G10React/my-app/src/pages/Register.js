@@ -1,11 +1,7 @@
 import React, { Fragment, useState } from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Register() {
-  const location = useLocation();
-
-  // Function to check if a given path matches the current location
-  const isActive = (path) => location.pathname === path;
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -39,13 +35,13 @@ function Register() {
       console.log("Data received from the server:", data);
       navigate("/login");
 
-      // If the server returns any specific success/failure messages, you can log them here.
-
+      // Nese serveri kthen ndonje error, e bejme log ketu
     } catch (error) {
       console.error("Error registering user:", error);
     }
   };
 
+  // JSX per render te faqes
   return (
     <Fragment>
       <>

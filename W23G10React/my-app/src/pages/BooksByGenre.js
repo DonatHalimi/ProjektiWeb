@@ -1,27 +1,24 @@
 // BooksByGenre.js
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { ShopContext } from '../context/shop-context';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
 import Menu from './Menu';
 import Footer from './Footer';
 import GenreList from './GenreList';
 import ReactPaginate from 'react-paginate';
-import { toast } from 'react-toastify';
 import Book from './Book';
 
 function BooksByGenre(props) {
     const { book, showToast } = props;
     const { genreName } = useParams();
     const [books, setBooks] = useState([]);
-    const cart = useContext(ShopContext);
-    const navigate = useNavigate();
 
+    // State dhe variablat per pagination
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 12;
     const pageCount = Math.ceil(books.length / itemsPerPage);
 
+    // Bejme fetch librat duke u bazu ne genre kur komponenti behet mount ose kur genreName ndryshon 
     useEffect(() => {
         const fetchBooksByGenre = async () => {
             try {
@@ -37,39 +34,20 @@ function BooksByGenre(props) {
 
     console.log(genreName);
 
-    const handleAddToCart = (bookId) => {
-        cart.addOneToCart(bookId);
-
-        toast.success("Libri është shtuar në shportë!", {
-            position: 'top-right',
-            style: {
-                cursor: 'pointer',
-                transition: 'opacity 2s ease-in',
-            },
-            onClick: () => {
-                navigate("/cart");
-            },
-        });
-    };
-    const cartStyle = [{
-        color: 'white',
-        transition: 'all 0.6s',
-        ':hover': {
-            color: '#F27423',
-        },
-    }];
-
+    // Kalkulimi i offset-it dhe ndarja e librave per pagination
     const offset = currentPage * itemsPerPage;
     const currentBooks = books.slice(offset, offset + itemsPerPage);
 
+    // Ben handle page click per pagination
     const handlePageClick = (selectedPage) => {
         setCurrentPage(selectedPage.selected);
     };
 
+    // JSX per me render faqen
     return (
         <div>
-
             <Menu />
+
             <div className="search-area">
                 <div className="container">
                     <div className="row">
@@ -111,6 +89,7 @@ function BooksByGenre(props) {
 
             <GenreList />
 
+            {/* Shfaqja e librave, ose mesazhi se nuk ka liber per genre te caktuar */}
             <div className="product-container" style={{ marginLeft: "-50px" }}>
                 {currentBooks.length > 0 ? (
                     <div className="row product-lists" style={{ marginLeft: '180px' }}>

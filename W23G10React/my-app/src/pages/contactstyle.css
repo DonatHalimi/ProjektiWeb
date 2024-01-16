@@ -30,9 +30,6 @@ form textarea {
     border: 1px solid rgb(220, 220, 220);
 }
 
-/* Apply the styles to labels */
-
-
 /* Apply the styles to submit button */
 form input[type="submit"] {
     margin-top: 2rem;

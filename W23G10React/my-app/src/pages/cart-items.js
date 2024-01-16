@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../context/shop-context';
 
+// Funksioni i cili ben render nje item te vetem i cili gjendet ne shopping cart
 function CartItem(props) {
   const cart = useContext(ShopContext);
   const id = props.id;
@@ -12,6 +13,7 @@ function CartItem(props) {
 
   const [books, setBooks] = useState([]);
 
+  // useEffect per me i fetch te dhenat e librit
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -32,32 +34,22 @@ function CartItem(props) {
   const book = books.find((book) => book.id === id);
   console.log('Book data in CartItem:', book);
 
+  // Funksioni i cili largon nje liber nga shopping cart
   const handleRemoveOneFromCart = () => {
     cart.removeOneFromCart(id);
 
     setTimeout(() => {
-      toast.success('Libri është larguar nga shporta!', {
-        position: 'top-right',
-        style: {
-          cursor: 'pointer',
-          transition: 'opacity 2s ease-in',
-        },
-      });
-    }, 50);
+      toast.success('Libri është larguar nga shporta!');
+    })
   };
 
+  // Funksioni i cili largon te gjithe librat nga shopping cart
   const handleRemoveFromCart = () => {
     cart.deleteFromCart(id);
 
     setTimeout(() => {
-      toast.success('Libri është larguar nga shporta!', {
-        position: 'top-right',
-        style: {
-          cursor: 'pointer',
-          transition: 'opacity 2s ease-in',
-        },
-      });
-    }, 50);
+      toast.success('Libri është larguar nga shporta!');
+    })
   };
 
   if (!book) {
@@ -67,14 +59,10 @@ function CartItem(props) {
   const price = parseFloat(book.price);
   const totalCost = (quantity * price).toFixed(2);
 
+  // JSX per me render nje cart item
   return (
     <>
       <tr className="table-body-row">
-        {/* <td>
-          <button  onClick={handleRemoveFromCart} title="Delete">
-            <BsTrash3 />
-          </button>
-        </td> */}
         <td className="product-image">
           <Link to={`/book/${book.id}`}>
             <img
@@ -112,9 +100,6 @@ function CartItem(props) {
           ${totalCost}
         </td>
       </tr>
-
-  
-
     </>
   );
 }

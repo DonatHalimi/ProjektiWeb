@@ -2,40 +2,44 @@ import { React, Fragment, useEffect, useRef } from "react";
 import Menu from "./Menu";
 import Footer from "./Footer";
 import "./contactstyle.css";
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';
 
 function Contact() {
 
+	// useEffect per me scroll ToTop sa here hapet faqja
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 
 	const form = useRef();
 
+	// Funksioni per me dergu nje email kur user-i klikon send 
 	const sendEmail = async (e) => {
 		e.preventDefault();
 
+		// Marrja e te dhenave prej fushave te formes
 		const name = form.current.user_name.value;
 		const email = form.current.user_email.value;
 		const message = form.current.message.value;
 
-		// Check if required fields are empty
+		// Kontrollojme nese jane mbushur te gjitha fushat
 		if (!name || !email || !message) {
-			// Show error toast notification for empty fields
+			// Shfaqim nje mesazh nese ka fusha te zbrazta
 			toast.error('Please fill in all required fields.');
 			return;
 		}
 
-		// Show initial toast notification
+		// Shfaqim mesazhim se eshte duke u dergu mesazhi
 		const toastId = toast.info('Sending message...');
 
 		try {
+			// Dergimi i email-es duke perdorur sherbimin e emailjs
 			const result = await emailjs.sendForm('service_9q1z8tr', 'template_wdwnt9j', form.current, 'SUFff_EJ-PNqCxJ92');
 			console.log(result.text);
 
-			// Update the toast with success message
+			// Bejme update mesazhin kur dergohet mesazhi ne email
 			toast.update(toastId, {
 				type: toast.TYPE.SUCCESS,
 				render: 'Message sent successfully!',
@@ -44,7 +48,7 @@ function Contact() {
 		} catch (error) {
 			console.log(error.text);
 
-			// Update the toast with error message
+			// Nese ka gabim bejme update mesazhin duke i treguar user-it
 			toast.update(toastId, {
 				type: toast.TYPE.ERROR,
 				render: 'Failed to send message. Please try again.',
@@ -53,6 +57,7 @@ function Contact() {
 		}
 	};
 
+	// JSX per me render Contact page
 	return (
 		<Fragment>
 			<Menu />

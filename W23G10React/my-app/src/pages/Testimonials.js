@@ -1,5 +1,3 @@
-// Testimonials.js
-
 import React from "react";
 
 const Testimonials = () => {

@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { FavouriteContext } from '../context/favourite-context';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/shop-context';
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { BsTrash3 } from "react-icons/bs";
 import { toast } from 'react-toastify';
 
 function FavouriteItem(props) {
@@ -18,6 +16,7 @@ function FavouriteItem(props) {
         return <div>Loading...</div>;
     }
 
+    // Funksioni i cili shton nje liber ne favourites
     const handleAddToCart = () => {
         cart.addOneToCart(book.id);
 
@@ -28,12 +27,14 @@ function FavouriteItem(props) {
         }, 50);
     };
 
+    // Funksioni i cili largon nje liber nga favourites
     const handleRemoveFromFavourite = () => {
         favourite.removeItemFromFavourite(book.id);
 
         toast.success('Produkti është larguar nga favourites!');
     };
 
+    // Stilizim i butonit Add to Cart
     const cartStyle = {
         color: 'white',
         transition: 'all 0.6s',
@@ -42,9 +43,10 @@ function FavouriteItem(props) {
         },
     };
 
+    // JSX per me render nje favourite item
     return (
         <>
-			<div className="product-container" style={{ marginRight: "1000px" }}>
+            <div className="product-container" style={{ marginRight: "1000px" }}>
                 <div className="col-lg-3 col-md-6 text-center mx-auto">
                     <Link to={`/book/${book.id}`} className="product-details-link">
                         <div className="single-product-item" style={{ width: '300px' }}>

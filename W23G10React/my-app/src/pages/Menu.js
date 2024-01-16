@@ -4,9 +4,10 @@ import { Link, useLocation } from 'react-router-dom';
 function Menu() {
 	const location = useLocation();
 
-	// Function to check if a given path matches the current location
+	// Funksion per me kontrollu nese path-i i dhene pershtatet me lokacionin aktual
 	const isActive = (path) => location.pathname === path;
 
+	// JSX 
 	return (
 		<Fragment>
 			<div className="top-header-area" id="sticker">
@@ -14,15 +15,13 @@ function Menu() {
 					<div className="row">
 						<div className="col-lg-12 col-sm-12 text-center">
 							<div className="main-menu-wrap">
-								{/* <!-- logo --> */}
+
 								<div className="site-logo">
 									<Link to={"/index"}>
 										<img src="/assets/img/MainLogo.png" alt="" />
 									</Link>
 								</div>
-								{/* <!-- logo -->
-
-                        <!-- menu start --> */}
+			
 								<nav className="main-menu">
 									<ul>
 										<li className={isActive('/index') ? 'current-list-item' : ''}><Link to="/index">Home</Link></li>

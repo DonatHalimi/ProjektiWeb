@@ -4,6 +4,7 @@ import Book from './Book';
 function SimilarBooks({ genre, currentBookId }) {
     const [similarBooks, setSimilarBooks] = useState([]);
 
+    // Bejme fetch librat te cilet jane te ngjashem me librat tjere duke u bazuar se e kane genre-in e njejt
     useEffect(() => {
         const fetchSimilarBooks = async () => {
             try {
@@ -26,6 +27,7 @@ function SimilarBooks({ genre, currentBookId }) {
         fetchSimilarBooks();
     }, [genre, currentBookId]);
 
+    // JSX per me render faqen
     return (
         <div>
             {similarBooks.length === 0 ? (

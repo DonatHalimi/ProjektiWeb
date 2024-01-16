@@ -12,7 +12,7 @@ const Favourite = () => {
     const [books, setBooks] = useState([]);
     const navigate = useNavigate();
 
-    // Krijimi i nje funksioni per te kerkuar te dhenat nga API i produktit
+    // Bejme fetch librat me useEffect duke perdorur API kur komponenti behet mount
     useEffect(() => {
         const fetchBooks = async () => {
             try {
@@ -41,6 +41,8 @@ const Favourite = () => {
             },
         });
     };
+
+    // Stilizimi i pjeses kur nuk ka liber ne wishlist 
     const noItemsInWishlistStyles = {
         container: {
             marginTop: "200px",
@@ -67,7 +69,6 @@ const Favourite = () => {
     // Renderimi i HTML formes per shfaqjen e Wishlist
     return (
         <>
-            <Menu />
             <Menu />
             <div className="search-area">
                 <div className="container">
@@ -127,6 +128,7 @@ const Favourite = () => {
             </div>
 
             <div style={{ height: "200px" }}></div>
+
             <Footer />
         </>
     );

@@ -10,9 +10,11 @@ function Cart() {
 	const cart = useContext(ShopContext);
 
 	console.log("Cart items:", cart.items);
+	
 	// Krijojme funksionin per me llogarit numrin total te produkteve ne shporte
 	const booksCount = cart.items.reduce((sum, book) => sum + book.quantity, 0);
 
+	// useEffect per me scroll to top sa here qe hapet faqja Cart
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
@@ -20,7 +22,6 @@ function Cart() {
 	return (
 		<Fragment>
 			<Menu />
-			{/* <!-- search area --> */}
 			<div className="search-area">
 				<div className="container">
 					<div className="row">
@@ -37,9 +38,7 @@ function Cart() {
 					</div>
 				</div>
 			</div>
-			{/* <!-- end search arewa -->
-	
-	<!-- breadcrumb-section --> */}
+
 			<div className="breadcrumb-section hero-bg">
 				<div className="container">
 					<div className="row">
@@ -52,9 +51,7 @@ function Cart() {
 					</div>
 				</div>
 			</div>
-			{/* <!-- end breadcrumb section -->
 
-	<!-- cart --> */}
 			<div className="cart-section mt-150 mb-150">
 				<div className="container">
 					<div className="row">
@@ -63,7 +60,6 @@ function Cart() {
 								<table className="cart-table">
 									<thead className="cart-table-head">
 										<tr className="table-head-row">
-											{/* <th className="product-remove"></th> */}
 											<th className="product-image">Product Image</th>
 											<th className="product-name">Name</th>
 											<th className="product-price">Price</th>
@@ -91,7 +87,6 @@ function Cart() {
 							</div>
 						</div>
 
-						{/* Duhet me ba qe me mujt me qit total cost ne tabel prej file-it cart-items.js */}
 						<div className="col-lg-2" >
 							<div className="total-section">
 								<table className="total-table" >
@@ -125,28 +120,6 @@ function Cart() {
 
 			<Footer />
 
-			{/* <!-- end copyright -->
-	
-	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
-	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
-	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
-	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
-	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
-	<!-- main js -->
-	<script src="assets/js/main.js"></script> */}
 		</Fragment >
 	)
 }

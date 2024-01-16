@@ -1,24 +1,24 @@
 import React, { Fragment, useState } from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-function Login() {
-  const location = useLocation();
+import { Link, useNavigate } from 'react-router-dom';
 
-  // Function to check if a given path matches the current location
-  const isActive = (path) => location.pathname === path;
+function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await fetch("https://localhost:7132/api/User/GetList");
+
       if (response == null) {
         throw new Error(`Network response was not ok. Status: ${response.status}`);
       }
 
       const data = await response.json();
       const filteredUser = data.find(user => user.email == email);
+
       if (password == filteredUser.password) {
         navigate("/index");
       }
@@ -28,19 +28,16 @@ function Login() {
       }
       console.log("Data received from the server:", data);
 
-      // If the server returns any specific success/failure messages, you can log them here.
+      // Nese serveri kthen ndonje error, e bejme log ketu
     } catch (error) {
       console.error("Error registering user:", error);
     }
   };
+
+  // JSX per render te faqes
   return (
     <Fragment>
       <>
-        <div className="site-logo">
-          <Link to="/index">
-            <img src="assets/img/MainLogo.png" alt="Logo" />
-          </Link>
-        </div>
         <meta charSet="utf-8" />
         <meta
           name="viewport"
@@ -138,7 +135,6 @@ function Login() {
                     </form>
                     <p className="text-center">
                       Not a member?{' '}
-                      {/* Use the Link component to navigate to the "/register" page */}
                       <Link to="/register">Sign Up</Link>
                     </p>
                   </div>

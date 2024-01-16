@@ -12,10 +12,10 @@ const BookData = () => {
       try {
         const response = await axios.get("https://localhost:7132/api/Book/Get");
         console.log("Response data:", response.data);
-        
-        const books = response.data.map(book => ({ ...book, id: book.id })); // Ensure Id is populated
+
+        const books = response.data.map(book => ({ ...book, id: book.id }));
         console.log("Mapped books:", books);
-        
+
         setBooksTable(books);
         setIsLoading(false);
       } catch (error) {
@@ -28,7 +28,7 @@ const BookData = () => {
   }, []);
 
   console.log("Final state - bookTable:", bookTable);
-  
+
   return { bookTable, isLoading };
 };
 

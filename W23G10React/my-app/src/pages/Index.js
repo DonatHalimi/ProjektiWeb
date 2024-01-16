@@ -9,10 +9,13 @@ import ReactPaginate from "react-paginate";
 
 function Index() {
 	const [books, setBooks] = useState([]);
+
+	// State dhe variablat per pagination
 	const [currentPage, setCurrentPage] = useState(0);
 	const itemsPerPage = 12;
 	const pageCount = Math.ceil(books.length / itemsPerPage);
 
+	// Bejme fetch librat me useEffect duke perdorur API kur komponenti behet mount
 	useEffect(() => {
 		const fetchBooks = async () => {
 			try {
@@ -20,6 +23,7 @@ function Index() {
 				if (!response.ok) {
 					throw new Error("Network response was not ok");
 				}
+
 				const data = await response.json();
 				setBooks(data);
 			} catch (error) {
@@ -30,9 +34,11 @@ function Index() {
 		fetchBooks();
 	}, []);
 
+	// Kalkulimi i offset-it dhe ndarja e librave per pagination
 	const offset = currentPage * itemsPerPage;
 	const currentBooks = books.slice(offset, offset + itemsPerPage);
 
+	// Ben handle page click per pagination
 	const handlePageClick = (selectedPage) => {
 		setCurrentPage(selectedPage.selected);
 	};
@@ -41,6 +47,7 @@ function Index() {
 		window.scrollTo(0, 0);
 	}, []);
 
+	// JSX per render te faqes
 	return (
 		<Fragment>
 
@@ -154,4 +161,5 @@ function Index() {
 		</Fragment>
 	);
 };
+
 export default Index;

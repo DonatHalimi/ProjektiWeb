@@ -4,8 +4,7 @@ import Footer from "./Footer";
 import Testimonials from "./Testimonials";
 
 function About() {
-
-	// useEffect per me scroll toTop kur hapet faqja per here te pare
+	// useEffect per me scroll toTop sa here qe hapet faqja
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);

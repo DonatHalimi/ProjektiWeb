@@ -1,6 +1,3 @@
-
-
-
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Menu from './Menu';
@@ -26,30 +23,12 @@ function BookDetails() {
     const [author, setAuthor] = useState("");
     const [isImageEnlarged, setIsImageEnlarged] = useState(false);
 
-    //  const [isImageEnlarged, setIsImageEnlarged] = useState(false);
-
     const cart = useContext(ShopContext);
     const favourite = useContext(FavouriteContext);
 
     const navigate = useNavigate();
 
-    // const toggleEnlargedPicture = () => {
-    //     setIsImageEnlarged(!isImageEnlarged);
-    // };
-
-    // useEffect(() => {
-    //     const handleKeyDown = (event) => {
-    //         if (event.key === 'Escape' && isImageEnlarged) {
-    //             toggleEnlargedPicture();
-    //         }
-    //     };
-    //     document.addEventListener('keydown', handleKeyDown);
-
-    //     return () => {
-    //         document.removeEventListener('keydown', handleKeyDown);
-    //     };
-    // }, [isImageEnlarged, toggleEnlargedPicture]);
-
+    // Funksioni i cili shton nje liber ne shopping cart
     const handleAddToCart = () => {
         cart.addOneToCart(book.id);
 
@@ -60,6 +39,7 @@ function BookDetails() {
         });
     };
 
+    // Funksioni i cili shton nje liber ne favourites
     const handleAddToFavourite = () => {
         favourite.addItemToFavourite(book.id);
 
@@ -70,6 +50,7 @@ function BookDetails() {
         });
     };
 
+    // Bejme fetch nje liber te caktuar me id e atij libri te klikuar me useEffect duke perdorur API kur komponenti behet mount
     useEffect(() => {
         const fetchBook = async () => {
             try {
@@ -106,6 +87,7 @@ function BookDetails() {
         return <div>Loading...</div>;
     }
 
+    // Stilizimi i butonit Add to Cart dhe Add to Favourites
     const cartStyle = [{
         color: 'white',
         transition: 'all 0.6s',
@@ -114,6 +96,7 @@ function BookDetails() {
             color: '#F27423',
         },
     }];
+
     const favouriteStyle = [{
         color: 'white',
         transition: 'all 0.6s',
@@ -123,6 +106,7 @@ function BookDetails() {
         },
     }];
 
+    // JSX per me render faqen
     return (
         <>
             <Fragment>
