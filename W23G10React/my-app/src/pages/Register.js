@@ -45,11 +45,6 @@ function Register() {
   return (
     <Fragment>
       <>
-        <div className="site-logo">
-          <Link to="/index">
-            <img src="assets/img/MainLogo.png" alt="Logo" />
-          </Link>
-        </div>
         <title>Login 04</title>
         <meta charSet="utf-8" />
         <meta

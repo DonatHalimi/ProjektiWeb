@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {}
+    "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {}
   },
   "projects": {
-    "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\ProjektiWebAPI.csproj": {
+    "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\ProjektiWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\ProjektiWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\ProjektiWebAPI.csproj",
         "projectName": "ProjektiWebAPI",
-        "projectPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\ProjektiWebAPI.csproj",
-        "packagesPath": "C:\\Users\\donat\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\obj\\",
+        "projectPath": "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\ProjektiWebAPI.csproj",
+        "packagesPath": "C:\\Users\\Anjeza\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\donat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Anjeza\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,21 +92,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.416\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {
+    "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
+        "projectUniqueName": "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
         "projectName": "ProjektiWebW23G10",
-        "projectPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
-        "packagesPath": "C:\\Users\\donat\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\obj\\",
+        "projectPath": "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
+        "packagesPath": "C:\\Users\\Anjeza\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\donat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Anjeza\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -120,8 +120,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\ProjektiWebAPI.csproj": {
-                "projectPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\ProjektiWebAPI.csproj"
+              "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\ProjektiWebAPI.csproj": {
+                "projectPath": "C:\\Users\\Anjeza\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\ProjektiWebAPI.csproj"
               }
             }
           }
@@ -192,7 +192,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.416\\RuntimeIdentifierGraph.json"
         }
       }
     }
