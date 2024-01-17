@@ -33,7 +33,7 @@ function Book(props) {
   const handleAddToFavourite = () => {
     favourite.addItemToFavourite(book.id);
 
-    toast.success('Produkti është shtuar në favourites!', {
+    toast.success('Libri është shtuar në favourites!', {
       onClick: () => {
         navigate("/favourite");
       },

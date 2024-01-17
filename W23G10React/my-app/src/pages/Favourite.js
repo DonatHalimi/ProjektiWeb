@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import FavouriteItem from './favourite-items';
+import FavouriteItem from '../components/favourite-items';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { FavouriteContext } from '../context/favourite-context';
-import Menu from './Menu';
-import Footer from './Footer';
+import Menu from '../components/Menu';
+import Footer from "../components/Footer";
 
 const Favourite = () => {
     const { items, removeItemFromFavourite } = useContext(FavouriteContext);
@@ -35,7 +35,7 @@ const Favourite = () => {
     const handleRemoveFromFavourite = (id) => {
         removeItemFromFavourite(id);
 
-        toast.success('Produkti është shtuar në shportë!', {
+        toast.success('Libri është shtuar në shportë!', {
             onClick: () => {
                 navigate('/cart');
             },

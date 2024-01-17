@@ -20,7 +20,7 @@ function FavouriteItem(props) {
     const handleAddToCart = () => {
         cart.addOneToCart(book.id);
 
-        toast.success('Produkti është shtuar në shportë!', {
+        toast.success('Libri është shtuar në shportë!', {
             onClick() {
                 navigate("/cart");
             }
@@ -31,7 +31,7 @@ function FavouriteItem(props) {
     const handleRemoveFromFavourite = () => {
         favourite.removeItemFromFavourite(book.id);
 
-        toast.success('Produkti është larguar nga favourites!');
+        toast.success('Libri është larguar nga favourites!');
     };
 
     // Stilizim i butonit Add to Cart

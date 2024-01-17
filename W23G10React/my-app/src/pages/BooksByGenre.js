@@ -2,11 +2,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Menu from './Menu';
-import Footer from './Footer';
-import GenreList from './GenreList';
+import Menu from '../components/Menu';
+import Footer from "../components/Footer";
+import GenreList from '../components/GenreList';
 import ReactPaginate from 'react-paginate';
-import Book from './Book';
+import Book from '../components/Book';
 
 function BooksByGenre(props) {
     const { book, showToast } = props;

@@ -1,9 +1,9 @@
 import { React, useState, useEffect, Fragment } from "react";
-import Book from "./Book";
-import Menu from "./Menu";
-import Testimonials from "./Testimonials";
-import Footer from "./Footer";
-import GenreList from "./GenreList";
+import Book from "../components/Book";
+import Menu from "../components/Menu";
+import Testimonials from "../components/Testimonials";
+import Footer from "../components/Footer";
+import GenreList from "../components/GenreList";
 import { Link, useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 

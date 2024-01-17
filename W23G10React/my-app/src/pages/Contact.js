@@ -1,7 +1,7 @@
 import { React, Fragment, useEffect, useRef } from "react";
-import Menu from "./Menu";
-import Footer from "./Footer";
-import "./contactstyle.css";
+import Menu from "../components/Menu";
+import Footer from "../components/Footer";
+import '../style/contactstyle.css'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';

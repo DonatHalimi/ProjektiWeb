@@ -3,14 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 
 import Index from './pages/Index';
-import Shop from './pages/Shop';
 import Cart from './pages/Cart';
 import Favourite from './pages/Favourite';
 
-import Footer from './pages/Footer';
+import Footer from "./components/Footer";
 import About from './pages/About';
 import Contact from './pages/Contact';
-import ToTop from './pages/ToTop';
+import ToTop from './components/ToTop';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -19,7 +18,7 @@ import ShopContextProvider from './context/shop-context';
 import FavouriteContextProvider from './context/favourite-context';
 
 import BookDetails from './pages/BookDetails';
-import Book from './pages/Book';
+import Book from './components/Book';
 import BooksByGenre from './pages/BooksByGenre';
 
 function App() {
@@ -36,7 +35,6 @@ function App() {
               <Route path='/index' element={<Index />}></Route>
               <Route path='/about' element={<About />}></Route>
               <Route path='/contact' element={<Contact />}></Route>
-              <Route path='/shop' element={<Shop />}></Route>
               <Route path="/book/:id" element={<BookDetails />} />
               <Route path='/cart' element={<Cart />}></Route>
               <Route path='/favourite' element={<Favourite />}></Route>

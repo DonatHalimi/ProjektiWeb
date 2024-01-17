@@ -1,9 +1,9 @@
 import React, { useContext, Fragment, useEffect } from 'react';
-import Menu from "./Menu";
+import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import { ShopContext } from '../context/shop-context';
-import CartItem from './cart-items';
+import CartItem from '../components/cart-items';
 
 function Cart() {
 	// Merr kontekstin e dyqanit nga komponenti ShopContext
@@ -89,26 +89,7 @@ function Cart() {
 
 						<div className="col-lg-2" >
 							<div className="total-section">
-								<table className="total-table" >
-									<thead className="total-table-head">
-										<tr className="table-total-row">
-											<th>Total</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr className="total-data">
-											<td><strong>Subtotal: </strong></td>
-										</tr>
-										<tr className="total-data">
-											<td><strong>Shipping: </strong></td>
-											<td>$0</td>
-										</tr>
-										<tr className="total-data">
-											<td><strong>Total: </strong></td>
-										</tr>
-									</tbody>
-								</table>
+							
 								<div className="cart-buttons">
 									<a className="boxed-btn" style={{ position: "relative", left: "20px", height: "auto", color: "white", width: "165px", transition: "all 0.6s" }}>Purchase items</a>
 								</div>

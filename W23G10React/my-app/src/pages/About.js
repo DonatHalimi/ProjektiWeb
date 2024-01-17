@@ -1,7 +1,7 @@
 import { React, useEffect, Fragment } from "react";
-import Menu from "./Menu";
-import Footer from "./Footer";
-import Testimonials from "./Testimonials";
+import Menu from "../components/Menu";
+import Footer from "../components/Footer";
+import Testimonials from "../components/Testimonials";
 
 function About() {
 	// useEffect per me scroll toTop sa here qe hapet faqja

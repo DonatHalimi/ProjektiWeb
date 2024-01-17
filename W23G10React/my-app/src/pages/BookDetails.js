@@ -1,14 +1,14 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Menu from './Menu';
-import Footer from './Footer';
+import Menu from '../components/Menu';
+import Footer from "../components/Footer";
 import { useNavigate, useParams } from 'react-router-dom';
 import { ShopContext } from "../context/shop-context";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { BsArrowsAngleContract } from "react-icons/bs";
 import { toast } from "react-toastify";
 import { FavouriteContext } from '../context/favourite-context';
-import SimilarProducts from './SimilarBooks';
+import SimilarProducts from '../components/SimilarBooks';
 
 function BookDetails() {
     const { id } = useParams();
