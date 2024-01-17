@@ -36,6 +36,10 @@ app.UseCors(builder =>
            .AllowAnyHeader()
            .AllowAnyMethod()
            .AllowCredentials();
+    builder.WithOrigins("https://projekti-web-eight.vercel.app")
+           .AllowAnyHeader()
+           .AllowAnyMethod()
+           .AllowCredentials();
 });
 
 
