@@ -11,21 +11,28 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+@* Search Box *@
 <div class="search-container">
     <input type="text" id="combinedFilter" class="wide-input" placeholder="Search by Title, Author, ISBN or Genre" oninput="filterBooks()" />
 </div>
 
+@* Filter Button *@
 <button class="btn btn-primary" onclick="showFilterDialog()">
-    <i class="fas fa-filter"></i> Filter
+    <i class="fa-solid fa-filter"></i> Filter
 </button>
 
+@* Sort Button *@
 <div class="btn-group">
     <button class="btn btn-primary dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-sort-amount-up"></i> Sort by Price
+        <i class="fas fa-sort-amount-up"></i> Sort
     </button>
     <div class="dropdown-menu" aria-labelledby="sortDropdown">
-        <a class="dropdown-item" href="#" onclick="sortBooksByPrice('asc')">Lowest to Highest</a>
-        <a class="dropdown-item" href="#" onclick="sortBooksByPrice('desc')">Highest to Lowest</a>
+        <a class="dropdown-item" href="#" onclick="sortBooksByPrice('asc')">Price: Lowest to Highest</a>
+        <a class="dropdown-item" href="#" onclick="sortBooksByPrice('desc')">Price: Highest to Lowest</a>
+        <a class="dropdown-item" href="#" onclick="sortBooksAlphabetically('asc')">Title: A-Z</a>
+        <a class="dropdown-item" href="#" onclick="sortBooksAlphabetically('desc')">Title: Z-A</a>
+        <a class="dropdown-item" href="#" onclick="sortBooksByPublicationDate('oldest')">Oldest First</a>
+        <a class="dropdown-item" href="#" onclick="sortBooksByPublicationDate('newest')">Newest First</a>
     </div>
 </div>
 
@@ -156,9 +163,9 @@
                 <label for="priceRange">Price Range:</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" class="form-control" id="minPrice" placeholder="Min" min="0" step="0.01">
+                    <input type="number" class="form-control" id="minPrice" placeholder="Min" min="0" step="1">
                     <span class="input-group-text">to</span>
-                    <input type="number" class="form-control" id="maxPrice" placeholder="Max" min="0" step="0.01">
+                    <input type="number" class="form-control" id="maxPrice" placeholder="Max" min="0" step="1">
                 </div>
             </div>
             <div class="modal-footer">
@@ -170,6 +177,8 @@
 </div>
 
 <script>
+
+    // Funksioni per me konfirmu delete-in e nje libri
     function confirmDelete(itemId, itemName) {
         // Set the item ID and details in the modal
         document.getElementById('itemIdToDelete').value = itemId;
@@ -179,11 +188,13 @@
         $('#deleteConfirmationModal').modal('show');
     }
 
+    // Funksioni per me anulu fshirjen e nje libri
     function cancelDelete() {
         // Hide the Bootstrap modal
         $('#deleteConfirmationModal').modal('hide');
     }
 
+    // Funksioni per me kerku libra sipas Titullit, Autorit, ISBN ose Genre
     function filterBooks() {
         // Get the combined filter value
         var combinedFilter = document.getElementById('combinedFilter').value.toLowerCase();
@@ -205,6 +216,7 @@
         }
     }
 
+    // Funksioni per me shfaq filter modal (dialog)
     function showFilterDialog() {
         // Show the Bootstrap modal for filter options
         $('#filterModal').modal('show');
@@ -214,40 +226,34 @@
         populateDropdown('authorDropdown', 'Author');
     }
 
+    // Funksioni i cili thirret kur klikohet butoni "Apply Filters"
     function applyFilter() {
-        // Get the selected values from the dropdowns
         var selectedGenre = document.getElementById('genreDropdown').value;
         var selectedAuthor = document.getElementById('authorDropdown').value;
-
-        // Get the selected price range
         var minPrice = document.getElementById('minPrice').value;
         var maxPrice = document.getElementById('maxPrice').value;
 
-        // Filter books based on the selected values and price range
         var rows = document.getElementsByTagName('tr');
         for (var i = 1; i < rows.length; i++) {
             var genre = rows[i].getElementsByTagName('td')[4].innerText.trim();
             var author = rows[i].getElementsByTagName('td')[1].innerText.trim();
             var price = parseFloat(rows[i].getElementsByTagName('td')[6].innerText.trim().replace(/[^0-9.]/g, ''));
 
-            // Check if the row should be displayed based on the selected values and price range
             if (
                 (selectedGenre === 'All Genres' || genre === selectedGenre) &&
                 (selectedAuthor === 'All Authors' || author === selectedAuthor) &&
                 (isNaN(minPrice) || (price >= parseFloat(minPrice) || minPrice === '')) &&
-                (isNaN(maxPrice) || (price <= parseFloat(maxPrice) || maxPrice === ''))
-            ) {
+                (isNaN(maxPrice) || (price <= parseFloat(maxPrice) || maxPrice === ''))) {
                 rows[i].style.display = '';
             } else {
                 rows[i].style.display = 'none';
             }
         }
 
-        // Hide the filter modal
         $('#filterModal').modal('hide');
     }
 
-
+    // Funksioni per me popullu dropdown listen per filtrim me author & genre
     function populateDropdown(dropdownId, columnName) {
         // Get unique values from the specified column in the book list
         const uniqueValues = new Set();
@@ -278,6 +284,7 @@
         });
     }
 
+    // Funksioni per me marr index-in e kolones te tabela Books
     function getColumnIndex(columnName) {
         // Map column names to their corresponding index
         const columnMap = {
@@ -294,11 +301,13 @@
         return columnMap[columnName];
     }
 
+    // Funksioni per me ba cancel filter modal-in
     function cancelFilter() {
         // Hide the Bootstrap modal
         $('#filterModal').modal('hide');
     }
 
+    // Funksioni per me u largu filterat pas klikimit te butonit "Clear Filters"
     function clearFilters() {
         // Set author and genre dropdowns to "All Authors" and "All Genres"
         document.getElementById('authorDropdown').value = 'All Authors';
@@ -312,6 +321,7 @@
         applyFilter();
     }
 
+    // Funksioni per me i sortu librat sipas cmimit
     function sortBooksByPrice(sortDirection) {
         // Get all rows except the header
         const rows = Array.from(document.querySelectorAll('.table tbody tr'));
@@ -338,11 +348,80 @@
         });
     }
 
+    // Funksioni per me i sortu librat sipas rendit alfabetik
+    function sortBooksAlphabetically(sortDirection) {
+        // Get all rows except the header
+        const rows = Array.from(document.querySelectorAll('.table tbody tr'));
+
+        // Sort the rows based on the title column
+        const sortedRows = rows.sort((rowA, rowB) => {
+            const titleA = rowA.children[0].innerText.trim().toLowerCase();
+            const titleB = rowB.children[0].innerText.trim().toLowerCase();
+
+            if (sortDirection === 'asc') {
+                return titleA.localeCompare(titleB);
+            } else {
+                return titleB.localeCompare(titleA);
+            }
+        });
+
+        // Remove all rows from the table
+        const tbody = document.querySelector('.table tbody');
+        tbody.innerHTML = '';
+
+        // Append the sorted rows to the table
+        sortedRows.forEach(row => {
+            tbody.appendChild(row);
+        });
+    }
+
+    // Funksioni per me i sortu librat sipas dates se publikimit
+    function sortBooksByPublicationDate(sortDirection) {
+        // Get all rows except the header
+        const rows = Array.from(document.querySelectorAll('.table tbody tr'));
+
+        // Sort the rows based on the publication date column
+        const sortedRows = rows.sort((rowA, rowB) => {
+            const dateA = parseDate(rowA.children[3].innerText.trim());
+            const dateB = parseDate(rowB.children[3].innerText.trim());
+
+            if (sortDirection === 'oldest') {
+                return dateA - dateB;
+            } else {
+                return dateB - dateA;
+            }
+        });
+
+        // Remove all rows from the table
+        const tbody = document.querySelector('.table tbody');
+        tbody.innerHTML = '';
+
+        // Append the sorted rows to the table
+        sortedRows.forEach(row => {
+            tbody.appendChild(row);
+        });
+    }
+
+    // Funksioni per me ndrru formatin e dates
+    function parseDate(dateString) {
+        // Parse the date in the "dd/mm/yyyy" format
+        const parts = dateString.split('/');
+        if (parts.length === 3) {
+            const day = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript
+            const year = parseInt(parts[2], 10);
+
+            return new Date(year, month, day);
+        }
+
+        // If the date cannot be parsed, return an invalid date
+        return new Date('Invalid');
+    }
 </script>
 
 <style>
     .wide-input {
-        width: 300px; /* Adjust the width as needed */
+        width: 300px;
     }
 
     .search-container {
