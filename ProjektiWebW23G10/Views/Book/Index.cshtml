@@ -10,6 +10,25 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<div class="search-container">
+    <input type="text" id="combinedFilter" class="wide-input" placeholder="Search by Title, Author, ISBN or Genre" oninput="filterBooks()" />
+</div>
+
+<button class="btn btn-primary" onclick="showFilterDialog()">
+    <i class="fas fa-filter"></i> Filter
+</button>
+
+<div class="btn-group">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-sort-amount-up"></i> Sort by Price
+    </button>
+    <div class="dropdown-menu" aria-labelledby="sortDropdown">
+        <a class="dropdown-item" href="#" onclick="sortBooksByPrice('asc')">Lowest to Highest</a>
+        <a class="dropdown-item" href="#" onclick="sortBooksByPrice('desc')">Highest to Lowest</a>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -111,14 +130,50 @@
     </div>
 </div>
 
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModalLabel">Filter Options</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cancelFilter()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Dropdown for Genres -->
+                <label for="genreDropdown">Select Genre:</label>
+                <select class="form-control" id="genreDropdown">
+                    <!-- Genres will be dynamically added here -->
+                </select>
+
+                <!-- Dropdown for Authors -->
+                <label for="authorDropdown">Select Author:</label>
+                <select class="form-control" id="authorDropdown">
+                    <!-- Authors will be dynamically added here -->
+                </select>
+
+                <!-- Price Range Input -->
+                <label for="priceRange">Price Range:</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" class="form-control" id="minPrice" placeholder="Min" min="0" step="0.01">
+                    <span class="input-group-text">to</span>
+                    <input type="number" class="form-control" id="maxPrice" placeholder="Max" min="0" step="0.01">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear Filters</button>
+                <button type="button" class="btn btn-primary" onclick="applyFilter()">Apply Filter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function confirmDelete(itemId, itemName) {
         // Set the item ID and details in the modal
         document.getElementById('itemIdToDelete').value = itemId;
-        document.getElementById('itemDetails').innerHTML = `
-                        <p>Title: ${itemName}</p>
-                        <!-- Add more details as needed -->
-                    `;
+        document.getElementById('itemDetails').innerHTML = `<p>Title: ${itemName}</p>`;
 
         // Show the Bootstrap modal
         $('#deleteConfirmationModal').modal('show');
@@ -128,7 +183,206 @@
         // Hide the Bootstrap modal
         $('#deleteConfirmationModal').modal('hide');
     }
+
+    function filterBooks() {
+        // Get the combined filter value
+        var combinedFilter = document.getElementById('combinedFilter').value.toLowerCase();
+
+        // Loop through each row in the table
+        var rows = document.getElementsByTagName('tr');
+        for (var i = 1; i < rows.length; i++) {
+            var title = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
+            var author = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+            var isbn = rows[i].getElementsByTagName('td')[2].innerText.toLowerCase();
+            var genre = rows[i].getElementsByTagName('td')[4].innerText.toLowerCase();
+
+            // Check if the row should be displayed based on the combined filter
+            if (title.includes(combinedFilter) || author.includes(combinedFilter) || isbn.includes(combinedFilter) || genre.includes(combinedFilter)) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+
+    function showFilterDialog() {
+        // Show the Bootstrap modal for filter options
+        $('#filterModal').modal('show');
+
+        // Populate the dropdowns inside the modal
+        populateDropdown('genreDropdown', 'Genre');
+        populateDropdown('authorDropdown', 'Author');
+    }
+
+    function applyFilter() {
+        // Get the selected values from the dropdowns
+        var selectedGenre = document.getElementById('genreDropdown').value;
+        var selectedAuthor = document.getElementById('authorDropdown').value;
+
+        // Get the selected price range
+        var minPrice = document.getElementById('minPrice').value;
+        var maxPrice = document.getElementById('maxPrice').value;
+
+        // Filter books based on the selected values and price range
+        var rows = document.getElementsByTagName('tr');
+        for (var i = 1; i < rows.length; i++) {
+            var genre = rows[i].getElementsByTagName('td')[4].innerText.trim();
+            var author = rows[i].getElementsByTagName('td')[1].innerText.trim();
+            var price = parseFloat(rows[i].getElementsByTagName('td')[6].innerText.trim().replace(/[^0-9.]/g, ''));
+
+            // Check if the row should be displayed based on the selected values and price range
+            if (
+                (selectedGenre === 'All Genres' || genre === selectedGenre) &&
+                (selectedAuthor === 'All Authors' || author === selectedAuthor) &&
+                (isNaN(minPrice) || (price >= parseFloat(minPrice) || minPrice === '')) &&
+                (isNaN(maxPrice) || (price <= parseFloat(maxPrice) || maxPrice === ''))
+            ) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+
+        // Hide the filter modal
+        $('#filterModal').modal('hide');
+    }
+
+
+    function populateDropdown(dropdownId, columnName) {
+        // Get unique values from the specified column in the book list
+        const uniqueValues = new Set();
+        var rows = document.getElementsByTagName('tr');
+        for (var i = 1; i < rows.length; i++) {
+            var value = rows[i].getElementsByTagName('td')[getColumnIndex(columnName)].innerText.trim();
+            if (value !== '') {
+                uniqueValues.add(value);
+            }
+        }
+
+        // Populate the dropdown with unique values
+        const dropdown = document.getElementById(dropdownId);
+        dropdown.innerHTML = '';
+
+        // Add an option for "All Genres" or "All Authors"
+        const allOption = document.createElement('option');
+        allOption.value = 'All ' + columnName + 's';
+        allOption.text = 'All ' + columnName + 's';
+        dropdown.add(allOption);
+
+        // Add options for each unique value
+        uniqueValues.forEach(value => {
+            const option = document.createElement('option');
+            option.value = value;
+            option.text = value;
+            dropdown.add(option);
+        });
+    }
+
+    function getColumnIndex(columnName) {
+        // Map column names to their corresponding index
+        const columnMap = {
+            'Title': 0,
+            'Author': 1,
+            'ISBN': 2,
+            'PublicationDate': 3,
+            'Genre': 4,
+            'Description': 5,
+            'Price': 6,
+            'CoverImage': 7
+        };
+
+        return columnMap[columnName];
+    }
+
+    function cancelFilter() {
+        // Hide the Bootstrap modal
+        $('#filterModal').modal('hide');
+    }
+
+    function clearFilters() {
+        // Set author and genre dropdowns to "All Authors" and "All Genres"
+        document.getElementById('authorDropdown').value = 'All Authors';
+        document.getElementById('genreDropdown').value = 'All Genres';
+
+        // Reset the price range inputs
+        document.getElementById('minPrice').value = '';
+        document.getElementById('maxPrice').value = '';
+
+        // Manually trigger the applyFilter function to update the display
+        applyFilter();
+    }
+
+    function sortBooksByPrice(sortDirection) {
+        // Get all rows except the header
+        const rows = Array.from(document.querySelectorAll('.table tbody tr'));
+
+        // Sort the rows based on the price column
+        const sortedRows = rows.sort((rowA, rowB) => {
+            const priceA = parseFloat(rowA.children[6].innerText.trim().replace(/[^0-9.]/g, '')) || 0;
+            const priceB = parseFloat(rowB.children[6].innerText.trim().replace(/[^0-9.]/g, '')) || 0;
+
+            if (sortDirection === 'asc') {
+                return priceA - priceB;
+            } else {
+                return priceB - priceA;
+            }
+        });
+
+        // Remove all rows from the table
+        const tbody = document.querySelector('.table tbody');
+        tbody.innerHTML = '';
+
+        // Append the sorted rows to the table
+        sortedRows.forEach(row => {
+            tbody.appendChild(row);
+        });
+    }
+
 </script>
+
+<style>
+    .wide-input {
+        width: 300px; /* Adjust the width as needed */
+    }
+
+    .search-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .info-button:hover + .info-box {
+        display: block;
+    }
+
+    .info-box {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        padding: 10px;
+        z-index: 1;
+        margin-top: 5px;
+        right: 0;
+    }
+
+        .info-box p {
+            margin-bottom: 0;
+        }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
 @functions {
     string FormatISBNForDisplay(string isbn)
