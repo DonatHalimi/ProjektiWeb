@@ -7,7 +7,10 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @if (User.IsInRole("Admin"))
+    {
+           <a asp-action="Create">Create New</a>
+    }
 </p>
 
 <div class="search-container">
@@ -30,9 +33,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
+                   @if (User.IsInRole("User"))
+               {
+                 <th></th>
+               }
+             @if (User.IsInRole("Admin"))
+               {
             <th>
                 Operations
             </th>
+               }
         </tr>
     </thead>
     <tbody>
@@ -43,9 +53,12 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-controller="Genre" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        @if (User.IsInRole("Admin"))
+                        {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                    <a asp-controller="Genre" asp-action="Details" asp-route-id="@item.Id">Details</a> 
                     <button type="button" onclick="confirmDelete('@item.Id', '@item.Name')" style="background: none; border: none; padding: 0; color: #0d6efd; text-decoration: underline; cursor: pointer;">Delete</button>
+                        }
                 </td>
             </tr>
         }

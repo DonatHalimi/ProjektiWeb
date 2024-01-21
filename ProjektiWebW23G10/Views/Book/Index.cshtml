@@ -8,7 +8,10 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+   @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Create">Create New</a>
+    }
 </p>
 
 @* Search Box *@
@@ -63,9 +66,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.CoverImage)
             </th>
+               @if (User.IsInRole("Admin"))
+               {
             <th>
                 Operations
             </th>
+               }
+                @if (User.IsInRole("User"))
+               {
+                 <th></th>
+               }
         </tr>
     </thead>
     <tbody>
@@ -104,9 +114,12 @@
                     <img src="~/Images/@item.CoverImage" alt="Cover Image" class="img-thumbnail" width="100" height="100" />
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                     @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                    <a asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">Details</a> 
                     <button type="button" onclick="confirmDelete('@item.Id', '@item.Title')" style="background: none; border: none; padding: 0; color: #0d6efd; text-decoration: underline; cursor: pointer;">Delete</button>
+               }
                 </td>
             </tr>
         }
