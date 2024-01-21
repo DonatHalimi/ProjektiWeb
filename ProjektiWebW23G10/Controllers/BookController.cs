@@ -9,13 +9,12 @@ using System.Text;
 
 namespace ProjektiWebW23G10.Controllers
 {
- 
     public class BookController : Controller
     {
         readonly Uri baseAddress = new Uri("https://localhost:7132/api");
 
         private readonly HttpClient _client;
-        private readonly IWebHostEnvironment _hostingEnvironment; // Add this
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly ApplicationDbContext _context;
 
         public BookController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
@@ -41,6 +40,7 @@ namespace ProjektiWebW23G10.Controllers
 
             return View(bookList);
         }
+
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Create()
@@ -56,6 +56,7 @@ namespace ProjektiWebW23G10.Controllers
 
             return View(bookModel);
         }
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -106,6 +107,7 @@ namespace ProjektiWebW23G10.Controllers
             return View(book);
 
         }
+
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Edit(int id)
@@ -265,6 +267,7 @@ namespace ProjektiWebW23G10.Controllers
                 return RedirectToAction("Index");
             }
         }
+
         private static HttpContent CreateHttpContent(object content)
         {
             string jsonContent = JsonConvert.SerializeObject(content);

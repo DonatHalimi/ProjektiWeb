@@ -4,58 +4,58 @@
     ViewData["Title"] = Model.Title + " Details";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="mt-4">@ViewData["Title"]</h1>
 
 <div>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2" style="color:white; background-color: #272B30;">
             @Html.DisplayNameFor(model => model.Title)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" style="color:white; background-color: #272B30;">
             @Html.DisplayFor(model => model.Title)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2" style="color:white; background-color: #272B30;">
             @Html.DisplayNameFor(model => model.Author)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" style="color:white; background-color: #272B30;">
             @Html.DisplayFor(model => model.Author)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2" style="color:white; background-color: #272B30;">
             @Html.DisplayNameFor(model => model.ISBN)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" style="color:white; background-color: #272B30;">
             @Html.DisplayFor(model => model.ISBN)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2" style="color:white; background-color: #272B30;">
             @Html.DisplayNameFor(model => model.PublicationDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" style="color:white; background-color: #272B30;">
             @Html.DisplayFor(model => model.PublicationDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2" style="color:white; background-color: #272B30;">
             @Html.DisplayNameFor(model => model.Genre)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" style="color:white; background-color: #272B30;">
             @Html.DisplayFor(model => model.Genre)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2" style="color:white; background-color: #272B30;">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" style="color:white; background-color: #272B30;">
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2" style="color:white; background-color: #272B30;">
             @Html.DisplayNameFor(model => model.Price)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" style="color:white; background-color: #272B30;">
             @Html.DisplayFor(model => model.Price)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2" style="color:white; background-color: #272B30;">
             @Html.DisplayNameFor(model => model.CoverImage)
         </dt>
-        <dd class = "col-sm-10">
-     <img src="~/Images/@Model.CoverImage" alt="Cover Image" class="img-thumbnail" width="200" height="200" />
+        <dd class="col-sm-10">
+            <img src="~/Images/@Model.CoverImage" alt="Cover Image" class="img-thumbnail" width="200" height="200" />
 
         </dd>
     </dl>

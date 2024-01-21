@@ -5,42 +5,41 @@
     ViewData["Title"] = "Books";
 }
 
-<h1>Index</h1>
+<h1 class="mt-4">Index</h1>
 
 <p>
-   @if (User.IsInRole("Admin"))
-    {
-        <a asp-action="Create">Create New</a>
-    }
+    <a asp-action="Create">Create New</a>
 </p>
 
 @* Search Box *@
-<div class="search-container">
-    <input type="text" id="combinedFilter" class="wide-input" placeholder="Search by Title, Author, ISBN or Genre" oninput="filterBooks()" />
-</div>
+<div class="mb-4">
+    <div class="search-container">
+        <input type="text" id="combinedFilter" class="wide-input" style="color: white; background-color: #3A3F44; border: 1px solid #3A3F44; border-radius: 5px; height: 30px; padding: 10px; margin-bottom: 10px;" placeholder="Search by Title, Author, ISBN or Genre" oninput="filterBooks()" />
+    </div>
 
-@* Filter Button *@
-<button class="btn btn-primary" onclick="showFilterDialog()">
-    <i class="fa-solid fa-filter"></i> Filter
-</button>
-
-@* Sort Button *@
-<div class="btn-group">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-sort-amount-up"></i> Sort
+    @* Filter Button *@
+    <button class="btn btn-primary" onclick="showFilterDialog()">
+        <i class="fa-solid fa-filter"></i> Filter
     </button>
-    <div class="dropdown-menu" aria-labelledby="sortDropdown">
-        <a class="dropdown-item" href="#" onclick="sortBooksByPrice('asc')">Price: Lowest to Highest</a>
-        <a class="dropdown-item" href="#" onclick="sortBooksByPrice('desc')">Price: Highest to Lowest</a>
-        <a class="dropdown-item" href="#" onclick="sortBooksAlphabetically('asc')">Title: A-Z</a>
-        <a class="dropdown-item" href="#" onclick="sortBooksAlphabetically('desc')">Title: Z-A</a>
-        <a class="dropdown-item" href="#" onclick="sortBooksByPublicationDate('oldest')">Oldest First</a>
-        <a class="dropdown-item" href="#" onclick="sortBooksByPublicationDate('newest')">Newest First</a>
+
+    @* Sort Button *@
+    <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-sort-amount-up"></i> Sort
+        </button>
+        <div class="dropdown-menu" aria-labelledby="sortDropdown">
+            <a class="dropdown-item" href="#" onclick="sortBooksByPrice('asc')">Price: Lowest to Highest</a>
+            <a class="dropdown-item" href="#" onclick="sortBooksByPrice('desc')">Price: Highest to Lowest</a>
+            <a class="dropdown-item" href="#" onclick="sortBooksAlphabetically('asc')">Title: A-Z</a>
+            <a class="dropdown-item" href="#" onclick="sortBooksAlphabetically('desc')">Title: Z-A</a>
+            <a class="dropdown-item" href="#" onclick="sortBooksByPublicationDate('oldest')">Oldest First</a>
+            <a class="dropdown-item" href="#" onclick="sortBooksByPublicationDate('newest')">Newest First</a>
+        </div>
     </div>
 </div>
 
 <table class="table">
-    <thead>
+    <thead style="border-radius:5px">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
@@ -66,16 +65,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.CoverImage)
             </th>
-               @if (User.IsInRole("Admin"))
-               {
-            <th>
-                Operations
-            </th>
-               }
-                @if (User.IsInRole("User"))
-               {
-                 <th></th>
-               }
+            @if (User.IsInRole("Admin"))
+            {
+                <th>
+                    Operations
+                </th>
+            }
+            @if (User.IsInRole("User"))
+            {
+                <th></th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -114,12 +113,12 @@
                     <img src="~/Images/@item.CoverImage" alt="Cover Image" class="img-thumbnail" width="100" height="100" />
                 </td>
                 <td>
-                     @if (User.IsInRole("Admin"))
-                {
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
-                    <a asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">Details</a> 
-                    <button type="button" onclick="confirmDelete('@item.Id', '@item.Title')" style="background: none; border: none; padding: 0; color: #0d6efd; text-decoration: underline; cursor: pointer;">Delete</button>
-               }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <button type="button" onclick="confirmDelete('@item.Id', '@item.Title')" style="background: none; border: none; padding: 0; color: #0d6efd; text-decoration: underline; cursor: pointer;">Delete</button>
+                    }
                 </td>
             </tr>
         }
@@ -129,7 +128,7 @@
 <!-- Bootstrap modal for custom confirmation -->
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" style="background-color: #272b30;">
+        <div class="modal-content" style="background-color: #32383E;">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cancelDelete()">
@@ -162,13 +161,13 @@
             <div class="modal-body">
                 <!-- Dropdown for Genres -->
                 <label for="genreDropdown">Select Genre:</label>
-                <select class="form-control" id="genreDropdown">
+                <select class="form-control" style="color:white; background-color: #3A3F44;" id="genreDropdown">
                     <!-- Genres will be dynamically added here -->
                 </select>
 
                 <!-- Dropdown for Authors -->
                 <label for="authorDropdown">Select Author:</label>
-                <select class="form-control" id="authorDropdown">
+                <select class="form-control" style="color:white; background-color: #3A3F44;" id="authorDropdown">
                     <!-- Authors will be dynamically added here -->
                 </select>
 
@@ -176,9 +175,9 @@
                 <label for="priceRange">Price Range:</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" class="form-control" id="minPrice" placeholder="Min" min="0" step="1">
+                    <input type="number" class="form-control" style="color:white; background-color: #3A3F44;" id="minPrice" placeholder="Min" min="0" step="1">
                     <span class="input-group-text">to</span>
-                    <input type="number" class="form-control" id="maxPrice" placeholder="Max" min="0" step="1">
+                    <input type="number" class="form-control" style="color:white; background-color: #3A3F44;" id="maxPrice" placeholder="Max" min="0" step="1">
                 </div>
             </div>
             <div class="modal-footer">
@@ -442,31 +441,24 @@
         display: inline-block;
     }
 
-    .info-button:hover + .info-box {
-        display: block;
-    }
-
-    .info-box {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        border: 1px solid #ccc;
-        padding: 10px;
-        z-index: 1;
-        margin-top: 5px;
-        right: 0;
-    }
-
-        .info-box p {
-            margin-bottom: 0;
-        }
-
     .close {
         position: absolute;
         top: 0;
-        right: 0;
+        right: 5px;
         padding: 5px;
         cursor: pointer;
+        background-color: #32383E;
+        border: #32383E;
+        color: white;
+    }
+
+    #combinedFilter:focus {
+        outline-color: #3A3F44;
+        border-color: #3A3F44;
+    }
+
+    th {
+        border-radius: 5px;
     }
 </style>
 

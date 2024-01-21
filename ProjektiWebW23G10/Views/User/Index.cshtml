@@ -4,23 +4,25 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="mt-4">Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 
-<div class="search-container">
-    <input type="text" id="userSearch" class="wide-input" placeholder="Search by First Name" oninput="filterUsers()" />
-</div>
+<div style="display:flex; justify-content:flex-start">
+    <div class="search-container">
+        <input type="text" id="userSearch" class="wide-input" style="color:white; background-color: #3A3F44; border:#3A3F44; border-radius:5px; height:30px; padding:10px; margin-bottom:10px;" placeholder="Search by First Name" oninput="filterUsers()" />
+    </div>
 
-<div class="btn-group">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Sort by Name
-    </button>
-    <div class="dropdown-menu" aria-labelledby="sortDropdown">
-        <a class="dropdown-item" href="#" onclick="sortUsersAlphabetically('asc')">First Name: A-Z</a>
-        <a class="dropdown-item" href="#" onclick="sortUsersAlphabetically('desc')">First Name: Z-A</a>
+    <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle mb-3" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort
+        </button>
+        <div class="dropdown-menu" aria-labelledby="sortDropdown">
+            <a class="dropdown-item" href="#" onclick="sortUsersAlphabetically('asc')">First Name: A-Z</a>
+            <a class="dropdown-item" href="#" onclick="sortUsersAlphabetically('desc')">First Name: Z-A</a>
+        </div>
     </div>
 </div>
 
@@ -70,7 +72,7 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     <a asp-controller="User" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <button type="button" onclick="confirmDelete('@item.Id', '@item.FirstName', '@item.LastName')" style="background: none; border: none; padding: 0; color: #0d6efd; text-decoration: underline; cursor: pointer;">Delete</button>
+                    <button type="button" onclick="confirmDelete('@item.Id', '@item.FirstName', '@item.LastName')" style="background: none; border: none; padding: 0; color: white; text-decoration: underline; cursor: pointer;">Delete</button>
                 </td>
             </tr>
         }
@@ -80,7 +82,7 @@
 <!-- Bootstrap modal for custom confirmation -->
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" style="background-color: #272b30;">
+        <div class="modal-content" style="background-color: #32383E;">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cancelDelete()">
@@ -106,9 +108,9 @@
         // Set the user ID and details in the modal
         document.getElementById('userIdToDelete').value = userId;
         document.getElementById('userDetails').innerHTML = `
-                                                        <p>FirstName: ${firstName}</p>
-                                                        <p>LastName: ${lastName}</p>
-                                        `;
+                                                                        <p>FirstName: ${firstName}</p>
+                                                                        <p>LastName: ${lastName}</p>
+                                                        `;
 
         // Show the Bootstrap modal
         $('#deleteConfirmationModal').modal('show');
@@ -164,6 +166,24 @@
         });
     }
 </script>
+
+<style>
+    .close {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        padding: 5px;
+        cursor: pointer;
+        background-color: #32383E;
+        border: #32383E;
+        color: white;
+    }
+
+    #userSearch:focus {
+        outline-color: #3A3F44;
+        border-color: #3A3F44;
+    }
+</style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
