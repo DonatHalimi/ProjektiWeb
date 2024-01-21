@@ -41,7 +41,7 @@ namespace ProjektiWebW23G10.Controllers
 
             return View(bookList);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -56,7 +56,7 @@ namespace ProjektiWebW23G10.Controllers
 
             return View(bookModel);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Author,ISBN,PublicationDate,Genre,Description,Price,CoverImage")] BookModel book, IFormFile coverImage)
@@ -106,7 +106,7 @@ namespace ProjektiWebW23G10.Controllers
             return View(book);
 
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -134,7 +134,7 @@ namespace ProjektiWebW23G10.Controllers
                 return View();
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Edit(int id, BookModel book, IFormFile CoverImage)
         {
@@ -186,7 +186,7 @@ namespace ProjektiWebW23G10.Controllers
                 return View(book);
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -213,7 +213,7 @@ namespace ProjektiWebW23G10.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -240,7 +240,7 @@ namespace ProjektiWebW23G10.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {

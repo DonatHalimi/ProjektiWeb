@@ -34,13 +34,13 @@ namespace ProjektiWebW23G10.Controllers
             }
             return View(genreList);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(GenreModel genre)
         {
@@ -63,7 +63,7 @@ namespace ProjektiWebW23G10.Controllers
             }
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -85,7 +85,7 @@ namespace ProjektiWebW23G10.Controllers
                 return View();
             }
         }
-
+        [Authorize(Roles = "Admin")]
         // EDIT
         [HttpPost]
         public IActionResult Edit(int id, GenreModel genre)
@@ -114,7 +114,7 @@ namespace ProjektiWebW23G10.Controllers
                 return View(genre);
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -141,7 +141,7 @@ namespace ProjektiWebW23G10.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -168,7 +168,7 @@ namespace ProjektiWebW23G10.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
