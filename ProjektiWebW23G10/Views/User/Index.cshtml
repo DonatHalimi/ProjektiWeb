@@ -2,6 +2,14 @@
 
 @{
     ViewData["Title"] = "Index";
+         Pager pager=new Pager();
+    int pageNo = 0;
+    if(ViewBag.Pager != null)
+    {
+        pager=ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+
+    }
 }
 
 <h1 class="mt-4">Index</h1>
@@ -78,6 +86,37 @@
         }
     </tbody>
 </table>
+<div class="container">
+    @if(pager.TotalPages > 0){
+            <ul class="pagination justify-content-end">
+   @if(pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                       <a class="page-link" asp-controller="User" asp-action="Index" asp-route-pg="1">First</a>
+                </li>
+                 <li class="page-item">
+                       <a class="page-link" asp-controller="User" asp-action="Index" asp-route-pg="@(pager.CurrentPage-1)">Previous</a>
+                </li>
+            }
+
+            @for(var pge=pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active" :  "")">
+                    <a class="page-link" asp-controller="User" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                </li>
+            }
+            @if(pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                       <a class="page-link" asp-controller="User" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)">Next</a>
+                </li>
+                 <li class="page-item">
+                       <a class="page-link" asp-controller="User" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+                </li>
+            }
+        </ul>
+    }
+</div>
 
 <!-- Bootstrap modal for custom confirmation -->
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">

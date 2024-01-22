@@ -21,18 +21,33 @@ namespace ProjektiWebW23G10.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int pg = 1)
         {
             List<GenreModel> genreList = new List<GenreModel>();
 
+            // Fetch data from the API endpoint
             HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/Genre/Get").Result;
 
             if (response.IsSuccessStatusCode)
             {
-                string data = response.Content.ReadAsStringAsync().Result;
-                genreList = JsonConvert.DeserializeObject<List<GenreModel>>(data);
+                string apiData = response.Content.ReadAsStringAsync().Result; // Rename 'data' to 'apiData'
+                genreList = JsonConvert.DeserializeObject<List<GenreModel>>(apiData);
             }
-            return View(genreList);
+
+            const int pageSize = 5;
+            if (pg < 1)
+                pg = 1;
+
+            int recsCount = genreList.Count();
+
+            var pager = new Pager(recsCount, pg, pageSize);
+
+            int recSkip = (pg - 1) * pageSize;
+            var paginatedData = genreList.Skip(recSkip).Take(pager.PageSize).ToList(); // Rename 'data' to 'paginatedData'
+
+            ViewBag.Pager = pager;
+
+            return View(paginatedData);
         }
         [Authorize(Roles = "Admin")]
         [HttpGet]

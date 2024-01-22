@@ -21,20 +21,34 @@ namespace ProjektiWebW23G10.Controllers
         }
 
 
-
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int pg = 1)
         {
             List<TestimonialsModel> testimonialsList = new List<TestimonialsModel>();
 
+            // Fetch data from the API endpoint
             HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/Testimonials/Get").Result;
 
             if (response.IsSuccessStatusCode)
             {
-                string data = response.Content.ReadAsStringAsync().Result;
-                testimonialsList = JsonConvert.DeserializeObject<List<TestimonialsModel>>(data);
+                string apiData = response.Content.ReadAsStringAsync().Result; // Rename 'data' to 'apiData'
+                testimonialsList = JsonConvert.DeserializeObject<List<TestimonialsModel>>(apiData);
             }
-            return View(testimonialsList);
+
+            const int pageSize = 5;
+            if (pg < 1)
+                pg = 1;
+
+            int recsCount = testimonialsList.Count();
+
+            var pager = new Pager(recsCount, pg, pageSize);
+
+            int recSkip = (pg - 1) * pageSize;
+            var paginatedData = testimonialsList.Skip(recSkip).Take(pager.PageSize).ToList(); // Rename 'data' to 'paginatedData'
+
+            ViewBag.Pager = pager;
+
+            return View(paginatedData);
         }
 
 
