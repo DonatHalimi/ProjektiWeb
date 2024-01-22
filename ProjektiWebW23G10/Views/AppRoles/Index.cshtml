@@ -87,9 +87,9 @@
         // Set the item ID and details in the modal
         document.getElementById('itemIdToDelete').value = itemId;
         document.getElementById('itemDetails').innerHTML = `
-                                                                <p>Name: ${itemName}</p>
-                                                                <!-- Add more details as needed -->
-                                                            `;
+                                                                    <p>Name: ${itemName}</p>
+                                                                    <!-- Add more details as needed -->
+                                                                `;
 
         // Show the Bootstrap modal
         $('#deleteConfirmationModal').modal('show');
@@ -160,6 +160,14 @@
     #roleSearch:focus {
         outline-color: #3A3F44;
         border-color: #3A3F44;
+    }
+
+    th:first-child {
+        border-top-left-radius: 10px;
+    }
+
+    th:last-child {
+        border-top-right-radius: 10px;
     }
 </style>
 

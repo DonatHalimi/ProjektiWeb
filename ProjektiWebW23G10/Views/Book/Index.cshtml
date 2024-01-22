@@ -8,7 +8,10 @@
 <h1 class="mt-4">Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Create">Create New</a>
+    }
 </p>
 
 @* Search Box *@
@@ -115,8 +118,8 @@
                 <td>
                     @if (User.IsInRole("Admin"))
                     {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
+                        <a asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">Details |</a>
                         <button type="button" onclick="confirmDelete('@item.Id', '@item.Title')" style="background: none; border: none; padding: 0; color: white; text-decoration: underline; cursor: pointer;">Delete</button>
                     }
                 </td>
@@ -457,8 +460,12 @@
         border-color: #3A3F44;
     }
 
-    th {
-        border-radius: 5px;
+    th:first-child {
+        border-top-left-radius: 10px;
+    }
+
+    th:last-child {
+        border-top-right-radius: 10px;
     }
 </style>
 

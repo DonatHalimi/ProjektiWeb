@@ -1,12 +1,11 @@
 ﻿@model ProjektiWebW23G10.Models.TestimonialsModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create a testimonial";
 }
 
-<h1>Create</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>TestimonialsModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Text" class="control-label"></label>
-                <input asp-for="Text" class="form-control" />
+                <input asp-for="Text" class="form-control" style="color:white; background-color: #3A3F44;" />
                 <span asp-validation-for="Text" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -29,5 +28,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -108,9 +108,9 @@
         // Set the user ID and details in the modal
         document.getElementById('userIdToDelete').value = userId;
         document.getElementById('userDetails').innerHTML = `
-                                                                        <p>FirstName: ${firstName}</p>
-                                                                        <p>LastName: ${lastName}</p>
-                                                        `;
+                                                                            <p>FirstName: ${firstName}</p>
+                                                                            <p>LastName: ${lastName}</p>
+                                                            `;
 
         // Show the Bootstrap modal
         $('#deleteConfirmationModal').modal('show');
@@ -182,6 +182,14 @@
     #userSearch:focus {
         outline-color: #3A3F44;
         border-color: #3A3F44;
+    }
+
+    th:first-child {
+        border-top-left-radius: 10px;
+    }
+
+    th:last-child {
+        border-top-right-radius: 10px;
     }
 </style>
 

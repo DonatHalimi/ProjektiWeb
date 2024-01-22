@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {}
+    "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {}
   },
   "projects": {
-    "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\ProjektiWebAPI.csproj": {
+    "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\ProjektiWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\ProjektiWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\ProjektiWebAPI.csproj",
         "projectName": "ProjektiWebAPI",
-        "projectPath": "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\ProjektiWebAPI.csproj",
-        "packagesPath": "C:\\Users\\WishByTech\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\obj\\",
+        "projectPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\ProjektiWebAPI.csproj",
+        "packagesPath": "C:\\Users\\donat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\WishByTech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\donat\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -84,24 +84,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.25, 6.0.25]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.25, 6.0.25]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.25, 6.0.25]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.25, 6.0.25]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -110,21 +92,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {
+    "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
+        "projectUniqueName": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
         "projectName": "ProjektiWebW23G10",
-        "projectPath": "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
-        "packagesPath": "C:\\Users\\WishByTech\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebW23G10\\obj\\",
+        "projectPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\ProjektiWebW23G10.csproj",
+        "packagesPath": "C:\\Users\\donat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebW23G10\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\WishByTech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\donat\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -138,8 +120,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\ProjektiWebAPI.csproj": {
-                "projectPath": "C:\\Users\\WishByTech\\source\\repos\\ProjektiWeb\\ProjektiWebAPI\\ProjektiWebAPI.csproj"
+              "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\ProjektiWebAPI.csproj": {
+                "projectPath": "C:\\Users\\donat\\Documents\\VisualStudioProjects\\Projekti\\ProjektiWebAPI\\ProjektiWebAPI.csproj"
               }
             }
           }
@@ -202,24 +184,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.25, 6.0.25]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.25, 6.0.25]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.25, 6.0.25]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.25, 6.0.25]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -228,7 +192,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
