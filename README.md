@@ -2,6 +2,7 @@
 # ProjektiWeb - Library Management System
 
 ## Table of Contents
+- [Live Preview](#livepreview)
 1. [Introduction](#introduction)
 2. [Features](#features)
     - [User Registration](#user-registration)
@@ -19,6 +20,8 @@
 3. [Technologies Used](#technologies-used)
 4. [Getting Started](#getting-started)
 5. [Conclusion](#conclusion)
+
+## Live Preview
 
 ## Introduction
 Welcome to the **Library Management System** project! This web application is designed to facilitate the efficient management of a library, allowing users to **sign up**, **browse**, **purchase books**, and even **save their favorite selections**. It combines the power of **ReactJS** on the frontend with **.NET** on the backend to provide a seamless and user-friendly experience.
