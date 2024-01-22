@@ -47,7 +47,7 @@ function Menu() {
 	const handleInputChange = (e) => {
 		setSearchTerm(e.target.value);
 		setSearchClicked(false);
-		
+
 		setShowDropdown(true);
 	};
 
@@ -93,7 +93,7 @@ function Menu() {
 
 								<div className="site-logo">
 									<Link to={"/index"}>
-										<img src="/assets/img/MainLogo.png" alt="" />
+										<img src="/assets/img/MainLogo.png" style={{ marginTop: "1px" }} alt="" />
 									</Link>
 								</div>
 
