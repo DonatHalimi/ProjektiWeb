@@ -13,6 +13,8 @@ namespace ProjektiWebAPI.Models
         public DbSet<BookModel>? Books { get; set; }
         public DbSet<UserModel>? Users { get; set; }
         public DbSet<GenreModel>? Genres { get; set; }
+
+        public DbSet<TestimonialsModel>? Testimonials { get; set; }
         public DbSet<UserIdentityModel>? ApplicationUsers { get; set; }
     }
 }

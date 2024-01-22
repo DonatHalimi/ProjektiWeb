@@ -1,0 +1,187 @@
+﻿@model IEnumerable<ProjektiWebW23G10.Models.TestimonialsModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<p>
+    @if (User.IsInRole("User"))
+    {
+        <a asp-action="Create">Create New</a>
+    }
+</p>
+<div style="display:flex; justify-content:flex-start">
+    <div class="search-container">
+        <input type="text" id="testimonialsSearch" class="wide-input" style="color:white; background-color: #3A3F44; border:#3A3F44; border-radius:5px; height:30px; padding:10px; margin-bottom:10px;" placeholder="Search by Testimonials" oninput="filterTestimonials()" />
+    </div>
+
+    <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle mb-3" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-sort-amount-up"></i> Sort
+        </button>
+        <div class="dropdown-menu" aria-labelledby="sortDropdown">
+            <a class="dropdown-item" href="#" onclick="sortTestimonialsAlphabetically('asc')">Text: A-Z</a>
+            <a class="dropdown-item" href="#" onclick="sortTestimonialsAlphabetically('desc')">Text: Z-A</a>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            @if (User.IsInRole("User"))
+            {
+                <th></th>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <th>
+                    Operations
+                </th>
+            }
+        </tr>
+    </thead>
+  
+    <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
+                        <a asp-controller="Testimonials" asp-action="Details" asp-route-id="@item.Id">Details |</a>
+                        <button type="button" onclick="confirmDelete('@item.Id', '@item.Text')" style="background: none; border: none; padding: 0; color: white; text-decoration: underline; cursor: pointer;">Delete</button>
+                        }
+                </td>
+            </tr>
+            }
+    </tbody>
+</table>
+
+
+<!-- Bootstrap modal for custom confirmation -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="background-color: #32383E;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cancelDelete()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="itemDetails">
+                <!-- Item details will be displayed here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancelDelete()">No</button>
+                <form asp-action="Delete" method="post" style="display: inline;">
+                    <input type="hidden" id="itemIdToDelete" name="id" value="" />
+                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(itemId, itemName) {
+        // Set the item ID and details in the modal
+        document.getElementById('itemIdToDelete').value = itemId;
+        document.getElementById('itemDetails').innerHTML = `
+                                                                                            <p>Name: ${itemName}</p>
+                                                                                            <!-- Add more details as needed -->
+                                                                                        `;
+
+        // Show the Bootstrap modal
+        $('#deleteConfirmationModal').modal('show');
+    }
+
+    function cancelDelete() {
+        // Hide the Bootstrap modal
+        $('#deleteConfirmationModal').modal('hide');
+    }
+
+    function filterTestimonials() {
+        // Get the search input value
+        var testimonialsSearchValue = document.getElementById('testimonialsSearch').value.toLowerCase();
+
+        // Loop through each row in the table
+        var rows = document.getElementsByTagName('tr');
+        for (var i = 1; i < rows.length; i++) {
+            var testimonialsName = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
+
+            // Check if the row should be displayed based on the search input
+            if (testimonialsName.includes(testimonialsSearchValue)) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+
+    function sortTestimonialsAlphabetically(sortDirection) {
+        // Get all rows except the header
+        const rows = Array.from(document.querySelectorAll('.table tbody tr'));
+
+        // Sort the rows based on the testimonials name column
+        const sortedRows = rows.sort((rowA, rowB) => {
+            const testimonialsNameA = rowA.children[0].innerText.trim().toLowerCase();
+            const testimonialsNameB = rowB.children[0].innerText.trim().toLowerCase();
+
+            if (sortDirection === 'asc') {
+                return testimonialsNameA.localeCompare(testimonialsNameB);
+            } else {
+                return testimonialsNameB.localeCompare(testimonialsNameA);
+            }
+        });
+
+        // Remove all rows from the table
+        const tbody = document.querySelector('.table tbody');
+        tbody.innerHTML = '';
+
+        // Append the sorted rows to the table
+        sortedRows.forEach(row => {
+            tbody.appendChild(row);
+        });
+    }
+</script>
+
+<style>
+    .wide-input {
+        width: 200px;
+    }
+
+    .search-container {
+        margin-right: 10px;
+    }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        padding: 5px;
+        cursor: pointer;
+        background-color: #32383E;
+        border: #32383E;
+        color: white;
+    }
+
+    #genreSearch:focus {
+        outline-color: #3A3F44;
+        border-color: #3A3F44;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
