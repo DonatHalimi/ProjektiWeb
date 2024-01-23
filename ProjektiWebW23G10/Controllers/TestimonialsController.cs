@@ -35,7 +35,7 @@ namespace ProjektiWebW23G10.Controllers
                 testimonialsList = JsonConvert.DeserializeObject<List<TestimonialsModel>>(apiData);
             }
 
-            const int pageSize = 5;
+            const int pageSize = 10;
             if (pg < 1)
                 pg = 1;
 
@@ -136,7 +136,7 @@ namespace ProjektiWebW23G10.Controllers
         }
 
 
-        
+
         [HttpGet]
         public IActionResult Details(int id)
         {

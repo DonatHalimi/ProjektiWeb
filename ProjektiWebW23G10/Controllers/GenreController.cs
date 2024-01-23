@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ProjektiWebW23G10.Controllers
 {
-   
+
     public class GenreController : Controller
     {
         readonly Uri baseAddress = new Uri("https://localhost:7132/api");
@@ -34,7 +34,7 @@ namespace ProjektiWebW23G10.Controllers
                 genreList = JsonConvert.DeserializeObject<List<GenreModel>>(apiData);
             }
 
-            const int pageSize = 5;
+            const int pageSize = 10;
             if (pg < 1)
                 pg = 1;
 

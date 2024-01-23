@@ -4,11 +4,11 @@
 @{
     ViewData["Title"] = "Books";
 
-    Pager pager=new Pager();
+    Pager pager = new Pager();
     int pageNo = 0;
-    if(ViewBag.Pager != null)
+    if (ViewBag.Pager != null)
     {
-        pager=ViewBag.Pager;
+        pager = ViewBag.Pager;
         pageNo = pager.CurrentPage;
 
     }
@@ -137,31 +137,32 @@
     </tbody>
 </table>
 <div class="container">
-    @if(pager.TotalPages > 0){
-            <ul class="pagination justify-content-end">
-   @if(pager.CurrentPage > 1)
+    @if (pager.TotalPages > 0)
+    {
+        <ul class="pagination justify-content-end">
+            @if (pager.CurrentPage > 1)
             {
                 <li class="page-item">
-                       <a class="page-link" asp-controller="Book" asp-action="Index" asp-route-pg="1">First</a>
+                    <a class="page-link" asp-controller="Book" asp-action="Index" asp-route-pg="1">First</a>
                 </li>
-                 <li class="page-item">
-                       <a class="page-link" asp-controller="Book" asp-action="Index" asp-route-pg="@(pager.CurrentPage-1)">Previous</a>
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Book" asp-action="Index" asp-route-pg="@(pager.CurrentPage-1)">Previous</a>
                 </li>
             }
 
-            @for(var pge=pager.StartPage; pge <= pager.EndPage; pge++)
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
             {
                 <li class="page-item @(pge == pager.CurrentPage ? "active" :  "")">
                     <a class="page-link" asp-controller="Book" asp-action="Index" asp-route-pg="@pge">@pge</a>
                 </li>
             }
-            @if(pager.CurrentPage < pager.TotalPages)
+            @if (pager.CurrentPage < pager.TotalPages)
             {
                 <li class="page-item">
-                       <a class="page-link" asp-controller="Book" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)">Next</a>
+                    <a class="page-link" asp-controller="Book" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)">Next</a>
                 </li>
-                 <li class="page-item">
-                       <a class="page-link" asp-controller="Book" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Book" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
                 </li>
             }
         </ul>
@@ -475,6 +476,13 @@
 </script>
 
 <style>
+    .pagination {
+        position: relative;
+        right: 42%;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
     .wide-input {
         width: 300px;
     }

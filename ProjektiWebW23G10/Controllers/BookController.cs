@@ -35,11 +35,11 @@ namespace ProjektiWebW23G10.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                string apiData = response.Content.ReadAsStringAsync().Result; // Rename 'data' to 'apiData'
+                string apiData = response.Content.ReadAsStringAsync().Result;
                 bookList = JsonConvert.DeserializeObject<List<BookModel>>(apiData);
             }
 
-            const int pageSize = 5;
+            const int pageSize = 10;
             if (pg < 1)
                 pg = 1;
 
@@ -48,14 +48,12 @@ namespace ProjektiWebW23G10.Controllers
             var pager = new Pager(recsCount, pg, pageSize);
 
             int recSkip = (pg - 1) * pageSize;
-            var paginatedData = bookList.Skip(recSkip).Take(pager.PageSize).ToList(); // Rename 'data' to 'paginatedData'
+            var paginatedData = bookList.Skip(recSkip).Take(pager.PageSize).ToList();
 
             ViewBag.Pager = pager;
 
             return View(paginatedData);
         }
-
-
 
         [Authorize(Roles = "Admin")]
         [HttpGet]

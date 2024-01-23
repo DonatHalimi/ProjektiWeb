@@ -13,63 +13,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ProjektiWebW23G10.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-dfESnYb9tIa78L3gPVVE01aDtPccEVsUd4D5/ZtiKtZO0oT6WxHvEhiI5E4eRU6x" crossorigin="anonymous">
-
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            scroll-behavior: smooth;
-        }
-
-        /* Customize scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background-color: #272B30;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: #3A3F44;
-            border-radius: 6px;
-        }
-
-            ::-webkit-scrollbar-thumb:hover {
-                background-color: #555;
-            }
-
-        .navbar-nav .navbar-brand {
-            border: none;
-        }
-
-        .navbar-nav .nav-link {
-            border: none;
-            border-radius: 5px;
-            padding: 8px;
-        }
-
-        .logo {
-            width: 200px;
-        }
-
-        #scrollToTopBtn {
-            color: white;
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 50px;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-
-            #scrollToTopBtn:hover {
-                opacity: 0.8;
-            }
-    </style>
 </head>
 <body>
     <header>
@@ -141,15 +84,6 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <p>Learn about <a href="https://docs.microsoft.com/aspnet/core" style="color:white">building Web apps with ASP.NET Core</a>.</p>
-            <p>
-                &copy; 2023 - @DateTime.Now.Year | ProjektiWebW23G10 | <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color:white;">Privacy</a>
-            </p>
-        </div>
-    </footer>
-
     <!-- Add the scroll-to-top button with an arrow icon -->
     <button onclick="scrollToTop()" class="btn btn-secondary" id="scrollToTopBtn">
         <p style="font-size:20px; position:relative; bottom:5px;">^</p>
@@ -178,6 +112,76 @@
             });
         }
     </script>
+
+    <footer class="footer">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <p>Learn about <a href="https://docs.microsoft.com/aspnet/core" style="color:white">building Web apps with ASP.NET Core</a>.</p>
+            <p>
+                &copy; 2023 - @DateTime.Now.Year | ProjektiWebW23G10 | <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color:white;">Privacy</a>
+            </p>
+        </div>
+    </footer>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            scroll-behavior: smooth;
+        }
+
+        /* Customize scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #272B30;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #3A3F44;
+            border-radius: 6px;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background-color: #555;
+            }
+
+        .navbar-nav .navbar-brand {
+            border: none;
+        }
+
+        .navbar-nav .nav-link {
+            border: none;
+            border-radius: 5px;
+            padding: 8px;
+        }
+
+        .logo {
+            width: 200px;
+        }
+
+        #scrollToTopBtn {
+            color: white;
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 50px;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+            #scrollToTopBtn:hover {
+                opacity: 0.8;
+            }
+
+        .footer {
+            border-top: 2px solid #3a3f44;
+        }
+    </style>
 
     <script src="~/js/custom.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
